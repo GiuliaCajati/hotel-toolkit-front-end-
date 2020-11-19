@@ -1,10 +1,12 @@
 import loggedReducer from './isLogged'
 import events from './events'
 import {combineReducers} from 'redux'
+ 
 
-const allReducers =  combineReducers({
+
+const rootReducers =  combineReducers({
     isLogged : loggedReducer,
     events : events
 })
 
-export default allReducers;
+export default rootReducers;

@@ -1,24 +1,22 @@
-// function that returns an object 
+
+
+
+export const  FETCHED_EVENTS = "FETCHED_EVENTS"
+
 const eventsURL="http://localhost:3000/events"
 
-//fetching event data 
-//action creater function 
-function fetchEvents(events) {
-    return {
-        type: "FETCHED_EVENTS", 
-        payload: events 
-    }
-}
-
-function fetchingEvents(){
+export const fetchingEvents = () => {
     return (dispatch) => {
         fetch(eventsURL)
         .then(res => res.json())
         .then(events => {
-            dispatch(fetchEvents(events))
+            dispatch({
+                    type: "FETCHED_EVENTS", 
+                    payload: events 
+            })
         })
     }
 }
 
 
-export { fetchingEvents }
+

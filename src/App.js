@@ -1,15 +1,22 @@
 import './App.css';
 //import {useSelector, useDispatch} from 'react-redux'
 import React, { Component, Fragment } from "react";
-import {connect} from 'react-redux'
-import { BrowserRouter, Switch, Route, withRouter } from 'react-router-dom';//withRouter
-import LoginForm from './components/LoginForm.js'
-import WelcomePage from './components/WelcomePage.js'
-import UserHomePage from './components/UserHomePage.js'
+import { connect } from 'react-redux'
+import { BrowserRouter, Switch, Route } from 'react-router-dom';//withRouter
+import { Link } from 'react-router-dom' 
+//actions
+import { fetchingEvents } from './actions'
+//containers
 import UpdatesList from './containers/UpdatesList.js'
 import Toolbar from './containers/Toolbar.js'
 import EventsList from './containers/EventsList.js'
-import { fetchingEvents } from './actions'
+//components
+import NewTeamMemberForm from './components/NewTeamMemberForm.js'
+import LoginForm from './components/LoginForm.js'
+import WelcomePage from './components/WelcomePage.js'
+import TeamMemberHomePage from './components/TeamMemberHomePage.js'
+import { bindActionCreators } from 'redux';
+
 
 
 class App extends Component {
@@ -17,33 +24,43 @@ class App extends Component {
     this.props.fetchingEvents()
   }
   render() {
+ 
+   
     return (
       <div className="App">
         <Toolbar/>
-        <BrowserRouter>
+       
           <Switch>
             <Route exact path='/login' 
                   render={() => <LoginForm />} />
             <Route exact path='/welcome' 
                   render={() => <WelcomePage />} />
             <Route exact path='/home' 
-                  render={() => <UserHomePage />} />
+                  render={() => <TeamMemberHomePage />} />
             <Route exact path='/events' 
                   render={() => <EventsList />} />
             <Route exact path='/updates' 
                   render={() => <UpdatesList />} />
-                
+            <Route exact path='/add_team_member' 
+                  render={() => <NewTeamMemberForm />} />          
           </Switch>
-        </BrowserRouter>
+      
+       
       </div>
     );
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchingEvents: () => { dispatch( fetchingEvents )}
+const mapStateToProps = (state) => {
+  return{
+    events: state.events
   }
 }
 
-export default connect(null, mapDispatchToProps)(App)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchingEvents: bindActionCreators(fetchingEvents, dispatch)
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
