@@ -1,25 +1,49 @@
-import logo from './logo.svg';
 import './App.css';
+//import {useSelector, useDispatch} from 'react-redux'
+import React, { Component, Fragment } from "react";
+import {connect} from 'react-redux'
+import { BrowserRouter, Switch, Route, withRouter } from 'react-router-dom';//withRouter
+import LoginForm from './components/LoginForm.js'
+import WelcomePage from './components/WelcomePage.js'
+import UserHomePage from './components/UserHomePage.js'
+import UpdatesList from './containers/UpdatesList.js'
+import Toolbar from './containers/Toolbar.js'
+import EventsList from './containers/EventsList.js'
+import { fetchingEvents } from './actions'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends Component {
+  componentDidMount() {
+    this.props.fetchingEvents()
+  }
+  render() {
+    return (
+      <div className="App">
+        <Toolbar/>
+        <BrowserRouter>
+          <Switch>
+            <Route exact path='/login' 
+                  render={() => <LoginForm />} />
+            <Route exact path='/welcome' 
+                  render={() => <WelcomePage />} />
+            <Route exact path='/home' 
+                  render={() => <UserHomePage />} />
+            <Route exact path='/events' 
+                  render={() => <EventsList />} />
+            <Route exact path='/updates' 
+                  render={() => <UpdatesList />} />
+                
+          </Switch>
+        </BrowserRouter>
+      </div>
+    );
+  }
 }
 
-export default App;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchingEvents: () => { dispatch( fetchingEvents )}
+  }
+}
+
+export default connect(null, mapDispatchToProps)(App)
