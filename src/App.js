@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom'
 import { fetchingEvents } from './actions'
 //containers
 import UpdatesList from './containers/UpdatesList.js'
-import Toolbar from './containers/Toolbar.js'
+import Sidebar from './containers/Sidebar.js'
 import EventsList from './containers/EventsList.js'
 //components
 import NewTeamMemberForm from './components/NewTeamMemberForm.js'
@@ -28,8 +28,8 @@ class App extends Component {
    
     return (
       <div className="App">
-        <Toolbar/>
        
+       <Sidebar/>
           <Switch>
             <Route exact path='/login' 
                   render={() => <LoginForm />} />

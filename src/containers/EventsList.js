@@ -1,7 +1,21 @@
-import React, { useEffect }  from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import React from 'react'
+import { useSelector } from 'react-redux'
+import Paper from '@material-ui/core/Paper';
+import { makeStyles } from '@material-ui/core/styles';
 
-function EventsList() {
+const useStyles = makeStyles((theme) => ({
+    root: {
+      display: 'flex',
+      '& > *': {
+        margin: theme.spacing(35),
+        width: theme.spacing(40),
+        height: theme.spacing(40),
+      },
+    },
+  }));
+
+export default function  EventsList() {
+    const classes = useStyles();
     const events = useSelector(state => state.events)
     let index
     
@@ -17,10 +31,17 @@ function EventsList() {
         </li>})
 
     return(
-        <div className="Welcome">
-            <ul>{eventsList}</ul>
+        <div className={classes.root}>
+            <Paper variant="outlined" >
+                <ul>{eventsList}</ul>
+            </Paper>
         </div>
     )
 
 }
-export default EventsList;
+
+
+
+
+ 
+   
