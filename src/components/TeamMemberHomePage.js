@@ -22,7 +22,7 @@ export default function TeamMemberHomePage() {
     let memberDetails 
     let teamMemberInfo = () => {
         memberDetails = departments[1]
-debugger
+//debugger
 //departments[1].name
 //task details 
         return<div>

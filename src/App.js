@@ -36,6 +36,8 @@ class App extends Component {
           <Switch>
             <Route exact path='/login' 
                   render={() => <LoginForm />} />
+            <Route exact path='/login' 
+                  render={() => <LoginForm />} />
             <Route exact path='/welcome' 
                   render={() => <WelcomePage />} />
             <Route exact path='/home' 
@@ -47,7 +49,8 @@ class App extends Component {
             <Route exact path='/add_team_member' 
                   render={() => <NewTeamMemberForm />} />  
             <Route exact path='/add_event' 
-                  render={() => <NewEventForm />} />             
+                  render={() => <NewEventForm />} />    
+                           
           </Switch>
       
        

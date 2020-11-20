@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,7 +12,10 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { useSelector, useDispatch } from 'react-redux'; //display state 
+import { setLoginState } from '../actions';
 
+//material ui
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -25,7 +28,7 @@ function Copyright() {
     </Typography>
   );
 }
-
+//material ui
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -48,6 +51,34 @@ const useStyles = makeStyles((theme) => ({
 
 export default function LoginForm() {
   const classes = useStyles();
+  const isLogged = useSelector(state => state.isLogged)
+  const dispatch = useDispatch()
+
+    const [state , setState] = useState({
+    //Setting State for create new user 
+    name: "",
+    password: "",
+    badLogin: false
+  })
+
+  //User text field (setting state)
+  const handleChange = (event) => {
+    const {id , value} = event.target   
+    setState(prevState => ({
+        ...prevState,
+        [id] : value,
+    }))
+   
+  }
+
+  const handleSubmitClick = (event) => {
+    event.preventDefault();
+    let user = {
+        name: state.name,
+        password: state.password
+    }
+    dispatch(setLoginState([user]))
+    }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -65,11 +96,12 @@ export default function LoginForm() {
             margin="normal"
             required
             fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
+            id="name"
+            label="Name"
+            name="name"
+            autoComplete="name"
             autoFocus
+            onChange={handleChange}
           />
           <TextField
             variant="outlined"
@@ -81,17 +113,16 @@ export default function LoginForm() {
             type="password"
             id="password"
             autoComplete="current-password"
-          />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
+            onChange={handleChange}
           />
           <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+              className="btn btn-primary"
+              onClick={handleSubmitClick}
           >
             Sign In
           </Button>

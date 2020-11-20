@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,6 +12,12 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import FormControl from '@material-ui/core/FormControl';
+import MenuItem from '@material-ui/core/MenuItem';
+import InputLabel from '@material-ui/core/InputLabel';
+import Select from '@material-ui/core/Select';
+import { useSelector, useDispatch } from 'react-redux'; //display state 
+
 
 function Copyright() {
   return (
@@ -44,11 +50,47 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  //calandar
+  textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: 180,
+  },
+  //drop down
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 300,
+  }
 }));
+
 
 export default function New() {
   const classes = useStyles();
+  const departments = useSelector(state => state.departments)
 
+   //Setting State for create new user 
+    const [state , setState] = useState({
+        name: "",
+        password: "",
+        photo_url: ""
+    })
+
+    //Input fealds (setting state)
+    const handleChange = (event) => {
+        let {id , value} = event.target   
+        if(value === 0 ){
+        value = event.target.getAttribute("data-value")
+        }
+        setState(prevState => ({
+            ...prevState,
+            [id] : value
+        }))
+    //event.target.getAttribute("value....")
+  }
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -57,7 +99,7 @@ export default function New() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign up
+          Add Team Member
         </Typography>
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
@@ -69,8 +111,9 @@ export default function New() {
                 required
                 fullWidth
                 id="name"
-                label="Full Name"
+                label="Name"
                 autoFocus
+                onChange={handleChange} 
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -83,6 +126,7 @@ export default function New() {
                 name="password"
                 type="password"
                 autoComplete="current-password"
+                onChange={handleChange} 
               />
             </Grid>
             <Grid item xs={12}>
@@ -94,21 +138,51 @@ export default function New() {
                 label="access"
                 name="access"
                 autoComplete="access"
+                onChange={handleChange} 
               />
             </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-              />
+            <Grid item xs={12} sm={6}>
+            <TextField
+                id="date"
+                label="Birthday"
+                type="date"
+                defaultValue="2017-05-24"
+                className={classes.textField}
+                InputLabelProps={{
+                shrink: true,
+                }}
+            />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+            <TextField
+                id="date"
+                label="Start Date"
+                type="date"
+                defaultValue="2017-05-24"
+                className={classes.textField}
+                InputLabelProps={{
+                shrink: true,
+                }}
+            />
             </Grid>
           </Grid>
+
+           {/* Drop down  */}
+           <FormControl className={classes.formControl}>
+          <InputLabel htmlFor="grouped-select">Department</InputLabel>
+              <Select defaultValue="" id="grouped-select">
+                {departments.map(
+
+                (department)=> 
+                
+                  <MenuItem 
+                  value={department.id}
+                  id="department_id" 
+                  onClick={handleChange}>{department.name}
+                  </MenuItem>)}
+              </Select>
+          </FormControl>
+          
           <Button
             type="submit"
             fullWidth
@@ -116,7 +190,7 @@ export default function New() {
             color="primary"
             className={classes.submit}
           >
-            Sign Up
+            Add Team Member
           </Button>
         
         </form>
