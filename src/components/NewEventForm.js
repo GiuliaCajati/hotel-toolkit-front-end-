@@ -39,14 +39,14 @@ const useStyles = makeStyles((theme) => ({
   },
   form: {
     width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
+    marginTop: theme.spacing(3),
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
 }));
 
-export default function LoginForm() {
+export default function NewEventForm() {
   const classes = useStyles();
 
   return (
@@ -57,35 +57,58 @@ export default function LoginForm() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in
+          Sign up
         </Typography>
         <form className={classes.form} noValidate>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
-            autoFocus
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-          />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
+          <Grid container spacing={2}>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                autoComplete="name"
+                name="name"
+                variant="outlined"
+                required
+                fullWidth
+                id="name"
+                label="Full Name"
+                autoFocus
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="password"
+                label="Password"
+                name="password"
+                type="password"
+                autoComplete="current-password"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="access"
+                label="access"
+                name="access"
+                autoComplete="access"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+              />
+            </Grid>
+          </Grid>
           <Button
             type="submit"
             fullWidth
@@ -93,12 +116,12 @@ export default function LoginForm() {
             color="primary"
             className={classes.submit}
           >
-            Sign In
+            Sign Up
           </Button>
         
         </form>
       </div>
-      <Box mt={8}>
+      <Box mt={5}>
         <Copyright />
       </Box>
     </Container>

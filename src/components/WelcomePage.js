@@ -7,9 +7,10 @@ const useStyles = makeStyles((theme) => ({
     root: {
       display: 'flex',
       '& > *': {
-        margin: theme.spacing(35),
-        width: theme.spacing(40),
-        height: theme.spacing(40),
+        marginLeft: theme.spacing(35),
+        marginTop: theme.spacing(15),
+        width: theme.spacing(50),
+        height: theme.spacing(30),
       },
     },
   }));
@@ -19,6 +20,7 @@ export default function WelcomePage() {
     const events = useSelector(state => state.events)
     
     let todaydetails 
+    let todayEventDetails 
     let todaysInfo = () => {
         todaydetails = events[0].date_info[0]
       
@@ -32,12 +34,37 @@ export default function WelcomePage() {
             <h5>ADR: {todaydetails.occupancy}</h5>
             </div>
     }
+    let todaysEvents = () => {
+        todayEventDetails = events[0]
+      
+        return<div> 
+            <h2>{todayEventDetails.name}</h2>
+            <h5>Importance: {todayEventDetails.importance}</h5>
+            <h5>Attendees: {todayEventDetails.number_of_attendees}</h5>
+            <h5>VIP ARRIVALS</h5>
+            <h5>INFO TO SHARE ON DAILY</h5>
+            <h5>Link to event</h5>
+            </div>
+    }
 
     return(
-        <div className={classes.root}>
+        <div >
+            <div className={classes.root}>
             <Paper variant="outlined" >
                 <ul>{todaysInfo()}</ul>
             </Paper>
+            <Paper variant="outlined" >
+                <ul>{todaysEvents()}</ul>
+            </Paper>
+            </div>
+            <div className={classes.root}>
+            <Paper variant="outlined" >
+                <h3>Funny joke</h3>
+            </Paper>
+            <Paper variant="outlined" >
+                <h3>Updates For the day</h3>
+            </Paper>
+            </div>
         </div>
     )
 

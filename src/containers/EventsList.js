@@ -17,12 +17,12 @@ const useStyles = makeStyles((theme) => ({
 export default function  EventsList() {
     const classes = useStyles();
     const events = useSelector(state => state.events)
-    let index
+    
     
     //List of events 
     let eventsList = events.map(event => {
         //debugger
-        { index = event.date_info.length - 1}
+        let index = event.date_info.length - 1
         return<li key={event.id}>
             <h2>{event.name}</h2>
             <li> Event Size: {event.number_of_attendees}</li> 

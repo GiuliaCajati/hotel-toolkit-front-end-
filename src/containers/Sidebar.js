@@ -11,7 +11,6 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 import { Link } from 'react-router-dom' 
 
 const drawerWidth = 240;
@@ -49,7 +48,7 @@ export default function Sidebar() {
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
           <Typography variant="h6" noWrap>
-            Welcome
+            The Lobby
           </Typography>
         </Toolbar>
       </AppBar>
@@ -85,12 +84,22 @@ export default function Sidebar() {
         </List>
         <Divider />
         <List>
-          {['Log Out', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
+        <ListItem button component={Link} to="/add_event" >
+              <ListItemIcon><InboxIcon /> </ListItemIcon>
+              <ListItemText primary="Add Event"/>
             </ListItem>
-          ))}
+            <ListItem button component={Link} to="/home">
+              <ListItemIcon><InboxIcon /> </ListItemIcon>
+              <ListItemText primary="Home Page"/>
+            </ListItem>
+            <ListItem button component={Link} to="/add_team_member" >
+              <ListItemIcon><InboxIcon /> </ListItemIcon>
+              <ListItemText primary="Add User"/>
+            </ListItem>
+            <ListItem button component={Link} to="/login">
+              <ListItemIcon><InboxIcon /> </ListItemIcon>
+              <ListItemText primary="Login"/>
+            </ListItem>
         </List>
       </Drawer>
  
