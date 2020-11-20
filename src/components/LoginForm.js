@@ -73,11 +73,12 @@ export default function LoginForm() {
 
   const handleSubmitClick = (event) => {
     event.preventDefault();
+    
     let user = {
         name: state.name,
         password: state.password
     }
-    dispatch(setLoginState([user]))
+    dispatch(setLoginState(user))
     }
 
   return (

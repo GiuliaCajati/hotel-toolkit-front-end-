@@ -35,57 +35,30 @@ export const fetchingDepartments = () => {
 
 const teamMemberURL = "http://localhost:3000/login"
 export const setLoginState = (loginData) => {
-    debugger
-    return {
-        type: SET_LOGIN_STATE,
-        payload: loginData
+    return (dispatch) => {
+        fetch(teamMemberURL, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+            },
+            body: JSON.stringify(loginData)
+        })
+        .then(res => res.json())   
+        .then(loginData => {
+            dispatch({
+                    type: "SET_LOGIN_STATE", 
+                    payload: [loginData] 
+            })
+        })
     }
-    // fetch(teamMemberURL, {
-    //     method: "POST",
-    //     headers: {
-    //         'Content-Type': 'application/json',
-    //               'Accept': 'application/json'
-    //       },
-    //       body: JSON.stringify(teamMember)
-    // })
-    // .then(res => res.json())
-    // .then(teamMember => {
-    //     dispatch({
-    //             type: "SIGN_IN", 
-    //             payload: teamMember 
-    //     })
-    // })
 }
 
 
 
 
 
+
  
-
-
-
-// let user = {
-//     name: state.name,
-//     password: state.password
-//   }
-//   fetch(usersURL, {
-//       method: "POST",
-//       headers: {
-//         'Content-Type': 'application/json',
-//               'Accept': 'application/json'
-//       },
-//       body: JSON.stringify(user)
-//   })
-//   .then(response => response .json())
-//   .then(data => { 
-//     props.setCurrentUser(data)
-
-//     if(data.message){
-//       props.routerProps.history.push('/login')
-//     } else{
-//       props.routerProps.history.push('/profile') 
-//     }
-//     }) 
 
 

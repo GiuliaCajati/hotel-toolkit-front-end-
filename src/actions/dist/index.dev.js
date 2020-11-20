@@ -50,46 +50,23 @@ exports.fetchingDepartments = fetchingDepartments;
 var teamMemberURL = "http://localhost:3000/login";
 
 var setLoginState = function setLoginState(loginData) {
-  debugger;
-  return {
-    type: SET_LOGIN_STATE,
-    payload: loginData
-  }; // fetch(teamMemberURL, {
-  //     method: "POST",
-  //     headers: {
-  //         'Content-Type': 'application/json',
-  //               'Accept': 'application/json'
-  //       },
-  //       body: JSON.stringify(teamMember)
-  // })
-  // .then(res => res.json())
-  // .then(teamMember => {
-  //     dispatch({
-  //             type: "SIGN_IN", 
-  //             payload: teamMember 
-  //     })
-  // })
-}; // let user = {
-//     name: state.name,
-//     password: state.password
-//   }
-//   fetch(usersURL, {
-//       method: "POST",
-//       headers: {
-//         'Content-Type': 'application/json',
-//               'Accept': 'application/json'
-//       },
-//       body: JSON.stringify(user)
-//   })
-//   .then(response => response .json())
-//   .then(data => { 
-//     props.setCurrentUser(data)
-//     if(data.message){
-//       props.routerProps.history.push('/login')
-//     } else{
-//       props.routerProps.history.push('/profile') 
-//     }
-//     }) 
-
+  return function (dispatch) {
+    fetch(teamMemberURL, {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(loginData)
+    }).then(function (res) {
+      return res.json();
+    }).then(function (loginData) {
+      dispatch({
+        type: "SET_LOGIN_STATE",
+        payload: [loginData]
+      });
+    });
+  };
+};
 
 exports.setLoginState = setLoginState;
