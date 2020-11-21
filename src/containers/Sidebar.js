@@ -1,27 +1,115 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import clsx from 'clsx';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import { Link } from 'react-router-dom' 
-
+import { createMuiTheme } from '@material-ui/core/styles/index'
+import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 const drawerWidth = 240;
+
+export const customTheme = createMuiTheme({
+  palette: {
+    primary: {
+      light: '#e3f2fd',
+      main: '#ffffff',
+      dark: '#b1bfca',
+      contrastText: '#000'
+    },
+    secondary: {
+      light: '#6ec6ff',
+      main: '#000',
+      dark: '#0069c0',
+      contrastText: '#000',
+    },
+    error: {
+      main: '#000',
+      light: '#000',
+      dark: '#000',
+      contrastText: '#000',
+    },
+    divider: '#babdbe',
+    action: {
+      active: '#eceff1',
+      hover: '#eceff1',
+      selected: '#eceff1',
+      disabled: '#000',
+      disabledBackground: '#000',
+    },
+    text: {
+      primary: '#000000',
+      secondary: '#000000',
+      disabled: '#000000',
+      hint: '#000000',
+      icon: '#000000', 
+    },
+    common: {
+      black: '#000',
+      white: '#fff',
+    },
+    background: {
+      default: '#edf0f2',
+      paper: '#edf0f2', //side bar 
+    },
+  },
+  overrides: {
+    MuiAppBar: {
+      colorDefault: {
+        color: '#000000',
+        backgroundColor: '#b1bfca',
+      }
+    },
+    MuiIconButton: {
+      root: {
+        color: '#babdbe',
+      }
+    },
+    MuiSvgIcon: {
+      root: {
+        fill: '#ffffff',
+      }
+    }
+  }
+});
+
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
   },
   appBar: {
+    transition: theme.transitions.create(['margin', 'width'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+  },
+  appBarShift: {
     width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: drawerWidth,
+    transition: theme.transitions.create(['margin', 'width'], {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+    marginRight: drawerWidth,
+  },
+  title: {
+    flexGrow: 1,
+  },
+  hide: {
+    display: 'none',
   },
   drawer: {
     width: drawerWidth,
@@ -30,80 +118,148 @@ const useStyles = makeStyles((theme) => ({
   drawerPaper: {
     width: drawerWidth,
   },
-  // necessary for content to be below app bar
-  toolbar: theme.mixins.toolbar,
+  drawerHeader: {
+    display: 'flex',
+    alignItems: 'center',
+    padding: theme.spacing(0, 1),
+    // necessary for content to be below app bar
+    ...theme.mixins.toolbar,
+    justifyContent: 'flex-start',
+  },
   content: {
     flexGrow: 1,
-    backgroundColor: theme.palette.background.default,
     padding: theme.spacing(3),
+    transition: theme.transitions.create('margin', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    marginRight: -drawerWidth,
   },
+  contentShift: {
+    transition: theme.transitions.create('margin', {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+    marginRight: 0,
+  },
+ 
 }));
 
-export default function Sidebar() {
+export default function TestSideBar() {
   const classes = useStyles();
+  const theme = useTheme();
+  const [open, setOpen] = React.useState(false);
+  
+
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
+
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
 
   return (
+<MuiThemeProvider theme={customTheme}>
     <div className={classes.root}>
-      <CssBaseline />
-      <AppBar position="fixed" className={classes.appBar}>
-        <Toolbar>
-          <Typography variant="h6" noWrap>
-            The Lobby
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <Drawer
-        className={classes.drawer}
-        variant="permanent"
-        classes={{
-          paper: classes.drawerPaper,
-        }}
-        anchor="left"
-      >
-        <div className={classes.toolbar} />
-        <Divider />
-        <List>
+        <CssBaseline />
+        <AppBar
+          position="fixed"
+          color="default"
+          className={clsx(classes.appBar, {
+            [classes.appBarShift]: open,
+          })}
+
+        >
+          <Toolbar>
+            <Typography variant="h6" noWrap className={classes.title}>
+              The Front Desk
+            </Typography>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              edge="end"
+              onClick={handleDrawerOpen}
+              className={clsx(open && classes.hide)}
+            >
+              <MenuIcon />
+            </IconButton>
+          </Toolbar>
+        </AppBar>
+        <main
+          className={clsx(classes.content, {
+            [classes.contentShift]: open,
+          })}
+        >
+          <div className={classes.drawerHeader} />
+          <Typography paragraph>
             
-            <ListItem button component={Link} to="/welcome" >
-              <ListItemIcon><InboxIcon /> </ListItemIcon>
-              <ListItemText primary="Welcome Page"/>
-            </ListItem>
-     
-            <ListItem button component={Link} to="/home">
-              <ListItemIcon><InboxIcon /> </ListItemIcon>
-              <ListItemText primary="Home Page"/>
-            </ListItem>
-            <ListItem button component={Link} to="/events">
-              <ListItemIcon><InboxIcon /> </ListItemIcon>
-              <ListItemText primary="All Events"/>
-            </ListItem>
-            <ListItem button component={Link} to="/welcome">
-              <ListItemIcon><InboxIcon /> </ListItemIcon>
-              <ListItemText primary="All Updates"/>
-            </ListItem>
-        </List>
-        <Divider />
-        <List>
-        <ListItem button component={Link} to="/add_event" >
-              <ListItemIcon><InboxIcon /> </ListItemIcon>
-              <ListItemText primary="Add Event"/>
-            </ListItem>
-            <ListItem button component={Link} to="/home">
-              <ListItemIcon><InboxIcon /> </ListItemIcon>
-              <ListItemText primary="Home Page"/>
-            </ListItem>
-            <ListItem button component={Link} to="/add_team_member" >
-              <ListItemIcon><InboxIcon /> </ListItemIcon>
-              <ListItemText primary="Add User"/>
-            </ListItem>
-            <ListItem button component={Link} to="/login">
-              <ListItemIcon><InboxIcon /> </ListItemIcon>
-              <ListItemText primary="Login"/>
-            </ListItem>
-        </List>
-      </Drawer>
-    
- 
+          </Typography>
+        
+        </main>
+        <Drawer
+          className={classes.drawer}
+          variant="persistent"
+          anchor="right"
+          open={open}
+          classes={{
+            paper: classes.drawerPaper,
+          }}
+        >
+          <div className={classes.drawerHeader}>
+            <IconButton onClick={handleDrawerClose}>
+              {theme.direction === 'rtl' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+            </IconButton>
+          </div>
+          <Divider />
+          <List>
+              
+              <ListItem button component={Link} to="/welcome" >
+                  <ListItemIcon><InboxIcon /></ListItemIcon>
+                  <ListItemText primary="Welcome Page"/>
+              </ListItem>
+
+              <ListItem button component={Link} to="/home">
+                  <ListItemIcon><InboxIcon /></ListItemIcon>
+                  <ListItemText primary="Home Page"/>
+              </ListItem>
+
+              <ListItem button component={Link} to="/events">
+                  <ListItemIcon><InboxIcon /></ListItemIcon>
+                  <ListItemText primary="All Events"/>
+              </ListItem>
+
+              <ListItem button component={Link} to="/welcome">
+                  <ListItemIcon><InboxIcon /></ListItemIcon>
+                  <ListItemText primary="All Updates"/>
+              </ListItem>
+          </List>
+          <Divider />
+
+          <List>
+              <ListItem button component={Link} to="/add_event" >
+                  <ListItemIcon><InboxIcon /></ListItemIcon>
+                  <ListItemText primary="Add Event"/>
+              </ListItem>
+
+              <ListItem button component={Link} to="/home">
+                  <ListItemIcon><InboxIcon /> </ListItemIcon>
+                  <ListItemText primary="Home Page"/>
+              </ListItem>
+              
+              <ListItem button component={Link} to="/add_team_member" >
+                  <ListItemIcon><InboxIcon /></ListItemIcon>
+                  <ListItemText primary="Add User"/>
+              </ListItem>
+
+              <ListItem button component={Link} to="/login">
+                <ListItemIcon><InboxIcon /></ListItemIcon>
+                <ListItemText primary="Login"/>
+              </ListItem>
+          </List>
+
+        </Drawer>
     </div>
+  </MuiThemeProvider>
   );
 }

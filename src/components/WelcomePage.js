@@ -7,10 +7,10 @@ const useStyles = makeStyles((theme) => ({
     root: {
       display: 'flex',
       '& > *': {
-        marginLeft: theme.spacing(35),
-        marginTop: theme.spacing(15),
+        marginLeft: theme.spacing(20),
+        marginTop: theme.spacing(10),
         width: theme.spacing(50),
-        height: theme.spacing(30),
+        height: theme.spacing(50),
       },
     },
   }));
@@ -26,7 +26,8 @@ export default function WelcomePage() {
       
         return<div>
             
-            <h2>{todaydetails.date}</h2>
+            
+            <h5>{todaydetails.date}</h5>
             <h5>Arrivals: {todaydetails.arrivals}</h5>
             <h5>Departures: {todaydetails.departures}</h5>
             <h5>Performance: {todaydetails.performance_YTD}</h5>
@@ -38,7 +39,7 @@ export default function WelcomePage() {
         todayEventDetails = events[0]
       
         return<div> 
-            <h2>{todayEventDetails.name}</h2>
+            <h3>{todayEventDetails.name}</h3>
             <h5>Importance: {todayEventDetails.importance}</h5>
             <h5>Attendees: {todayEventDetails.number_of_attendees}</h5>
             <h5>VIP ARRIVALS</h5>
@@ -51,9 +52,11 @@ export default function WelcomePage() {
         <div >
             <div className={classes.root}>
             <Paper variant="outlined" >
+                <h2>Daily Details</h2>
                 <ul>{todaysInfo()}</ul>
             </Paper>
             <Paper variant="outlined" >
+                <h2>Today's Events</h2>
                 <ul>{todaysEvents()}</ul>
             </Paper>
             </div>
