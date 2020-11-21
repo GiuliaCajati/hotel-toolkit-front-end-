@@ -2,13 +2,15 @@ import TeamMemberHomePage from "../components/TeamMemberHomePage"
 
 export const  FETCHED_EVENTS = "FETCHED_EVENTS"
 export const  FETCHED_DEPARTMENTS = "FETCHED_DEPARTMENTS"
+export const FETCHED_TEAM_MEMBERS = "FETCHED_TEAM_MEMBERS"
 export const  SET_LOGIN_STATE = "SET_LOGIN_STATE"
+export const  SET_NEW_USER = "SET_NEW_USER"
 
+const URL = "http://localhost:3000/"
 
-const eventsURL = "http://localhost:3000/events"
 export const fetchingEvents = () => {
     return (dispatch) => {
-        fetch(eventsURL)
+        fetch(URL + "events")
         .then(res => res.json())
         .then(events => {
             dispatch({
@@ -19,10 +21,9 @@ export const fetchingEvents = () => {
     }
 }
 
-const departmentsURL = "http://localhost:3000/departments"
 export const fetchingDepartments = () => {
     return (dispatch) => {
-        fetch(departmentsURL)
+        fetch(URL + "departments")
         .then(res => res.json())
         .then(departments => {
             dispatch({
@@ -33,10 +34,25 @@ export const fetchingDepartments = () => {
     }
 }
 
-const teamMemberURL = "http://localhost:3000/login"
+export const fetchingTeamMembers = () => {
+    return (dispatch) => {
+        fetch(URL + "team_members")
+        .then(res => res.json())
+        .then(team_members => {
+            dispatch({
+                    type: "FETCHED_TEAM_MEMBERS", 
+                    payload: team_members 
+            })
+        })
+    }
+}
+
+
+
+
 export const setLoginState = (loginData) => {
     return (dispatch) => {
-        fetch(teamMemberURL, {
+        fetch(URL + "login", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
@@ -54,7 +70,25 @@ export const setLoginState = (loginData) => {
     }
 }
 
-
+export const setNewUser = (newUserData) => {
+    return (dispatch) => {
+        fetch(URL + "team_members", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+            },
+            body: JSON.stringify(newUserData)
+        })
+        .then(res => res.json())   
+        .then(newUserData => {
+            dispatch({
+                    type: "SET_NEW_USER", 
+                    payload: [newUserData] 
+            })
+        })
+    }
+}
 
 
 

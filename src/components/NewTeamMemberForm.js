@@ -16,7 +16,8 @@ import FormControl from '@material-ui/core/FormControl';
 import MenuItem from '@material-ui/core/MenuItem';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
-import { useSelector, useDispatch } from 'react-redux'; //display state 
+import { useSelector, useDispatch } from 'react-redux';//display state 
+import { setNewUser } from '../actions';
 
 
 function Copyright() {
@@ -71,12 +72,17 @@ const useStyles = makeStyles((theme) => ({
 export default function New() {
   const classes = useStyles();
   const departments = useSelector(state => state.departments)
+  const dispatch = useDispatch()
 
    //Setting State for create new user 
     const [state , setState] = useState({
         name: "",
         password: "",
-        photo_url: ""
+        access: "",
+        birthday: "",
+        start_date: "",
+        points: 0,
+        department_id: null
     })
 
     //Input fealds (setting state)
@@ -89,8 +95,25 @@ export default function New() {
             ...prevState,
             [id] : value
         }))
-    //event.target.getAttribute("value....")
   }
+
+    const handleSubmitClick = (event) => {
+        event.preventDefault();
+        let user = {
+            name: state.name,
+            password: state.password,
+            access: state.access,
+            birthday: state.birthday,
+            start_date: state.start_date,
+            points: 0,
+            department_id: state.department_id
+        }
+        dispatch(setNewUser(user))
+
+        }
+
+
+  
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -143,7 +166,7 @@ export default function New() {
             </Grid>
             <Grid item xs={12} sm={6}>
             <TextField
-                id="date"
+                id="birthday"
                 label="Birthday"
                 type="date"
                 defaultValue="2017-05-24"
@@ -151,11 +174,12 @@ export default function New() {
                 InputLabelProps={{
                 shrink: true,
                 }}
+                onChange={handleChange} 
             />
             </Grid>
             <Grid item xs={12} sm={6}>
             <TextField
-                id="date"
+                id="start_date"
                 label="Start Date"
                 type="date"
                 defaultValue="2017-05-24"
@@ -163,6 +187,7 @@ export default function New() {
                 InputLabelProps={{
                 shrink: true,
                 }}
+                onChange={handleChange} 
             />
             </Grid>
           </Grid>
@@ -189,6 +214,7 @@ export default function New() {
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={handleSubmitClick}
           >
             Add Team Member
           </Button>
@@ -204,11 +230,5 @@ export default function New() {
 
 
 
-                // t.string :name
-                // t.string :password_digest
-                // t.string :access
-                // t.string :birthday
-                // t.string :start_date
-                // t.integer :points = 0 
-                // t.integer :department_id
+                
                 
