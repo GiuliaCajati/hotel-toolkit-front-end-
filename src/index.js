@@ -9,19 +9,30 @@ import rootReducer from './reducers'
 import thunk from 'redux-thunk'
 import { BrowserRouter } from 'react-router-dom';//withRouter
 
+//history for action routing
+import { Router } from 'react-router'
+import createBrowserHistory from 'history/createBrowserHistory'
+
+export const history = createBrowserHistory()
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore( rootReducer, composeEnhancers(
     applyMiddleware(thunk)
   ));
 
 ReactDOM.render(
-  <BrowserRouter>
-    <Provider store={store}>
-      <App />
-    </Provider>
-    </BrowserRouter>,
+  <Router history={history}>
+    <BrowserRouter>
+        <Provider store={store}>
+          <App />
+        </Provider>
+    </BrowserRouter>
+  </Router>,
   document.getElementById('root')
 );
+
+
+  
+
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

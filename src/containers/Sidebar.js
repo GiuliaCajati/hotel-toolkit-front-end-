@@ -19,14 +19,17 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import { Link } from 'react-router-dom' 
 import { createMuiTheme } from '@material-ui/core/styles/index'
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
+import { useSelector, useDispatch } from 'react-redux';
+import { setLogOutState } from '../actions';
+import {  useHistory } from "react-router-dom";
 const drawerWidth = 240;
 
 export const customTheme = createMuiTheme({
   palette: {
     primary: {
       light: '#e3f2fd',
-      main: '#ffffff',
-      dark: '#b1bfca',
+      main: '#e3f2fd',
+      dark: '#e3f2fd',
       contrastText: '#000'
     },
     secondary: {
@@ -63,13 +66,15 @@ export const customTheme = createMuiTheme({
     background: {
       default: '#edf0f2',
       paper: '#edf0f2', //side bar 
+
     },
   },
   overrides: {
     MuiAppBar: {
       colorDefault: {
         color: '#000000',
-        backgroundColor: '#b1bfca',
+        backgroundColor: '#e3f2fd',
+        //toolbar background
       }
     },
     MuiIconButton: {
@@ -149,6 +154,9 @@ export default function TestSideBar() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const currentUser = useSelector(state => state.currentUser)
+  const dispatch = useDispatch()
+  const history = useHistory()
   
 
   const handleDrawerOpen = () => {
@@ -158,6 +166,11 @@ export default function TestSideBar() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  const handleClicked = () => {
+    dispatch(setLogOutState())
+    history.push("/login")
+}
 
   return (
 <MuiThemeProvider theme={customTheme}>
@@ -221,7 +234,7 @@ export default function TestSideBar() {
 
               <ListItem button component={Link} to="/home">
                   <ListItemIcon><InboxIcon /></ListItemIcon>
-                  <ListItemText primary="Home Page"/>
+                  <ListItemText primary="My Home Page"/>
               </ListItem>
 
               <ListItem button component={Link} to="/events">
@@ -233,29 +246,47 @@ export default function TestSideBar() {
                   <ListItemIcon><InboxIcon /></ListItemIcon>
                   <ListItemText primary="All Updates"/>
               </ListItem>
+
+
+              {/*logout not yet working*/}
+              {currentUser.length !== 0?(
+                <ListItem button onClick={handleClicked} 
+                component={Link} to="/login"> 
+                <ListItemIcon><InboxIcon /></ListItemIcon>
+                <ListItemText primary="Logout"/>
+              </ListItem>
+                ):(
+              <ListItem button component={Link} to="/login">
+                <ListItemIcon><InboxIcon /></ListItemIcon>
+                <ListItemText primary="Login"/>
+              </ListItem>)}
+
+
           </List>
           <Divider />
 
           <List>
-              <ListItem button component={Link} to="/add_event" >
+
+              <ListItem button component={Link} to="/all_team_members">
                   <ListItemIcon><InboxIcon /></ListItemIcon>
-                  <ListItemText primary="Add Event"/>
+                  <ListItemText primary="All Team Members"/>
               </ListItem>
 
-              <ListItem button component={Link} to="/home">
-                  <ListItemIcon><InboxIcon /> </ListItemIcon>
-                  <ListItemText primary="Home Page"/>
-              </ListItem>
-              
               <ListItem button component={Link} to="/add_team_member" >
                   <ListItemIcon><InboxIcon /></ListItemIcon>
                   <ListItemText primary="Add User"/>
               </ListItem>
 
-              <ListItem button component={Link} to="/login">
-                <ListItemIcon><InboxIcon /></ListItemIcon>
-                <ListItemText primary="Login"/>
+              <ListItem button component={Link} to="/add_event" >
+                  <ListItemIcon><InboxIcon /></ListItemIcon>
+                  <ListItemText primary="Add Event"/>
               </ListItem>
+              
+              <ListItem button component={Link} to="/home">
+                  <ListItemIcon><InboxIcon /> </ListItemIcon>
+                  <ListItemText primary="Blank"/>
+              </ListItem>
+              
           </List>
 
         </Drawer>

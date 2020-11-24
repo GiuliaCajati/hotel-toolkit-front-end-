@@ -1,12 +1,29 @@
-import TeamMemberHomePage from "../components/TeamMemberHomePage"
+import { history } from '../index.js';
 
+export const  FETCHED_DATES = "FETCHED_DATES"
 export const  FETCHED_EVENTS = "FETCHED_EVENTS"
 export const  FETCHED_DEPARTMENTS = "FETCHED_DEPARTMENTS"
 export const FETCHED_TEAM_MEMBERS = "FETCHED_TEAM_MEMBERS"
 export const  SET_LOGIN_STATE = "SET_LOGIN_STATE"
 export const  SET_NEW_USER = "SET_NEW_USER"
+export const  DISPLAY_EVENT = "DISPLAY_EVENT"
+export const SET_LOGOUT_STATE = "SET_LOGOUT_STATE"
+export const  DISPLAY_TEAM_MEMBER = "DISPLAY_TEAM_MEMBER"
 
 const URL = "http://localhost:3000/"
+
+export const fetchingDates = () => {
+    return (dispatch) => {
+        fetch(URL + "date_infos")
+        .then(res => res.json())
+        .then(dates => {
+            dispatch({
+                    type: "FETCHED_DATES", 
+                    payload: dates 
+            })
+        })
+    }
+}
 
 export const fetchingEvents = () => {
     return (dispatch) => {
@@ -21,6 +38,13 @@ export const fetchingEvents = () => {
     }
 }
 
+export const displayEvent = (selectedEvent) => {
+  return{
+      type: DISPLAY_EVENT,
+      payload: selectedEvent
+  }
+}
+
 export const fetchingDepartments = () => {
     return (dispatch) => {
         fetch(URL + "departments")
@@ -31,6 +55,13 @@ export const fetchingDepartments = () => {
                     payload: departments 
             })
         })
+    }
+}
+
+export const displayTeamMember = (selecteTeamMember) => {
+    return{
+        type: DISPLAY_TEAM_MEMBER,
+        payload: selecteTeamMember
     }
 }
 
@@ -48,8 +79,6 @@ export const fetchingTeamMembers = () => {
 }
 
 
-
-
 export const setLoginState = (loginData) => {
     return (dispatch) => {
         fetch(URL + "login", {
@@ -64,9 +93,16 @@ export const setLoginState = (loginData) => {
         .then(loginData => {
             dispatch({
                     type: "SET_LOGIN_STATE", 
-                    payload: [loginData] 
+                    payload: [loginData],
             })
-        })
+            history.push('/home')
+        }) 
+    }
+}
+
+export const setLogOutState = () => {
+    return{
+        type: SET_LOGOUT_STATE,
     }
 }
 
@@ -86,9 +122,14 @@ export const setNewUser = (newUserData) => {
                     type: "SET_NEW_USER", 
                     payload: [newUserData] 
             })
+//user show page
+            //history.push('/home')
         })
     }
 }
+
+
+
 
 
 

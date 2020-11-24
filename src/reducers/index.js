@@ -1,18 +1,27 @@
 import setLoginState from './setLoginState'
-import events from './events'
-import departments from './departments'
 import setNewUser from './setNewUser'
+
+import teamMember from './selectedTeamMember'
 import teamMembers from './teamMembers'
+import departments from './departments'
+
+import dates from './dates'
+import events from './events'
+import event from './selectedEvent'
+
 import {combineReducers} from 'redux'
  
 
 
 const rootReducers =  combineReducers({
-    setLoginState : setLoginState,
+    currentUser : setLoginState,
     setNewUser : setNewUser,
     events : events,
     departments : departments,
-    teamMembers : teamMembers
+    teamMembers : teamMembers,
+    teamMember : teamMember,
+    event : event,
+    dates : dates,
 })
 
 export default rootReducers;

@@ -8,48 +8,76 @@ const useStyles = makeStyles((theme) => ({
       display: 'flex',
       '& > *': {
         marginLeft: theme.spacing(20),
-        marginTop: theme.spacing(10),
+        marginTop: theme.spacing(8),
         width: theme.spacing(50),
-        height: theme.spacing(30),
+        height: theme.spacing(35),
       },
     },
   }));
 
 export default function TeamMemberHomePage() {
     const classes = useStyles();
-    const departments = useSelector(state => state.departments)
+    const currentUser = useSelector(state => state.currentUser)
     
-    let memberDetails 
-    let teamMemberInfo = () => {
-        memberDetails = departments[1]
-//debugger
-//departments[1].name
-//task details 
-        return<div>
-            
-            <h2>{memberDetails.date}</h2>
-            </div>
-    }
+   //render team member user details  
+    let userDetails = currentUser.map(user =>{
+        return<div >
+            <h2>{user.name}</h2>
+            <li> Points: {user.points}</li>
+        </div>
+    })
+
+    //render team member certificates 
+    let certificate = currentUser.map(user =>
+        user.tasks.map(task =>  
+            {return task.certificate?
+                (<label>
+                <input
+                    name="certificates"
+                    type="checkbox"
+                    checked={null}/>
+                {task.details}
+                </label>):(null)
+    }))
+
+    //render team member projects 
+    let projects = currentUser.map(user =>
+        user.tasks.map(task =>  
+            {return task.project?
+                (<label>
+                    <input
+                        name="certificates"
+                        type="checkbox"
+                        checked={null}/>
+                    {task.details}
+                    </label>):(null)
+    }))
+
     return(
-        <div >
+        <div style={{marginTop: "-40px"} }>
             <div className={classes.root}>
-            <Paper variant="outlined" >
-                <ul>My to do list </ul>
-                <ul>Certificates to complete</ul>
-                <ul>Projects to complete </ul>
-            </Paper>
-            <Paper variant="outlined" >
-                <ul></ul>
-            </Paper>
+                <Paper 
+                elevation={3} >
+                    <ul>{userDetails}</ul>
+                </Paper>
+                <Paper 
+                elevation={3} >
+                    <h2 id="paperTitle">Projects:</h2>
+                    <ul>{projects}</ul>
+                </Paper>
             </div>
+
             <div className={classes.root}>
-            <Paper variant="outlined" >
-                <h3>{teamMemberInfo()}</h3>
-            </Paper>
-            <Paper variant="outlined" >
-                <h3>Updates For the day</h3>
-            </Paper>
-            </div>
+                <Paper 
+                elevation={3}>
+                    <h2 id="paperTitle">Updates:</h2>
+                </Paper>
+                <Paper 
+                elevation={3} >
+                    <h2 id="paperTitle">Certificate:</h2>
+                    <ul>{certificate}</ul>
+                </Paper>
+                </div>
         </div>
     )
 

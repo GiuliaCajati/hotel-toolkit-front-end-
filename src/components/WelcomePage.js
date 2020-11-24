@@ -2,17 +2,18 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
+import ThisWeek from './ThisWeek.js'
 
 const useStyles = makeStyles((theme) => ({
     root: {
       display: 'flex',
       '& > *': {
-        marginLeft: theme.spacing(20),
-        marginTop: theme.spacing(10),
-        width: theme.spacing(50),
-        height: theme.spacing(50),
+        marginLeft: theme.spacing(5),
+        marginTop: theme.spacing(2),
+        width: theme.spacing(80),
+        height: theme.spacing(40),
       },
-    },
+    }
   }));
 
 export default function WelcomePage() {
@@ -25,12 +26,10 @@ export default function WelcomePage() {
         todaydetails = events[0].date_info[0]
       
         return<div>
-            
-            
             <h5>{todaydetails.date}</h5>
             <h5>Arrivals: {todaydetails.arrivals}</h5>
             <h5>Departures: {todaydetails.departures}</h5>
-            <h5>Performance: {todaydetails.performance_YTD}</h5>
+            <h5>Performance: {todaydetails.performance_YTD} YTD Overall Experience</h5>
             <h5>Occupancy: {todaydetails.occupancy}</h5>
             <h5>ADR: {todaydetails.occupancy}</h5>
             </div>
@@ -49,23 +48,23 @@ export default function WelcomePage() {
     }
 
     return(
-        <div >
+        <div style={{marginTop: "-40px"} }>
             <div className={classes.root}>
-            <Paper variant="outlined" >
-                <h2>Daily Details</h2>
+            <Paper elevation={3} >
+                <h2 id="paperTitle">Daily Details</h2>
                 <ul>{todaysInfo()}</ul>
             </Paper>
-            <Paper variant="outlined" >
-                <h2>Today's Events</h2>
+            <Paper elevation={3} >
+                <h2 id="paperTitle">Today's Events</h2>
                 <ul>{todaysEvents()}</ul>
             </Paper>
             </div>
             <div className={classes.root}>
-            <Paper variant="outlined" >
-                <h3>Funny joke</h3>
+            <Paper elevation={3} >
+                <ThisWeek />
             </Paper>
-            <Paper variant="outlined" >
-                <h3>Updates For the day</h3>
+            <Paper elevation={3} >
+                <h3 id="paperTitle">Updates For the day</h3>
             </Paper>
             </div>
         </div>
