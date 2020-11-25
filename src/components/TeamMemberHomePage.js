@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
         height: theme.spacing(35),
         overflow: 'auto',
       },
-    },
+    }
   }));
 
 export default function TeamMemberHomePage() {
@@ -68,20 +68,33 @@ export default function TeamMemberHomePage() {
                 elevation={3} >
                     <h2 id="paperTitle">Projects:</h2>
                     <ul>{projects}</ul>
+                  
                 </Paper>
             </div>
 
             <div className={classes.root}>
                 <Paper 
                 elevation={3}>
-                    <h2 id="paperTitle">Updates:</h2>
+                    <h2 id="paperTitle">Event Follow-Up:</h2>
+                    {/* {currentUser[0].department.tasks[0].length == 0 ? null : */}
+                    {currentUser[0].department.tasks.length == 0
+                        ?
+                            null
+                        :
+                            currentUser[0].department.tasks.map(task => {
+                            return <div id="paperTitle"><b>{task.event.name}:</b> {task.details}</div>})}
+                    
+                    <h2 id="paperTitle">Guest Follow-Up:</h2>
+                    <div id="paperTitle">< button>Add Task</button></div> 
                 </Paper>
                 <Paper 
                 elevation={3} >
                     <h2 id="paperTitle">Certificate:</h2>
                     <ul>{certificate}</ul>
+                    
                 </Paper>
                 </div>
+               
         </div>
     )
 

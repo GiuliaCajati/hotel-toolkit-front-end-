@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.setNewUser = exports.setLogOutState = exports.setLoginState = exports.fetchingTeamMembers = exports.displayTeamMember = exports.fetchingDepartments = exports.displayEvent = exports.addEvent = exports.searchEvents = exports.filterEvents = exports.fetchingEvents = exports.fetchingDates = exports.ADD_EVENT = exports.SEARCH_EVENTS = exports.DISPLAY_TEAM_MEMBER = exports.SET_LOGOUT_STATE = exports.DISPLAY_EVENT = exports.SET_NEW_USER = exports.SET_LOGIN_STATE = exports.FETCHED_TEAM_MEMBERS = exports.FETCHED_DEPARTMENTS = exports.FILTER_EVENTS = exports.FETCHED_EVENTS = exports.FETCHED_DATES = void 0;
+exports.setNewUser = exports.setLogOutState = exports.setLoginState = exports.fetchingTeamMembers = exports.displayTeamMember = exports.fetchingDepartments = exports.displayEvent = exports.addTask = exports.addDateEvent = exports.addEvent = exports.searchEvents = exports.filterEvents = exports.fetchingEvents = exports.fetchingDates = exports.ADD_DATE_EVENT = exports.ADD_TASK = exports.ADD_EVENT = exports.SEARCH_EVENTS = exports.DISPLAY_TEAM_MEMBER = exports.SET_LOGOUT_STATE = exports.DISPLAY_EVENT = exports.SET_NEW_USER = exports.SET_LOGIN_STATE = exports.FETCHED_TEAM_MEMBERS = exports.FETCHED_DEPARTMENTS = exports.FILTER_EVENTS = exports.FETCHED_EVENTS = exports.FETCHED_DATES = void 0;
 
 var _index = require("../index.js");
 
@@ -31,6 +31,10 @@ var SEARCH_EVENTS = "SEARCH_EVENTS";
 exports.SEARCH_EVENTS = SEARCH_EVENTS;
 var ADD_EVENT = "ADD_EVENT";
 exports.ADD_EVENT = ADD_EVENT;
+var ADD_TASK = "ADD_TASK";
+exports.ADD_TASK = ADD_TASK;
+var ADD_DATE_EVENT = "ADD_DATE_EVENT";
+exports.ADD_DATE_EVENT = ADD_DATE_EVENT;
 var URL = "http://localhost:3000/";
 
 var fetchingDates = function fetchingDates() {
@@ -97,13 +101,60 @@ var addEvent = function addEvent(newEvent) {
       dispatch({
         type: "ADD_EVENT",
         payload: [newEvent]
-      }); //user show page
-      //history.push('/home')
+      });
+
+      _index.history.push("/events/".concat(newEvent.id));
     });
   };
 };
 
 exports.addEvent = addEvent;
+
+var addDateEvent = function addDateEvent(newDateEvent) {
+  return function (dispatch) {
+    fetch(URL + "/date_events", {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(newDateEvent)
+    }).then(function (res) {
+      return res.json();
+    }).then(function (newDateEvent) {
+      dispatch({
+        type: "ADD_DATE_EVENT",
+        payload: [newDateEvent]
+      });
+      debugger; //history.push('/events')
+    });
+  };
+};
+
+exports.addDateEvent = addDateEvent;
+
+var addTask = function addTask(newTask) {
+  return function (dispatch) {
+    debugger;
+    fetch(URL + "/tasks", {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(newTask)
+    }).then(function (res) {
+      return res.json();
+    }).then(function (newTask) {
+      dispatch({
+        type: "ADD_TASK",
+        payload: [newTask]
+      }); //history.push('/events')
+    });
+  };
+};
+
+exports.addTask = addTask;
 
 var displayEvent = function displayEvent(selectedEvent) {
   return {

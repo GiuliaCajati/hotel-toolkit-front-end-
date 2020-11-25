@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+//show all tasks for depar.
 export default function TeamMemberShowPage() {
   const classes = useStyles();
   const teamMember = useSelector(state => state.teamMember)

@@ -6,7 +6,7 @@ padding-left: 8%;
 
 #root{
     content: "";
-    background: url("https://i.imgur.com/cnkw9zW.jpg") no-repeat fixed center;
+    background: url("https://i.imgur.com/sDUxdP7.png") no-repeat fixed center;
     background-size: cover;
     position: absolute;
     top: 0px;
@@ -16,10 +16,23 @@ padding-left: 8%;
     z-index: -1;
 }
 
+#bulleton{
+  content: "";
+  background: url("https://i.imgur.com/lbF1vSG.jpg") no-repeat fixed center;
+  background-size: cover;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  z-index: -1;
+}
+
 #vip{
  height: 100px;
  orientation: center;
 }
+
 /* https://i.imgur.com/cnkw9zW.jpg */
 /* https://i.imgur.com/ZJ2Qgdr.jpg */
 

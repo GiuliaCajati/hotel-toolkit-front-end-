@@ -17,18 +17,21 @@ import Paper from '@material-ui/core/Paper';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(8),
-    display: 'flex',
+    marginTop: theme.spacing(1),
+  // display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    width: '50%',
+    marginLeft: '20%',
+    overflow: 'auto',
+    height: 500
+    // overflow: 'auto',
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(3),
+    marginLeft: '15%',
+    marginTop: '10%',
+    width: '70%', // Fix IE 11 issue.
+    marginTop: theme.spacing(5),
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
@@ -97,10 +100,9 @@ export default function New() {
 
   
   return (
-    <Container component="main" maxWidth="xs">
+  
       <Paper className={classes.paper}>
-      <CssBaseline />
-      <div className={classes.paper}>
+      
         
         <Typography component="h1" variant="h5">
           Add Team Member
@@ -200,9 +202,8 @@ export default function New() {
           </Button>
         
         </form>
-      </div>
+    
       </Paper>
-    </Container>
   );
 }
 

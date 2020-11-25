@@ -8,6 +8,8 @@ import departments from './departments'
 import dates from './dates'
 import events from './events'
 import event from './selectedEvent'
+import tasks from './tasks'
+import dateEvent from './dateEvent'
 
 import {combineReducers} from 'redux'
  
@@ -22,6 +24,8 @@ const rootReducers =  combineReducers({
     teamMember : teamMember,
     event : event,
     dates : dates,
+    tasks : tasks,
+    dateEvent : dateEvent
 })
 
 export default rootReducers;

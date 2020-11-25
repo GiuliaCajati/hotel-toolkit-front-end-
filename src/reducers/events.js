@@ -6,7 +6,7 @@ const eventsReducer = (state = [], action) => {
         case FETCHED_EVENTS:
             return [...state, ...action.payload]
         case ADD_EVENT:
-            return [...action.payload]
+            return [...state, ...action.payload]
         case FILTER_EVENTS:
             return [...state, ...action.payload]
         case SEARCH_EVENTS:

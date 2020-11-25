@@ -25,10 +25,13 @@ import TeamMemberHomePage from './components/TeamMemberHomePage.js'
 import EventShowPage from './components/EventShowPage.js'
 import TeamMemberShowPage from './components/TeamMemberShowPage.js'
 import Calendar from "./components/Calendar";
+import BulletonBoard from "./components/BulletonBoard";
+import AdditionalResources from "./components/AdditionalResources";
+import AddDateDetails from "./components/AddDateDetails";
 
 
-//import ThisWeek from './components/ThisWeek.js'
 import { bindActionCreators } from 'redux';
+
 
 
 class App extends Component {
@@ -47,6 +50,10 @@ class App extends Component {
 
           <SideBar/>
           <Switch>
+
+          
+          <Route exact path='/add_date_details' 
+                  render={() => {return (<AddDateDetails />)}}/>
             {/* Calendar */}
             <Route exact path='/calendar' 
                   render={() => {return (<Calendar />)}}/>
@@ -68,17 +75,22 @@ class App extends Component {
             <Route exact path='/events' 
                   render={() => {return this.props.currentUser.length == 0?(<LoginForm />):(<EventsList />)}}/> 
             
-             {/* Event Show Page*/}
+            {/* Event Show Page*/}
               <Route path='/events/:id' render={(props)=> {
                   let pathId= props.match.params.id
                   return(<EventShowPage pathId = {pathId} />)}}/>
 
-           
-
-            {/* All Updates: Not made yet */} 
+            {/* NOT MADE*/}
+            {/* AdditionalResources */} 
+            <Route path='/additional_resources' render={()=> {
+                  return(<AdditionalResources />)}}/>
+            {/* BulletonBoard */} 
+            <Route path='/bulleton_board' render={()=> {
+                  return(<BulletonBoard />)}}/>
+            {/* All Updates*/} 
             <Route exact path='/updates' 
-                   render={() => {return this.props.currentUser.length == 0?(<LoginForm />):(<UpdatesList />)}}/> 
-               
+                  render={() => {return this.props.currentUser.length == 0?(<LoginForm />):(<UpdatesList />)}}/> 
+          
             {/* ACCESS RESTRICTIONS */}
             {/* All Team Members ONLY HR/EXEC HAS ACCESS */}
             <Route exact path='/all_team_members' 
@@ -89,6 +101,8 @@ class App extends Component {
                   let pathId= props.match.params.id
                   return(<TeamMemberShowPage pathId = {pathId} />)}}/>
 
+
+
             {/* FORMS */} 
 
             {/* Add Event Form: only MANAGERS have access */} 
@@ -98,6 +112,8 @@ class App extends Component {
             {/* Add Team Members ONLY HR/EXEC HAS ACCESS */} 
             <Route exact path='/add_team_member' 
                     render={() => {return this.props.currentUser.length == 0?(<LoginForm />):(<NewTeamMemberForm />)}}/>  
+
+            {/* Add not found page   */}
                                      
           </Switch>
       </div>

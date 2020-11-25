@@ -282,9 +282,9 @@ export default function TestSideBar() {
                   <ListItemText primary="Add Event"/>
               </ListItem>
               
-              <ListItem button component={Link} to="/home">
+              <ListItem button component={Link} to="/bulleton_board">
                   <ListItemIcon><InboxIcon /> </ListItemIcon>
-                  <ListItemText primary="Blank"/>
+                  <ListItemText primary="Bulleton Board"/>
               </ListItem>
               
           </List>

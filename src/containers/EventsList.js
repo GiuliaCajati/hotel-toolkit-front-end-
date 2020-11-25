@@ -56,22 +56,27 @@ export default function CheckboxList(props) {
         <div id="paperTitle"><EventFilter/></div>
  
         {events.map((event) => {
-          
-            let departure_index = event.date_info.length - 1
-
-            return (
-              
-            <ListItem key={event.id}  dense button onClick={() => handleClick(event)}>
-                <ListItemText id={event.id} primary={event.name}/>
-                <div id="eventDates">
-                <ListItemText id={event.id} primary={event.date_info[0].date}/>
-                <ListItemText id={event.id} primary={event.date_info[departure_index].date}/>
-                </div>
-            </ListItem>
-            );
-
+           let departure_index = event.date_info.length - 1
+           {return event.date_info.length == 0
+                ? 
+                   (<ListItem key={event.id}  dense button onClick={() => handleClick(event)}>
+                    <ListItemText id={event.id} primary={event.name}/>
+                    </ListItem>)
+                :
+                    (<ListItem key={event.id}  dense button onClick={() => handleClick(event)}>
+                    <ListItemText id={event.id} primary={event.name}/>
+                    <div id="eventDates">
+                    <ListItemText id={event.id} primary={event.date_info[0].date}/>
+                    <ListItemText id={event.id} primary={event.date_info[departure_index].date}/>
+                    </div>
+                    </ListItem>
+                    );
+            }
+          })}
            
-        })}
+            
+           
+          
         <div>
         <Button
             type="submit"

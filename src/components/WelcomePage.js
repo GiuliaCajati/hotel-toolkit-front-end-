@@ -97,8 +97,9 @@ export default function WelcomePage() {
             </Paper>
             <Paper elevation={3} >
                 <h2 id="paperTitle">Today's Events</h2>
-                <ul>{todaysEvents()}</ul>
-                <List>{eventTasks()}</List>
+                <List>Note:{eventTasks()}</List>
+                <List>{todaysEvents()}</List>
+                
                
             </Paper>
             </div>

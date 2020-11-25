@@ -12,6 +12,9 @@ export const SET_LOGOUT_STATE = "SET_LOGOUT_STATE"
 export const  DISPLAY_TEAM_MEMBER = "DISPLAY_TEAM_MEMBER"
 export const  SEARCH_EVENTS = "SEARCH_EVENTS"
 export const  ADD_EVENT = "ADD_EVENT"
+export const  ADD_TASK = "ADD_TASK"
+export const  ADD_DATE_EVENT = "ADD_DATE_EVENT"
+
 
 
 
@@ -38,7 +41,7 @@ export const fetchingEvents = () => {
         .then(events => {
             dispatch({
                     type: "FETCHED_EVENTS", 
-                    payload: events 
+                    payload: events
             })
         })
     }
@@ -75,12 +78,58 @@ export const filterEvents = (filteredEvents) => {
                     type: "ADD_EVENT", 
                     payload: [newEvent] 
             })
-//user show page
-            //history.push('/home')
+            history.push(`/events/${newEvent.id}`)
         })
     }
 }
 
+export const addDateEvent = (newDateEvent) => {
+    return (dispatch) => {
+        
+        fetch(URL + "/date_events", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+            },
+            body: JSON.stringify(newDateEvent)
+        })
+        .then(res => res.json())   
+        .then(newDateEvent => {
+            dispatch({
+                    type: "ADD_DATE_EVENT", 
+                    payload: [newDateEvent]
+              
+            })
+            debugger
+            //history.push('/events')
+        })
+    }
+}
+
+
+
+export const addTask = (newTask) => {
+    return (dispatch) => {
+        debugger
+        fetch(URL + "/tasks", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+            },
+            body: JSON.stringify(newTask)
+        })
+        .then(res => res.json())   
+        .then(newTask => {
+            dispatch({
+                    type: "ADD_TASK", 
+                    payload: [newTask] 
+            })
+            //history.push('/events')
+        })
+    }
+}
   
 
 export const displayEvent = (selectedEvent) => {
@@ -136,6 +185,7 @@ export const setLoginState = (loginData) => {
         })
         .then(res => res.json())   
         .then(loginData => {
+    
             dispatch({
                     type: "SET_LOGIN_STATE", 
                     payload: [loginData],
