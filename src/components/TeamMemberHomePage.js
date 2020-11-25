@@ -2,15 +2,17 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
+import ListItem from '@material-ui/core/ListItem';
 
 const useStyles = makeStyles((theme) => ({
     root: {
       display: 'flex',
       '& > *': {
         marginLeft: theme.spacing(20),
-        marginTop: theme.spacing(8),
+        marginTop: theme.spacing(2),
         width: theme.spacing(50),
         height: theme.spacing(35),
+        overflow: 'auto',
       },
     },
   }));
@@ -18,12 +20,14 @@ const useStyles = makeStyles((theme) => ({
 export default function TeamMemberHomePage() {
     const classes = useStyles();
     const currentUser = useSelector(state => state.currentUser)
-    
+    const d1 = new Date();
    //render team member user details  
     let userDetails = currentUser.map(user =>{
         return<div >
+             
             <h2>{user.name}</h2>
-            <li> Points: {user.points}</li>
+            <ListItem> Points: {user.points}</ListItem>
+            <ListItem> Start Date: {d1.toString(user.start_date).slice(4, 15)}</ListItem>
         </div>
     })
 
@@ -31,26 +35,26 @@ export default function TeamMemberHomePage() {
     let certificate = currentUser.map(user =>
         user.tasks.map(task =>  
             {return task.certificate?
-                (<label>
+                (<ListItem>
                 <input
                     name="certificates"
                     type="checkbox"
                     checked={null}/>
                 {task.details}
-                </label>):(null)
+                </ListItem>):(null)
     }))
 
     //render team member projects 
     let projects = currentUser.map(user =>
         user.tasks.map(task =>  
             {return task.project?
-                (<label>
+                (<ListItem>
                     <input
                         name="certificates"
                         type="checkbox"
                         checked={null}/>
                     {task.details}
-                    </label>):(null)
+                    </ListItem>):(null)
     }))
 
     return(

@@ -7,16 +7,24 @@ import ListItemText from '@material-ui/core/ListItemText';
 import {  useHistory } from "react-router-dom";
 import { displayEvent } from '../actions';
 import { useSelector, useDispatch } from 'react-redux';
+import Button from '@material-ui/core/Button';
+import EventFilter from "../components/EventFilter.js"
+
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
-    height: 600,
+    height: 550,
     maxWidth: 360,
     backgroundColor: theme.palette.background.paper,
     marginLeft: theme.spacing(50),
     overflow: 'auto',
     borderRadius: 5,
+  },
+  margin: {
+    marginLeft: theme.spacing(3),
+    marginTop: theme.spacing(10)
   },
 }));
 
@@ -28,20 +36,31 @@ export default function CheckboxList(props) {
   const history = useHistory()
   const dispatch = useDispatch()
 
+  //display selected event 
   const handleClick = (event) => {
     dispatch(displayEvent(event))
     history.push(`/events/${event.id}`)
   }
 
+  //add event 
+  const handleSubmitClick = () => {
+    history.push('/add_event')
+  }
  
   return (
+    
     <div>
         <List className={classes.root} >
-        <h3 id="paperTitle">Event Name</h3>
+        <h3 id="paperTitle">Event List</h3>
+        
+        <div id="paperTitle"><EventFilter/></div>
+ 
         {events.map((event) => {
+          
             let departure_index = event.date_info.length - 1
 
             return (
+              
             <ListItem key={event.id}  dense button onClick={() => handleClick(event)}>
                 <ListItemText id={event.id} primary={event.name}/>
                 <div id="eventDates">
@@ -50,8 +69,27 @@ export default function CheckboxList(props) {
                 </div>
             </ListItem>
             );
+
+           
         })}
+        <div>
+        <Button
+            type="submit"
+            variant="contained"
+            onClick={handleSubmitClick}
+            size="small"
+            location="right"
+            className={classes.margin} 
+          >
+            Add Event
+          </Button>
+        </div>
+
+        
         </List>
+
+        
+
     </div>
   );
 }

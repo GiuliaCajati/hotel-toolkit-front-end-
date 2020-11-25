@@ -9,6 +9,7 @@ import Container from '@material-ui/core/Container';
 import { useSelector, useDispatch } from 'react-redux'; //display state 
 import { setLoginState } from '../actions';
 import {  useHistory } from "react-router-dom";
+import Paper from '@material-ui/core/Paper';
 
 //material ui
 const useStyles = makeStyles((theme) => ({
@@ -17,10 +18,6 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
   },
   form: {
     width: '100%', // Fix IE 11 issue.
@@ -61,13 +58,16 @@ export default function LoginForm() {
         name: state.name,
         password: state.password
     }
+    
     dispatch(setLoginState(user))
     history.push("/home")
     }
 
   return (
+
     <Container component="main" maxWidth="xs">
       <CssBaseline />
+      
       <div className={classes.paper}>
     
         <Typography component="h1" variant="h5">
@@ -111,6 +111,8 @@ export default function LoginForm() {
         
         </form>
       </div>
+     
     </Container>
+   
   );
 }

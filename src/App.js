@@ -24,6 +24,7 @@ import WelcomePage from './components/WelcomePage.js'
 import TeamMemberHomePage from './components/TeamMemberHomePage.js'
 import EventShowPage from './components/EventShowPage.js'
 import TeamMemberShowPage from './components/TeamMemberShowPage.js'
+import Calendar from "./components/Calendar";
 
 
 //import ThisWeek from './components/ThisWeek.js'
@@ -46,7 +47,9 @@ class App extends Component {
 
           <SideBar/>
           <Switch>
-            
+            {/* Calendar */}
+            <Route exact path='/calendar' 
+                  render={() => {return (<Calendar />)}}/>
 
             {/* Team Member Login Form */}
             <Route exact path='/login' 

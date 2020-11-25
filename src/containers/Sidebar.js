@@ -242,9 +242,9 @@ export default function TestSideBar() {
                   <ListItemText primary="All Events"/>
               </ListItem>
 
-              <ListItem button component={Link} to="/welcome">
+              <ListItem button component={Link} to="/calendar">
                   <ListItemIcon><InboxIcon /></ListItemIcon>
-                  <ListItemText primary="All Updates"/>
+                  <ListItemText primary="Calendar"/>
               </ListItem>
 
 

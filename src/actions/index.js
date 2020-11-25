@@ -2,6 +2,7 @@ import { history } from '../index.js';
 
 export const  FETCHED_DATES = "FETCHED_DATES"
 export const  FETCHED_EVENTS = "FETCHED_EVENTS"
+export const  FILTER_EVENTS = "FILTER_EVENTS"
 export const  FETCHED_DEPARTMENTS = "FETCHED_DEPARTMENTS"
 export const FETCHED_TEAM_MEMBERS = "FETCHED_TEAM_MEMBERS"
 export const  SET_LOGIN_STATE = "SET_LOGIN_STATE"
@@ -9,6 +10,11 @@ export const  SET_NEW_USER = "SET_NEW_USER"
 export const  DISPLAY_EVENT = "DISPLAY_EVENT"
 export const SET_LOGOUT_STATE = "SET_LOGOUT_STATE"
 export const  DISPLAY_TEAM_MEMBER = "DISPLAY_TEAM_MEMBER"
+export const  SEARCH_EVENTS = "SEARCH_EVENTS"
+export const  ADD_EVENT = "ADD_EVENT"
+
+
+
 
 const URL = "http://localhost:3000/"
 
@@ -37,6 +43,45 @@ export const fetchingEvents = () => {
         })
     }
 }
+
+export const filterEvents = (filteredEvents) => {
+    return{
+        type: FILTER_EVENTS,
+        payload: filteredEvents
+    }
+  }
+
+  export const searchEvents = (filteredEvents) => {
+    return{
+        type: SEARCH_EVENTS,
+        payload: filteredEvents
+    }
+  }
+
+  export const addEvent = (newEvent) => {
+    return (dispatch) => {
+        debugger
+        fetch(URL + "/events", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+            },
+            body: JSON.stringify(newEvent)
+        })
+        .then(res => res.json())   
+        .then(newEvent => {
+            dispatch({
+                    type: "ADD_EVENT", 
+                    payload: [newEvent] 
+            })
+//user show page
+            //history.push('/home')
+        })
+    }
+}
+
+  
 
 export const displayEvent = (selectedEvent) => {
   return{
@@ -127,6 +172,8 @@ export const setNewUser = (newUserData) => {
         })
     }
 }
+
+
 
 
 

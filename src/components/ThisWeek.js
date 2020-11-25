@@ -11,7 +11,7 @@ import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles({
   table: {
-    minWidth: 500,
+    minWidth: 800,
   },
 });
 
@@ -25,12 +25,13 @@ export default function ThisWeek() {
   let rows
 
   dates.map(dtIn => {
-    console.log(dtIn.date)
-    rows = [ createData('Arrivals', dtIn.arrivals, dtIn.arrivals, dtIn.arrivals, dtIn.  arrivals, dtIn.arrivals),
-      createData('Departures', dtIn.departures, dtIn.departures, dtIn.departures, dtIn.departures, dtIn.departures),
-      createData('Performance', dtIn.performance_YTD, dtIn.performance_YTD, dtIn.performance_YTD, dtIn.performance_YTD, dtIn.performance_YTD),
-      createData('Occupancy', dtIn.occupancy, dtIn.occupancy, dtIn.occupancy, dtIn.occupancy, dtIn.occupancy),
-      createData('ADR', dtIn.rate, dtIn.rate, dtIn.rate, dtIn.rate, dtIn.rate)
+    
+    //go back and refactor while loop for 7 days of the week? 
+    rows = [ createData('Arrivals', dtIn.arrivals, dtIn.arrivals, dtIn.arrivals, dtIn.  arrivals, dtIn.arrivals, dtIn.arrivals, dtIn.arrivals),
+      createData('Departures', dtIn.departures, dtIn.departures, dtIn.departures, dtIn.departures, dtIn.departures, dtIn.departures, dtIn.departures),
+      createData('Performance', dtIn.performance_YTD, dtIn.performance_YTD, dtIn.performance_YTD, dtIn.performance_YTD, dtIn.performance_YTD, dtIn.performance_YTD, dtIn.performance_YTD),
+      createData('Occupancy', dtIn.occupancy, dtIn.occupancy, dtIn.occupancy, dtIn.occupancy, dtIn.occupancy, dtIn.occupancy, dtIn.occupancy),
+      createData('ADR', dtIn.rate, dtIn.rate, dtIn.rate, dtIn.rate, dtIn.rate, dtIn.rate, dtIn.rate)
     ]
   })
 

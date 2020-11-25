@@ -1,8 +1,12 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 import ThisWeek from './ThisWeek.js'
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import {  useHistory } from "react-router-dom";
+import { displayEvent } from '../actions';
+import { useSelector, useDispatch } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -11,52 +15,91 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: theme.spacing(5),
         marginTop: theme.spacing(2),
         width: theme.spacing(80),
-        height: theme.spacing(40),
+        height: theme.spacing(35),
+        overflow: 'auto',
       },
     }
   }));
 
 export default function WelcomePage() {
     const classes = useStyles();
-    const events = useSelector(state => state.events)
+    const dates = useSelector(state => state.dates)
+    const d1 = new Date();
+
+    const history = useHistory()
+    const dispatch = useDispatch()
+    let today = dates[4]
+
+    let todaysInfo = <List>
+            <ListItem>{d1.toString(today.date).slice(4, 15)}</ListItem>
+            <ListItem>Arrivals: {today.arrivals}</ListItem>
+            <ListItem>Departures: {today.departures}</ListItem>
+            <ListItem>Performance: {today.performance_YTD} YTD Overall Experience</ListItem>
+            <ListItem>Occupancy: {today.occupancy}</ListItem>
+            <ListItem>ADR: {today.occupancy}</ListItem>
+       </List>
+
+    const todaysEvents =  () => {
+       return today.events.length == 0
+            ?
+                null
+            :
+                today.events.map(event => {return<List> 
+            <ListItem dense button onClick={() => handleClick(event)}>{event.name}  <i> (click for details)</i></ListItem>
+            <ListItem>Importance: {event.importance}</ListItem>
+            <ListItem>Attendees: {event.number_of_attendees}</ListItem>
+        </List>})
+        }
+
+    const handleClick = (event) => {
+        dispatch(displayEvent(event))
+        history.push(`/events/${event.id}`)
+        }
     
-    let todaydetails 
-    let todayEventDetails 
-    let todaysInfo = () => {
-        todaydetails = events[0].date_info[0]
-      
-        return<div>
-            <h5>{todaydetails.date}</h5>
-            <h5>Arrivals: {todaydetails.arrivals}</h5>
-            <h5>Departures: {todaydetails.departures}</h5>
-            <h5>Performance: {todaydetails.performance_YTD} YTD Overall Experience</h5>
-            <h5>Occupancy: {todaydetails.occupancy}</h5>
-            <h5>ADR: {todaydetails.occupancy}</h5>
-            </div>
+    const todaysVips = () => {
+        return today.events.map(event =>{
+            return event.vips.length == 0
+                ?
+                    null
+                :   
+                    event.vips.map(vip =>{return<div> 
+            <h5>Name: {vip.name}</h5>
+            <h5>Details: {vip.show_on_daily}</h5>
+            <img id="vip" src={vip.img_url} />
+        </div>})
+        })
     }
-    let todaysEvents = () => {
-        todayEventDetails = events[0]
-      
-        return<div> 
-            <h3>{todayEventDetails.name}</h3>
-            <h5>Importance: {todayEventDetails.importance}</h5>
-            <h5>Attendees: {todayEventDetails.number_of_attendees}</h5>
-            <h5>VIP ARRIVALS</h5>
-            <h5>INFO TO SHARE ON DAILY</h5>
-            <h5>Link to event</h5>
-            </div>
+
+    const eventTasks = () => {
+        
+        return today.events.map(event =>{
+            return event.tasks.length  == 0
+                ?
+                    null
+                :   
+                
+                    event.tasks.map(task =>{return !task.event_id
+                            ?
+                                null
+                            :
+                                <ListItem>{task.details}</ListItem>})      
+         
+        })
     }
+
 
     return(
         <div style={{marginTop: "-40px"} }>
             <div className={classes.root}>
             <Paper elevation={3} >
                 <h2 id="paperTitle">Daily Details</h2>
-                <ul>{todaysInfo()}</ul>
+                <div>{todaysInfo}</div>
             </Paper>
             <Paper elevation={3} >
                 <h2 id="paperTitle">Today's Events</h2>
                 <ul>{todaysEvents()}</ul>
+                <List>{eventTasks()}</List>
+               
             </Paper>
             </div>
             <div className={classes.root}>
@@ -64,7 +107,9 @@ export default function WelcomePage() {
                 <ThisWeek />
             </Paper>
             <Paper elevation={3} >
-                <h3 id="paperTitle">Updates For the day</h3>
+                <h3 id="paperTitle">Updates For The Day</h3>
+                <h3 id="paperTitle">VIP's For The Day</h3>
+                <div id="paperTitle">{todaysVips()}</div>
             </Paper>
             </div>
         </div>
