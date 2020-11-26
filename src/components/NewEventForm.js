@@ -54,9 +54,6 @@ const useStyles = makeStyles((theme) => ({
     }
 }
 
-
-
-
 export default function NewEventForm() {
   const classes = useStyles();
   const departments = useSelector(state => state.departments)
@@ -68,15 +65,6 @@ export default function NewEventForm() {
     name: "",
     number_of_attendees: "",
     date_info_id: "",
-    // //DateEvent
-    // event_id: "",//will only have once event is created
-    // arrivals: "",
-    // in_house: 0,
-    // departures: null,
-    // //Task
-    // department_id: null,
-    // event_id: null, //will only have once event is created
-    // details: ""
   })
 
 
@@ -89,8 +77,8 @@ export default function NewEventForm() {
     }))
   }
 
-  const submitEvent = (event) => {
-    event.preventDefault();
+  const submitEvent = (e) => {
+    e.preventDefault();
 
     let newEvent = {
       name: state.name,
@@ -98,18 +86,13 @@ export default function NewEventForm() {
       number_of_attendees: state.number_of_attendees
     }
     dispatch(addEvent(newEvent))
-    history.push(`/events`)
+    history.push(`/events/`)
     //resturn to the show page
   }
 
-  return (
-
-    
-    <Paper className={classes.paper}>
-     
-    
+  return ( 
+    <Paper className={classes.paper}> 
       <div>
-      
         <form className={classes.form} noValidate>
         <Typography component="h1" variant="h5" spacing={2}>
             Add Event

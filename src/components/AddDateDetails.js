@@ -12,6 +12,8 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import { useSelector, useDispatch } from 'react-redux';//display 
 import { addDateEvent } from '../actions';
+import { addTask } from '../actions';
+import {  useHistory } from "react-router-dom";
 
 
 
@@ -63,24 +65,23 @@ export default function AddDateDetails() {
    
   const classes = useStyles();
   const departments = useSelector(state => state.departments)
-  const events = useSelector(state => state.events)
+  const event = useSelector(state => state.event)
   const dates = useSelector(state => state.dates)
   const dispatch = useDispatch()
+  const history = useHistory()
   //debugger
 
   //Setting State for create new user 
   const [state , setState] = useState({
-    
     // //DateEvent
     date_info_id: "",
-    event_id: events["length"] -1,//will only have once event is created
+    event_id: event[0].id,
     arrivals: "",
     house: "",
     departures: "",
     // //Task
-    // department_id: null,
-    // event_id: null, //will only have once event is created
-    // details: ""
+    department_id: null,
+    details: ""
   })
 
 
@@ -88,7 +89,6 @@ export default function AddDateDetails() {
   const handleChange = (event) => {
     let {id , value} = event.target 
     if(value === 0 ){
-
         value = event.target.getAttribute("data-value")
         }  
     setState(prevState => ({
@@ -98,32 +98,34 @@ export default function AddDateDetails() {
   }
 
 
-  const submitDateEvent = (event) => {
-    event.preventDefault();
+  const submitDateEvent = (e) => {
+    e.preventDefault();
     let newDateEvent = {   
       date_info_id: state.date_info_id,//drop down 
-      event_id: events["length"] -1,//change
+      event_id: state.event_id,//change
       arrivals: state.arrivals,
       in_house: state.house,
       departures: state.departures
     }
     dispatch(addDateEvent(newDateEvent))
+    history.push(`/events/${event.id}`)
   }
 
-  const addTask = (event) => {
-    event.preventDefault();
+  const submitTask = (e) => {
+    e.preventDefault();
     let newTask = {
-    // department_id: state.department_id,
-    // event_id: ..., 
-    // certificate: false,
-    // project: false,
-    // details: state.details
+      department_id: state.department_id,
+      event_id: state.event_id, 
+      certificate: false,
+      project: false,
+      details: state.details
     }
-    //dispatch(addTask(newTask))
+    dispatch(addTask(newTask))
+    history.push(`/events/${event.id}`)
   }
 
-  const addVip = (event) => {
-    event.preventDefault();
+  const addVip = (e) => {
+    e.preventDefault();
     // name: "Beyonce",
     // event_id: birthday.id,
     // show_on_daily: "Beyonce will be arriving at 7pm.",
@@ -203,13 +205,6 @@ export default function AddDateDetails() {
             Add Date Details
           </Button>
           
-
-          
-  
-      {/* button/ function to add more  */}
-      {/* add task  */}
-      {/* add VIPS */}
-      
           <Grid item xs={12} sm={6}>
               <TextField
                 variant="outlined"
@@ -219,6 +214,7 @@ export default function AddDateDetails() {
                 label="Task Details"
                 type="details"
                 id="details"
+                onChange={handleChange} 
               />
             </Grid>
           </Grid>
@@ -240,19 +236,11 @@ export default function AddDateDetails() {
             type="submit"
             variant="contained"
             className={classes.submit}
-            //onClick={renderTasks}
+            onClick={submitTask}
           >
             Add Task
           </Button>
           </FormControl>
-
-
-
-
-
-
-          
-        
         </form>
         </div>
     </Paper>

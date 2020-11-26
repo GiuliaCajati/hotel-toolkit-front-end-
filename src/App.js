@@ -24,10 +24,10 @@ import WelcomePage from './components/WelcomePage.js'
 import TeamMemberHomePage from './components/TeamMemberHomePage.js'
 import EventShowPage from './components/EventShowPage.js'
 import TeamMemberShowPage from './components/TeamMemberShowPage.js'
-import Calendar from "./components/Calendar";
 import BulletonBoard from "./components/BulletonBoard";
 import AdditionalResources from "./components/AdditionalResources";
 import AddDateDetails from "./components/AddDateDetails";
+import Calendar from "./components/Calendar.js";
 
 
 import { bindActionCreators } from 'redux';
