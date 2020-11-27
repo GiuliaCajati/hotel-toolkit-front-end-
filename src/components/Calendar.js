@@ -1,11 +1,12 @@
-import React from 'react'
-import FullCalendar from '@fullcalendar/react'
+import React, { useState } from 'react';
+import FullCalendar, { eventTupleToStore } from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
 import { useSelector, useDispatch } from 'react-redux';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
+
 
 
 const InlineStyle = () => (
@@ -47,32 +48,69 @@ const InlineStyle = () => (
     </style>
   )
 
-const Calendar = props => {
-   
-    let test = {title: "test event", start: "2020-11-18T10:45:00", end: "2020-11-18T13:00:00"}
+const Calendar = (props) => {
+
+  const [test, setEvents] = useState([
+    {
+      title: 'Test Event', 
+      start: '2020-11-18', 
+      allDay: true,
+      end: '2020-12-18'}
+])
+   //'2020-11-18T13:00:00'
     const dates = useSelector(state => state.dates)
-    const filterDates = () => {
-      let allTasks = dates.map(date => date.tasks)
-      allTasks.map(task => 
-        (task.length == 0
-          ?
-            null
-          : 
-            task.details
-            ))
-            debugger
+    const events = useSelector(state => state.events)
+    
+    // const filterTasks = () => {
+    //   let allTasks = dates.map(date => {
+
+    //     if(date.tasks.length == 0){
+    //       return null
+    //     } else {
+    //       debugger 
+    //      return (for (let i = 0; i<= date.length;  i++){
+    //       //date.date 
+    //       // for each date return task
+    //       date.tasks.map(task => task.details)
+    //      })
+          
+          
+    //     }
+    //   })
+    //   //map out all tasks for each date 
+
+    //   // allTasks.map(tasks => {
+    //   //     return(tasks.map(oneTask =>
+    //   //       oneTask.details 
+    //   //       //why do I not have access to the date??
+    //   //     ))  
+    //   //   })    
+    // }
+
+    const filterEvents = () => {
+      //map out all events for each date 
+      events.map(event => {
+        debugger
+        let lastIndex = event.date_info.length
+        return event.date_info[0].date //start
+        //return event.date_info[lastIndex].date //end
+        //event.name //title 
+
+      })    
     }
-  
+    
+
 
     return(
       <div> 
         <InlineStyle />
         <React.Fragment>
           <CssBaseline />
+          {filterEvents()}
               <Container maxWidth="sm" style={{ backgroundColor: '#ffffff', height: '70vh' }}>
                 <FullCalendar 
                 plugins={[ dayGridPlugin, listPlugin, timeGridPlugin ]}
-                test={test}
+                events={test}
                 />
                 
           </Container>
