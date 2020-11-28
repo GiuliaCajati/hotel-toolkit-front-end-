@@ -5,6 +5,8 @@ export const  FETCHED_EVENTS = "FETCHED_EVENTS"
 export const  FILTER_EVENTS = "FILTER_EVENTS"
 export const  FETCHED_DEPARTMENTS = "FETCHED_DEPARTMENTS"
 export const FETCHED_TEAM_MEMBERS = "FETCHED_TEAM_MEMBERS"
+export const FETCHED_TASKS = "FETCHED_TASKS"
+
 //login/logout
 export const  SET_LOGIN_STATE = "SET_LOGIN_STATE"
 export const SET_LOGOUT_STATE = "SET_LOGOUT_STATE"
@@ -55,17 +57,17 @@ export const filterEvents = (filteredEvents) => {
         type: FILTER_EVENTS,
         payload: filteredEvents
     }
-  }
+}
 
-  //fix this 
+//fix this 
 export const searchEvents = (filteredEvents) => {
     return{
         type: SEARCH_EVENTS,
         payload: filteredEvents
     }
-  }
+}
 
-  export const addEvent = (newEvent) => {
+export const addEvent = (newEvent) => {
     return (dispatch) => {
         debugger
         fetch(URL + "/events", {
@@ -110,12 +112,9 @@ export const addDateEvent = (newDateEvent) => {
     }
 }
 
-
-
 export const addTask = (newTask) => {
     return (dispatch) => {
-        debugger
-        fetch(URL + "/tasks", {
+        fetch(URL + "tasks", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
@@ -127,29 +126,47 @@ export const addTask = (newTask) => {
         .then(newTask => {
             dispatch({
                     type: "ADD_TASK", 
-                    payload: [newTask] 
+                    payload: [newTask]
             })
             history.push('/home')
         })
     }
 }
-//DELETE_TASK
-export const deleteTask = (selectedTask) => {
+
+//Fetch Tasks
+export const fetchingTasks = () => {
     return (dispatch) => {
-        fetch(URL + `${selectedTask.id}`, {
-            method: "DELETE"
-        })
+        fetch(URL + "tasks") 
         .then(res => res.json())   
-        .then(selectedTask => {
+        .then(tasks => {
             dispatch({
-                    type: "DELETE_TASK", 
-                    payload: selectedTask
-            })
-            history.push('/home')
+                    type: "FETCHED_TASKS", 
+                    payload: tasks
+            }) 
+            history.push('/events')
         })
           //  history.push('/events') 
     }
 }
+
+//DELETE_TASK
+export const deleteTask = (selectedTaskID) => {
+    return (dispatch) => {
+        fetch(URL +  `tasks/${selectedTaskID}`, {
+            method: "DELETE"
+        })
+        .then(res => console.log(res)) 
+        .then(task => {
+            debugger
+            dispatch({
+                    type: "DELETE_TASK", 
+                    payload: selectedTaskID
+            })
+            history.push('/home')
+        })
+    }
+}
+
 //EDIT_TASK
 export const editTask = (selectedTask) => {
     return (dispatch) => {

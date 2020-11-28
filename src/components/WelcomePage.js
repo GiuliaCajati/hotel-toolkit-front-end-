@@ -36,7 +36,7 @@ export default function WelcomePage() {
             <ListItem>Departures: {today.departures}</ListItem>
             <ListItem>Performance: {today.performance_YTD} YTD Overall Experience</ListItem>
             <ListItem>Occupancy: {today.occupancy}</ListItem>
-            <ListItem>ADR: {today.occupancy}</ListItem>
+            <ListItem>ADR: {today.rate}</ListItem>
        </List>
 
     const todaysEvents =  () => {
@@ -78,11 +78,15 @@ export default function WelcomePage() {
                     null
                 :   
                 
-                    event.tasks.map(task =>{return !task.event_id
+                    event.tasks.map(task =>{
+                        debugger
+                        
+                        return !task.event_id
+                        
                             ?
                                 null
                             :
-                                <ListItem>{task.details}</ListItem>})      
+                                <ListItem>{task.department}{task.details}</ListItem>})      
          
         })
     }
@@ -97,10 +101,9 @@ export default function WelcomePage() {
             </Paper>
             <Paper elevation={3} >
                 <h2 id="paperTitle">Today's Events</h2>
-                <List>Note:{eventTasks()}</List>
                 <List>{todaysEvents()}</List>
-                
-               
+                <List id="paperTitle">Note:{eventTasks()}</List>
+                {/* department  */}
             </Paper>
             </div>
             <div className={classes.root}>

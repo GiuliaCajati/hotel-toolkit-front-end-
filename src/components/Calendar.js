@@ -1,11 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import FullCalendar, { eventTupleToStore } from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
+import dayGrid from '@fullcalendar/daygrid'
+import timeGrid from '@fullcalendar/timegrid'
+import interactionPlugin from "@fullcalendar/interaction"; // needed for dayClick
+import { makeStyles } from '@material-ui/core/styles';
+
+
 
 
 
@@ -49,70 +55,64 @@ const InlineStyle = () => (
   )
 
 const Calendar = (props) => {
+  const dates = useSelector(state => state.dates)
+  const events = useSelector(state => state.events)
 
-  const [test, setEvents] = useState([
-    {
-      title: 'Test Event', 
-      start: '2020-11-18', 
-      allDay: true,
-      end: '2020-12-18'}
-])
-   //'2020-11-18T13:00:00'
-    const dates = useSelector(state => state.dates)
-    const events = useSelector(state => state.events)
-    
-    // const filterTasks = () => {
-    //   let allTasks = dates.map(date => {
 
-    //     if(date.tasks.length == 0){
-    //       return null
-    //     } else {
-    //       debugger 
-    //      return (for (let i = 0; i<= date.length;  i++){
-    //       //date.date 
-    //       // for each date return task
-    //       date.tasks.map(task => task.details)
-    //      })
-          
-          
-    //     }
-    //   })
-    //   //map out all tasks for each date 
-
-    //   // allTasks.map(tasks => {
-    //   //     return(tasks.map(oneTask =>
-    //   //       oneTask.details 
-    //   //       //why do I not have access to the date??
-    //   //     ))  
-    //   //   })    
-    // }
-
-    const filterEvents = () => {
+    const formatTasks = () => {
+      let tasksArray = dates.map(date => {
+        if(date.tasks.length == 0){
+          return null
+        } else {
+          let theDate = date.date
+          return date.tasks.map(task => {
+            return{
+              title: task.details, 
+              start: theDate, //date.date 
+              allDay: true,
+              end: theDate
+            }
+          })
+        }
+      })
+      return tasksArray.filter(task => task !== null)
+    }
+   
+    const formatEvents = () => {
       //map out all events for each date 
-      events.map(event => {
-        debugger
-        let lastIndex = event.date_info.length
-        return event.date_info[0].date //start
-        //return event.date_info[lastIndex].date //end
-        //event.name //title 
-
-      })    
+      let eventArray = events.map(theEvent => {
+        return{ title: theEvent.name, 
+          start: theEvent.date_info[0].date,
+          allDay: true,
+          end: theEvent.date_info[theEvent.date_info.length - 1].date
+      }})  
+      return [...eventArray, ...formatTasks().flat()] 
     }
     
+    const handleEventClick = (arg) => { // bind with an arrow function
+      alert(arg.event._def.title)
+      
+    }
+    const handleDateClick = (arg) => {
+    //debugger
+    }
 
-
+ 
     return(
       <div> 
         <InlineStyle />
         <React.Fragment>
           <CssBaseline />
-          {filterEvents()}
+        
               <Container maxWidth="sm" style={{ backgroundColor: '#ffffff', height: '70vh' }}>
                 <FullCalendar 
-                plugins={[ dayGridPlugin, listPlugin, timeGridPlugin ]}
-                events={test}
+                eventClick={handleEventClick} 
+                dateClick={handleDateClick}
+                //plugins={[ dayGridPlugin, listPlugin, timeGridPlugin ]}
+                //events={filterEvents}
+                events={formatEvents()}
+                plugins={[ dayGridPlugin, interactionPlugin ]} 
                 />
-                
           </Container>
         </React.Fragment>
       </div>

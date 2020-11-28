@@ -17,14 +17,26 @@ const useStyles = makeStyles((theme) => ({
     '& > *': {
         marginLeft: theme.spacing(60),
         marginTop: theme.spacing(8),
-        width: theme.spacing(30),
-        height: theme.spacing(30),
+        width: theme.spacing(40),
+        height: theme.spacing(60),
+        overflow: 'auto',
     },
   },
-  margin: {
+  buttons: {
     marginLeft: theme.spacing(3),
-    marginTop: theme.spacing(5)
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(2),
+    width: 100
   },
+  tasksMargin: {
+    marginLeft: theme.spacing(3),
+    marginRight: theme.spacing(3),
+    marginTop: theme.spacing(2)
+  },
+  section: {
+    marginTop: theme.spacing(2),
+    marginBottom: theme.spacing(1)
+  }
 }));
 
 export default function TeamMemberShowPage() {
@@ -33,56 +45,84 @@ export default function TeamMemberShowPage() {
   const history = useHistory()
   const dispatch = useDispatch()
   
+  const eventDates = (event) => { 
+    return event.date_events.map(dateEvent =>  {
+      return <ul>
+        <li>{dateEvent.date_info.date}</li> 
+        <li>Arrivals:{dateEvent.arrivals}</li> 
+        <li>In-House:{dateEvent.in_house}</li> 
+        <li>Departures:{dateEvent.departures}</li> 
+      </ul>
+    })
 
-  const handleSubmitClick =(e) => {
+  }
+
+  const handleSubmitClickDates =(e) => {
     e.preventDefault();
     //adding all details for event
-     history.push("/add_date_details")
+     history.push("/add_date")
   }
 
-  const handleSubmitDelete = (e) => {
+  const handleSubmitClickTasks =(e) => {
     e.preventDefault();
-    //delete task
-debugger
-    dispatch(deleteTask(event))
-
-    
-    history.push("/events")
+    //adding all details for event
+     history.push("/add_task")
   }
+
+  const handleSubmitDelete = (selectedTaskID) => {
+    //e.preventDefault();
+  dispatch(deleteTask(selectedTaskID))
+  debugger
+   history.push("/events")
+  }
+
 
 
   return (
     <div>
-
-    <div className={classes.root}>   
-        <Paper elevation={3}>
-            <h3 id="paperTitle">{event[0].name}</h3>
-                <div id="paperTitle">
-                  Attendees: {event[0].number_of_attendees}
-                  <div>Importance: {event[0].importance}</div>
-                  {event[0].tasks.length == 0
-                    ? 
-                      null
-                    :
-                    <div><DeleteTwoToneIcon  onClick={handleSubmitDelete}/>{event[0].tasks.map(task => task.department_id)}: {event[0].tasks.map(task => task.details)}</div>
-                  }
-                </div>
-                <div>
-        <Button
-            type="submit"
-            variant="contained"
-            onClick={handleSubmitClick}
-            size="small"
-            location="right"
-            className={classes.margin} 
-          >
-            Add Event Details
-          </Button>
-        
+        <div className={classes.root}>   
+          <Paper elevation={3}>
+            <div className={classes.tasksMargin}>
+                  <h3>{event[0].name}</h3>
+                  <b>Attendees:</b> {event[0].number_of_attendees}
+                  <div><b>Importance: </b>{event[0].importance}</div>
+                    {event[0].tasks.length == 0
+                      ? 
+                        null
+                      :
+                        <div className={classes.section}><b>Event Tasks:</b>
+                          {event[0].tasks.map(task => {
+                          return<div>
+                            <DeleteTwoToneIcon  
+                            onClick={()=> handleSubmitDelete(task.id)}/> 
+                            {task.details}
+                          </div>
+                        })}</div>
+                    }   
+                    <div><b>Event Dates:</b>{eventDates(event[0])}</div>
+              </div>  
+                <Button
+                type="submit"
+                variant="contained"
+                onClick={handleSubmitClickDates}
+                size="small"
+                location="right"
+                className={classes.buttons} 
+                >
+                Add Dates
+                </Button>
+                <Button
+                type="submit"
+                variant="contained"
+                onClick={handleSubmitClickTasks}
+                size="small"
+                location="right"
+                className={classes.buttons} 
+                >
+                Add Tasks
+                </Button>
+          </Paper>
         </div>
-        </Paper>
-        
-    </div>
     </div>
       );
 }

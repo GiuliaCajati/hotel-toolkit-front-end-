@@ -9,9 +9,6 @@ import { useSelector, useDispatch } from 'react-redux';//display
 import { addEvent } from '../actions';
 import {  useHistory } from "react-router-dom";
 
-
-
-
 const useStyles = makeStyles((theme) => ({
     paper: {
       marginTop: theme.spacing(1),
@@ -28,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
       marginLeft: '10%',
       marginTop: '10%',
       width: '80%', // Fix IE 11 issue.
-      marginTop: theme.spacing(10),
+      marginTop: theme.spacing(5),
     },
     submit: {
       margin: theme.spacing(3, 0, 2),
@@ -43,6 +40,9 @@ const useStyles = makeStyles((theme) => ({
     formControl: {
       margin: theme.spacing(10),
       minWidth: 300,
+    },
+    title: {
+      marginBottom: theme.spacing(5)
     }
 }));
 
@@ -94,7 +94,7 @@ export default function NewEventForm() {
     <Paper className={classes.paper}> 
       <div>
         <form className={classes.form} noValidate>
-        <Typography component="h1" variant="h5" spacing={2}>
+        <Typography component="h1" variant="h5" spacing={2} className={classes.title}>
             Add Event
         </Typography>
         

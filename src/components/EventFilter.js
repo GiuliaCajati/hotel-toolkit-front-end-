@@ -94,13 +94,13 @@ export default function CustomizedRadios() {
   
     return (
         <div>
-                <TextField
+                {/* <TextField
                     id="outlined-size-small"
                     variant="outlined"
                     size="small"
                     onChange={(event) => sortEvents(event.nativeEvent.data)}
                     />
-        
+         */}
         <FormControl component="fieldset">
         <RadioGroup defaultValue="alpha" name="customized-radios" onChange={(event) => sortEvents(event.target.value)}>
             <FormControlLabel value="alpha" control={<StyledRadio />} label="Alpha" />

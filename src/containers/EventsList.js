@@ -23,8 +23,8 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 5,
   },
   margin: {
-    marginLeft: theme.spacing(3),
-    marginTop: theme.spacing(10)
+    marginLeft: theme.spacing(30),
+    marginTop: theme.spacing(-10)
   },
 }));
 
@@ -52,9 +52,17 @@ export default function CheckboxList(props) {
     <div>
         <List className={classes.root} >
         <h3 id="paperTitle">Event List</h3>
-        
+        <Button
+            type="submit"
+            variant="contained"
+            onClick={handleSubmitClick}
+            size="small"
+            location="right"
+            className={classes.margin} 
+          >
+            Add Event
+        </Button>
         <div id="paperTitle"><EventFilter/></div>
- 
         {events.map((event) => {
            let departure_index = event.date_info.length - 1
            {return event.date_info.length == 0
@@ -73,28 +81,8 @@ export default function CheckboxList(props) {
                     );
             }
           })}
-           
-            
-           
-          
-        <div>
-        <Button
-            type="submit"
-            variant="contained"
-            onClick={handleSubmitClick}
-            size="small"
-            location="right"
-            className={classes.margin} 
-          >
-            Add Event
-          </Button>
-        </div>
-
         
         </List>
-
-        
-
     </div>
   );
 }

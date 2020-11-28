@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
     },
     //drop down
     formControl: {
-      margin: theme.spacing(5),
+      margin: theme.spacing(2),
       minWidth: 200,
       maxWidth: 200,
     }
@@ -73,13 +73,8 @@ export default function AddDateDetails() {
 
   //Setting State for create new user 
   const [state , setState] = useState({
-    // //DateEvent
-    date_info_id: "",
+    date_info_id: "", //might add date 
     event_id: event[0].id,
-    arrivals: "",
-    house: "",
-    departures: "",
-    // //Task
     department_id: null,
     details: ""
   })
@@ -97,105 +92,71 @@ export default function AddDateDetails() {
     }))
   }
 
-
-  const submitDateEvent = (e) => {
+  const submitTask = (e) => {
     e.preventDefault();
-    let newDateEvent = {   
-      date_info_id: state.date_info_id,//drop down 
-      event_id: state.event_id,//change
-      arrivals: state.arrivals,
-      in_house: state.house,
-      departures: state.departures
+    let newTask = {
+      department_id: state.department_id,
+      event_id: state.event_id, 
+      certificate: false,
+      project: false,
+      details: state.details
     }
-    dispatch(addDateEvent(newDateEvent))
+    dispatch(addTask(newTask))
     history.push(`/events/${event.id}`)
   }
 
-
-  const addVip = (e) => {
-    e.preventDefault();
-    // name: "Beyonce",
-    // event_id: birthday.id,
-    // show_on_daily: "Beyonce will be arriving at 7pm.",
-    // level: "High",
-    // img_url: "https://i.imgur.com/D0qvUSk.jpg"
-  }
-
+//   const addVip = (e) => {
+//     e.preventDefault();
+//     // name: "Beyonce",
+//     // event_id: birthday.id,
+//     // show_on_daily: "Beyonce will be arriving at 7pm.",
+//     // level: "High",
+//     // img_url: "https://i.imgur.com/D0qvUSk.jpg"
+//   }
   return (
   
     <Paper className={classes.paper}>
       <div>
-      
         <form className={classes.form} noValidate>
         <Typography component="h1" variant="h5" spacing={2}>
-            Add Date Details
+            Add Task
         </Typography>
        
-          <Grid container spacing={2}>
-          {/* Drop down  */}
-          <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="grouped-select">Dates</InputLabel>
-              <Select defaultValue="" id="grouped-select">
-                {dates.map((date)=>            
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                name="details"
+                label="Task Details"
+                type="details"
+                id="details"
+                onChange={handleChange} 
+              />
+
+                   {/* Drop down  */}
+        <FormControl className={classes.formControl}>
+          <InputLabel htmlFor="grouped-select">Department</InputLabel>
+            <Select defaultValue="" id="grouped-select">
+                {departments.map(
+                (department)=>            
                   <MenuItem 
-                  value={date.id}
-                  id="date_info_id" 
-                  onClick={handleChange}>{date.date}
+                  value={department.id}
+                  id="department_id" 
+                  onClick={handleChange}>{department.name}
                   </MenuItem>)}
-              </Select>
-              </FormControl>
-            <Grid item xs={12} sm={2}>
-              <TextField
-                autoComplete="arrivals"
-                name="arrivals"
-                variant="outlined"
-                required
-                fullWidth
-                id="arrivals"
-                autoFocus
-                onChange={handleChange} 
-              />
-              <FormHelperText>Arrivals</FormHelperText>
-            </Grid>
-            <Grid item xs={12} sm={2}>
-              <TextField
-                autoComplete="in_house"
-                name="in_house"
-                variant="outlined"
-                required
-                fullWidth
-                id="house"
-                autoFocus
-                onChange={handleChange} 
-              />
-              <FormHelperText>In-house</FormHelperText>
-            </Grid>
-            <Grid item xs={12} sm={2}>
-              <TextField
-                autoComplete="departures"
-                name="departures"
-                variant="outlined"
-                required
-                fullWidth
-                id="departures"
-                autoFocus
-                onChange={handleChange} 
-              />
-              <FormHelperText>Departures</FormHelperText>
-            </Grid>
-            <Button
+            </Select>
+        </FormControl>
+                  
+        </form>
+        <Button
+            style={{minWidth: '200px'}}
             type="submit"
             variant="contained"
             className={classes.submit}
-            style={{minWidth: '260px'}}
-            onClick={submitDateEvent}
+            onClick={submitTask}
           >
-            Add Date Details
+            Add Task
           </Button>
-  
-          </Grid>
-        
-        </form>
         </div>
     </Paper>
   );

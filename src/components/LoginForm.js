@@ -14,24 +14,24 @@ import Paper from '@material-ui/core/Paper';
 //material ui
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(1),
+    marginTop: theme.spacing(10),
   // display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     width: '25%',
-    marginLeft: '40%',
+    marginLeft: '35%',
     overflow: 'auto',
-    height: 250
+    height: 300
     // overflow: 'auto',
   },
   form: {
-    width: '80%', // Fix IE 11 issue.
+    width: '90%', // Fix IE 11 issue.
     marginTop: theme.spacing(1),
     marginLeft: theme.spacing(3),
     alignItems: 'center',
   },
   submit: {
-    margin: theme.spacing(3, 0, 2),
+    margin: theme.spacing(1, 0, 2),
   },
 }));
 
@@ -60,19 +60,17 @@ export default function LoginForm() {
 
   const handleSubmitClick = (event) => {
     event.preventDefault();
-    
     let user = {
         name: state.name,
         password: state.password
     }
-    
     dispatch(setLoginState(user))
-    history.push("/home")
+    history.push("/welcome")
     }
 
   return (
 <Paper className={classes.paper}>  
-        <Typography component="h1" variant="h5">
+        <Typography component="h1" variant="h5" id="login">
           Login
         </Typography>
         <form className={classes.form} noValidate>
@@ -110,7 +108,6 @@ export default function LoginForm() {
           >
             Sign In
           </Button>
-        
         </form>
   
     </Paper> 

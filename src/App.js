@@ -9,6 +9,7 @@ import { fetchingEvents } from './actions'
 import { fetchingDepartments } from './actions'
 import { fetchingTeamMembers } from './actions'
 import { fetchingDates } from './actions'
+import { fetchingTasks } from './actions'
 
 //containers
 import UpdatesList from './containers/UpdatesList.js'
@@ -27,12 +28,9 @@ import TeamMemberShowPage from './components/TeamMemberShowPage.js'
 import BulletonBoard from "./components/BulletonBoard";
 import AdditionalResources from "./components/AdditionalResources";
 import AddDateDetails from "./components/AddDateDetails";
+import AddTaskDetails from "./components/AddTaskDetails";
 import Calendar from "./components/Calendar.js";
-
-
 import { bindActionCreators } from 'redux';
-
-
 
 class App extends Component {
   componentDidMount() {
@@ -40,6 +38,7 @@ class App extends Component {
     this.props.fetchingDates()
     this.props.fetchingDepartments()
     this.props.fetchingTeamMembers() 
+    this.props.fetchingTasks()
   }
   render() {
  
@@ -52,7 +51,11 @@ class App extends Component {
           <Switch>
 
           
-          <Route exact path='/add_date_details' 
+          <Route exact path='/add_task' 
+                  render={() => {return (<AddTaskDetails />)}}/>
+
+          
+          <Route exact path='/add_date' 
                   render={() => {return (<AddDateDetails />)}}/>
             {/* Calendar */}
             <Route exact path='/calendar' 
@@ -127,7 +130,8 @@ const mapStateToProps = (state) => {
     departments: state.departments, 
     currentUser: state.currentUser,
     teamMembers: state.teamMembers,
-    dates: state.dates
+    dates: state.dates,
+    tasks: state.tasks
   }
 }
 
@@ -136,7 +140,8 @@ const mapDispatchToProps = (dispatch) => {
     fetchingEvents: bindActionCreators(fetchingEvents, dispatch),
     fetchingDepartments: bindActionCreators(fetchingDepartments, dispatch),
     fetchingTeamMembers: bindActionCreators(fetchingTeamMembers, dispatch),
-    fetchingDates: bindActionCreators(fetchingDates, dispatch)
+    fetchingDates: bindActionCreators(fetchingDates, dispatch),
+    fetchingTasks: bindActionCreators(fetchingTasks, dispatch)
   }
 }
 
