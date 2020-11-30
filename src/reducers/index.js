@@ -9,6 +9,7 @@ import dates from './dates'
 import events from './events'
 import event from './selectedEvent'
 import tasks from './tasks'
+import task from './selectedTask'
 import dateEvent from './dateEvent'
 
 import {combineReducers} from 'redux'
@@ -25,6 +26,7 @@ const rootReducers =  combineReducers({
     event : event,
     dates : dates,
     tasks : tasks,
+    task  : task,
     dateEvent : dateEvent
 })
 

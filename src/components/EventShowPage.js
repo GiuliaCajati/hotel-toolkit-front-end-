@@ -44,6 +44,7 @@ export default function TeamMemberShowPage() {
   const event = useSelector(state => state.event)
   const history = useHistory()
   const dispatch = useDispatch()
+  const tasks = useSelector(state => state.tasks)
   
   const eventDates = (event) => { 
     return event.date_events.map(dateEvent =>  {
@@ -59,21 +60,36 @@ export default function TeamMemberShowPage() {
 
   const handleSubmitClickDates =(e) => {
     e.preventDefault();
-    //adding all details for event
      history.push("/add_date")
   }
 
   const handleSubmitClickTasks =(e) => {
     e.preventDefault();
-    //adding all details for event
      history.push("/add_task")
   }
 
   const handleSubmitDelete = (selectedTaskID) => {
     //e.preventDefault();
   dispatch(deleteTask(selectedTaskID))
-  debugger
-   history.push("/events")
+  
+  }
+
+  const eventTasks = () => {
+    debugger
+    return event[0].tasks.length == 0
+      ? 
+       null
+      :
+      <div className={classes.section}>
+        <b>Event Tasks:</b>
+        {tasks.filter(task => task.event).filter(task => task.event.id == event[0].id).map(task => {
+
+          return<div>
+              <DeleteTwoToneIcon onClick={()=> handleSubmitDelete(task.id)}/> 
+              {task.details}
+          </div>  
+        })}  
+      </div>    
   }
 
 
@@ -86,19 +102,7 @@ export default function TeamMemberShowPage() {
                   <h3>{event[0].name}</h3>
                   <b>Attendees:</b> {event[0].number_of_attendees}
                   <div><b>Importance: </b>{event[0].importance}</div>
-                    {event[0].tasks.length == 0
-                      ? 
-                        null
-                      :
-                        <div className={classes.section}><b>Event Tasks:</b>
-                          {event[0].tasks.map(task => {
-                          return<div>
-                            <DeleteTwoToneIcon  
-                            onClick={()=> handleSubmitDelete(task.id)}/> 
-                            {task.details}
-                          </div>
-                        })}</div>
-                    }   
+                                    {eventTasks()}
                     <div><b>Event Dates:</b>{eventDates(event[0])}</div>
               </div>  
                 <Button

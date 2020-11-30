@@ -30,6 +30,8 @@ import AdditionalResources from "./components/AdditionalResources";
 import AddDateDetails from "./components/AddDateDetails";
 import AddTaskDetails from "./components/AddTaskDetails";
 import Calendar from "./components/Calendar.js";
+import CalendarSelection from "./components/CalendarSelection.js";
+
 import { bindActionCreators } from 'redux';
 
 class App extends Component {
@@ -53,7 +55,6 @@ class App extends Component {
           
           <Route exact path='/add_task' 
                   render={() => {return (<AddTaskDetails />)}}/>
-
           
           <Route exact path='/add_date' 
                   render={() => {return (<AddDateDetails />)}}/>

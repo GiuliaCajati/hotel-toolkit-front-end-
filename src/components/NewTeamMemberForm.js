@@ -13,6 +13,7 @@ import Select from '@material-ui/core/Select';
 import { useSelector, useDispatch } from 'react-redux';//display state 
 import { setNewUser } from '../actions';
 import Paper from '@material-ui/core/Paper';
+import {  useHistory } from "react-router-dom";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -58,6 +59,7 @@ export default function New() {
   const classes = useStyles();
   const departments = useSelector(state => state.departments)
   const dispatch = useDispatch()
+  const history = useHistory()
 
    //Setting State for create new user 
     const [state , setState] = useState({
@@ -94,7 +96,7 @@ export default function New() {
             department_id: state.department_id
         }
         dispatch(setNewUser(user))
-
+        history.push("/all_team_members")
         }
 
 

@@ -24,16 +24,38 @@ export default function ThisWeek() {
   const dates = useSelector(state => state.dates)
   let rows
 
+  
+    // dates.map(dtIn =>
+    //   for (let i = 0; i < 8; i++){
+    //      { rows = [ createData('Arrivals', dtIn.arrivals),
+    //   createData('Departures', dtIn.departures),
+    //   createData('Performance', dtIn.performance_YTD),
+    //   createData('Occupancy', dtIn.occupancy),
+    //   createData('ADR', dtIn.rate)]}
+    //   }})
+
+  // dates.map(dtIn => {
+  //   //while loop length 7 
+  //   //go back and refactor while loop for 7 days of the week? 
+  //   rows = [ createData('Arrivals', dtIn.arrivals, dtIn.arrivals, dtIn.arrivals, dtIn.  arrivals, dtIn.arrivals, dtIn.arrivals, dtIn.arrivals),
+  //     createData('Departures', dtIn.departures, dtIn.departures, dtIn.departures, dtIn.departures, dtIn.departures, dtIn.departures, dtIn.departures),
+  //     createData('Performance', dtIn.performance_YTD, dtIn.performance_YTD, dtIn.performance_YTD, dtIn.performance_YTD, dtIn.performance_YTD, dtIn.performance_YTD, dtIn.performance_YTD),
+  //     createData('Occupancy', dtIn.occupancy, dtIn.occupancy, dtIn.occupancy, dtIn.occupancy, dtIn.occupancy, dtIn.occupancy, dtIn.occupancy),
+  //     createData('ADR', dtIn.rate, dtIn.rate, dtIn.rate, dtIn.rate, dtIn.rate, dtIn.rate, dtIn.rate)
+  //   ]
+  // })
+
   dates.map(dtIn => {
-    
+    //while loop length 7 
     //go back and refactor while loop for 7 days of the week? 
-    rows = [ createData('Arrivals', dtIn.arrivals, dtIn.arrivals, dtIn.arrivals, dtIn.  arrivals, dtIn.arrivals, dtIn.arrivals, dtIn.arrivals),
-      createData('Departures', dtIn.departures, dtIn.departures, dtIn.departures, dtIn.departures, dtIn.departures, dtIn.departures, dtIn.departures),
-      createData('Performance', dtIn.performance_YTD, dtIn.performance_YTD, dtIn.performance_YTD, dtIn.performance_YTD, dtIn.performance_YTD, dtIn.performance_YTD, dtIn.performance_YTD),
-      createData('Occupancy', dtIn.occupancy, dtIn.occupancy, dtIn.occupancy, dtIn.occupancy, dtIn.occupancy, dtIn.occupancy, dtIn.occupancy),
-      createData('ADR', dtIn.rate, dtIn.rate, dtIn.rate, dtIn.rate, dtIn.rate, dtIn.rate, dtIn.rate)
+    rows = [ createData('Arrivals', 500, 100, 50, 250, 400, 200, 200),
+      createData('Departures', 200, 300, 450, 200, 360, 100, 200),
+      createData('Performance', "95% 😊", "94% 😊", "92% 😊", "99% 😊","97% 😊", "95% 😊", "98% 😊"),
+      createData('Occupancy', "90%", "80%", "77%", "88%","79%", "98%", "98%"),
+      createData('ADR', "$550", "$580", "$520", "$500", "$550", "$525", "$450")
     ]
   })
+
 
   return (
     <TableContainer component={Paper}>

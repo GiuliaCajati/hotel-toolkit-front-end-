@@ -14,52 +14,110 @@ export const  SET_NEW_USER = "SET_NEW_USER"
 export const  DISPLAY_TEAM_MEMBER = "DISPLAY_TEAM_MEMBER"
 
 export const  DISPLAY_EVENT = "DISPLAY_EVENT"
+export const  CLEAR_DISPLAY_EVENT = "CLEAR_DISPLAY_EVENT"
 export const  SEARCH_EVENTS = "SEARCH_EVENTS"
 export const  ADD_EVENT = "ADD_EVENT"
 
 export const  ADD_DATE_EVENT = "ADD_DATE_EVENT"
 
+//task
+export const  UPDATE_TASK = "UPDATE_TASK"
 export const  ADD_TASK = "ADD_TASK"
-// //need to make
+export const  DISPLAY_TASK = "DISPLAY_TASK"
+export const  CLEAR_DISPLAY_TASK = "CLEAR_DISPLAY_TASK"
 export const  DELETE_TASK = "DELETE_TASK"
+
+
+//need to make 
 export const  EDIT_TASK = "EDIT_TASK"
 
 const URL = "http://localhost:3000/"
 
-export const fetchingDates = () => {
+export const addTask = (newTask) => {
+    
     return (dispatch) => {
-        fetch(URL + "date_infos")
-        .then(res => res.json())
-        .then(dates => {
+        fetch(URL + "tasks", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+            },
+            body: JSON.stringify(newTask)
+        })
+        .then(res => res.json())   
+        .then(newTask => {
             dispatch({
-                    type: "FETCHED_DATES", 
-                    payload: dates 
+                    type: "ADD_TASK", 
+                    payload: [newTask]
             })
+            history.push('/home')
         })
     }
 }
 
-export const fetchingEvents = () => {
+
+export const updateTask = (taskId) => {
+    
     return (dispatch) => {
-        fetch(URL + "events")
-        .then(res => res.json())
-        .then(events => {
-            dispatch({
-                    type: "FETCHED_EVENTS", 
-                    payload: events
+        fetch(URL +  `tasks/${taskId}`, {
+            method: "PATCH",
+            headers: {
+                'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+               // status: !status
             })
+        })
+        .then(res => res.json())   
+        .then(updatesTask => {
+            dispatch({
+                //updatesTask.status = true
+                    type: "UPDATE_TASK", 
+                    payload: [updatesTask]
+            })
+            history.push('/home')
         })
     }
 }
-
-export const filterEvents = (filteredEvents) => {
+ 
+export const displayTask = (selectedTask) => {
     return{
-        type: FILTER_EVENTS,
-        payload: filteredEvents
+        type: DISPLAY_TASK,
+        payload: selectedTask
     }
 }
 
-//fix this 
+export const clearDisplayTask = () => {
+    return{
+        type: CLEAR_DISPLAY_TASK,
+    }
+}
+export const clearDisplayEvent = () => {
+    return{
+        type: CLEAR_DISPLAY_EVENT,
+    }
+}
+
+//delete tasks: need to change event state, events state, user state, dates? 
+export const deleteTask = (selectedTaskID) => {
+    return (dispatch) => {
+        fetch(URL +  `tasks/${selectedTaskID}`, {
+            method: "DELETE"
+        })
+        .then(res => console.log(res)) 
+        .then(task => {
+            debugger
+            dispatch({
+                    type: "DELETE_TASK",
+                    payload: selectedTaskID
+            })
+            history.push('/home')
+        })
+    }
+}
+
+//not yet working 
 export const searchEvents = (filteredEvents) => {
     return{
         type: SEARCH_EVENTS,
@@ -67,29 +125,9 @@ export const searchEvents = (filteredEvents) => {
     }
 }
 
-export const addEvent = (newEvent) => {
-    return (dispatch) => {
-        debugger
-        fetch(URL + "/events", {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-            },
-            body: JSON.stringify(newEvent)
-        })
-        .then(res => res.json())   
-        .then(newEvent => {
-            dispatch({
-                    type: "ADD_EVENT", 
-                    payload: [newEvent] 
-            })
-            history.push(`/events/${newEvent.id}`)
-        })
-    }
-}
 
 export const addDateEvent = (newDateEvent) => {
+    debugger
     return (dispatch) => {
         
         fetch(URL + "/date_events", {
@@ -112,28 +150,65 @@ export const addDateEvent = (newDateEvent) => {
     }
 }
 
-export const addTask = (newTask) => {
+//fetching dates 
+export const fetchingDates = () => {
     return (dispatch) => {
-        fetch(URL + "tasks", {
+        fetch(URL + "date_infos")
+        .then(res => res.json())
+        .then(dates => {
+            dispatch({
+                    type: "FETCHED_DATES", 
+                    payload: dates 
+            })
+        })
+    }
+}
+
+// fetchin events 
+export const fetchingEvents = () => {
+    return (dispatch) => {
+        fetch(URL + "events")
+        .then(res => res.json())
+        .then(events => {
+            dispatch({
+                    type: "FETCHED_EVENTS", 
+                    payload: events
+            })
+        })
+    }
+}
+
+//radio filter 
+export const filterEvents = (filteredEvents) => {
+    return{
+        type: FILTER_EVENTS,
+        payload: filteredEvents
+    }
+}
+
+//add event 
+export const addEvent = (newEvent) => {
+    return (dispatch) => {
+        fetch(URL + "/events", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
                     'Accept': 'application/json'
             },
-            body: JSON.stringify(newTask)
+            body: JSON.stringify(newEvent)
         })
         .then(res => res.json())   
-        .then(newTask => {
+        .then(newEvent => {
             dispatch({
-                    type: "ADD_TASK", 
-                    payload: [newTask]
+                    type: "ADD_EVENT", 
+                    payload: [newEvent] 
             })
-            history.push('/home')
+            history.push(`/events/${newEvent.id}`)
         })
     }
 }
 
-//Fetch Tasks
+//fetch Tasks
 export const fetchingTasks = () => {
     return (dispatch) => {
         fetch(URL + "tasks") 
@@ -149,48 +224,8 @@ export const fetchingTasks = () => {
     }
 }
 
-//DELETE_TASK
-export const deleteTask = (selectedTaskID) => {
-    return (dispatch) => {
-        fetch(URL +  `tasks/${selectedTaskID}`, {
-            method: "DELETE"
-        })
-        .then(res => console.log(res)) 
-        .then(task => {
-            debugger
-            dispatch({
-                    type: "DELETE_TASK", 
-                    payload: selectedTaskID
-            })
-            history.push('/home')
-        })
-    }
-}
 
-//EDIT_TASK
-export const editTask = (selectedTask) => {
-    return (dispatch) => {
-        debugger
-        fetch(URL + `${selectedTask}`, {
-            method: "PATCH",
-            headers: {
-                'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-            },
-        body: JSON.stringify(selectedTask)
-        })
-        .then(res => res.json())   
-        .then(selectedTask => {
-            dispatch({
-                    type: "EDIT_TASK", 
-                    payload: [selectedTask] 
-            })
-          //  history.push('/events')
-        })
-    }
-}
-  
-
+//event show page 
 export const displayEvent = (selectedEvent) => {
   return{
       type: DISPLAY_EVENT,
@@ -198,6 +233,7 @@ export const displayEvent = (selectedEvent) => {
   }
 }
 
+//departments for new team member form 
 export const fetchingDepartments = () => {
     return (dispatch) => {
         fetch(URL + "departments")
@@ -211,6 +247,7 @@ export const fetchingDepartments = () => {
     }
 }
 
+//team member show page 
 export const displayTeamMember = (selecteTeamMember) => {
     return{
         type: DISPLAY_TEAM_MEMBER,
@@ -218,6 +255,7 @@ export const displayTeamMember = (selecteTeamMember) => {
     }
 }
 
+//fetching team members 
 export const fetchingTeamMembers = () => {
     return (dispatch) => {
         fetch(URL + "team_members")
@@ -231,7 +269,7 @@ export const fetchingTeamMembers = () => {
     }
 }
 
-
+//login
 export const setLoginState = (loginData) => {
     return (dispatch) => {
         fetch(URL + "login", {
@@ -254,12 +292,14 @@ export const setLoginState = (loginData) => {
     }
 }
 
+//logout 
 export const setLogOutState = () => {
     return{
         type: SET_LOGOUT_STATE,
     }
 }
 
+//add team member 
 export const setNewUser = (newUserData) => {
     return (dispatch) => {
         fetch(URL + "team_members", {

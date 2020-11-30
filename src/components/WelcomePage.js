@@ -18,17 +18,21 @@ const useStyles = makeStyles((theme) => ({
         height: theme.spacing(35),
         overflow: 'auto',
       },
+    },
+    margins:{
+        marginLeft: theme.spacing(5)
     }
   }));
 
 export default function WelcomePage() {
     const classes = useStyles();
     const dates = useSelector(state => state.dates)
+    const tasks = useSelector(state => state.tasks)
     const d1 = new Date();
 
     const history = useHistory()
     const dispatch = useDispatch()
-    let today = dates[4]
+    let today = dates[3]
 
     let todaysInfo = <List>
             <ListItem>{d1.toString(today.date).slice(4, 15)}</ListItem>
@@ -45,16 +49,17 @@ export default function WelcomePage() {
                 null
             :
                 today.events.map(event => {return<List> 
-            <ListItem dense button onClick={() => handleClick(event)}>{event.name}  <i> (click for details)</i></ListItem>
+            {/* <ListItem dense button onClick={() => handleClick(event)}>{event.name}  <i> (click for details)</i></ListItem> */}
+            <ListItem dense><b>{event.name}</b> </ListItem>
             <ListItem>Importance: {event.importance}</ListItem>
             <ListItem>Attendees: {event.number_of_attendees}</ListItem>
         </List>})
         }
 
-    const handleClick = (event) => {
-        dispatch(displayEvent(event))
-        history.push(`/events/${event.id}`)
-        }
+    // const handleClick = (event) => {
+    //     dispatch(displayEvent(event))
+    //     history.push(`/events/${event.id}`)
+    //     }
     
     const todaysVips = () => {
         return today.events.map(event =>{
@@ -71,24 +76,19 @@ export default function WelcomePage() {
     }
 
     const eventTasks = () => {
-        
-        return today.events.map(event =>{
-            return event.tasks.length  == 0
-                ?
-                    null
-                :   
-                
-                    event.tasks.map(task =>{
-                        debugger
-                        
-                        return !task.event_id
-                        
-                            ?
-                                null
-                            :
-                                <ListItem>{task.department}{task.details}</ListItem>})      
-         
+      
+        //find all tasks that are linked to an event 
+        //find all tasks for 
+        let todaysTasks = tasks.filter(task => task.date_info.id == today.id)
+        return todaysTasks.map(task => {
+           
+            return !task.event_id
+                ? 
+                    null 
+                :
+                    <ListItem className={classes.margins}><b>{task.department.name}:</b> {task.details}</ListItem> 
         })
+    
     }
 
 
@@ -101,8 +101,8 @@ export default function WelcomePage() {
             </Paper>
             <Paper elevation={3} >
                 <h2 id="paperTitle">Today's Events</h2>
-                <List>{todaysEvents()}</List>
-                <List id="paperTitle">Note:{eventTasks()}</List>
+                <List className={classes.margins}>{todaysEvents()}</List>
+                <List className={classes.margins}>{eventTasks()}</List>
                 {/* department  */}
             </Paper>
             </div>

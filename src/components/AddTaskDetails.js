@@ -11,11 +11,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import { useSelector, useDispatch } from 'react-redux';//display 
-import { addDateEvent } from '../actions';
 import { addTask } from '../actions';
 import {  useHistory } from "react-router-dom";
-
-
 
 
 const useStyles = makeStyles((theme) => ({
@@ -80,7 +77,6 @@ export default function AddDateDetails() {
   })
 
 
-
   const handleChange = (event) => {
     let {id , value} = event.target 
     if(value === 0 ){
@@ -94,13 +90,28 @@ export default function AddDateDetails() {
 
   const submitTask = (e) => {
     e.preventDefault();
+
     let newTask = {
       department_id: state.department_id,
       event_id: state.event_id, 
       certificate: false,
       project: false,
+      date_info_id: state.date_info_id,
       details: state.details
     }
+    // Not working 
+    //let newTask = {
+    //   department_id: Number(state.department_id),
+    //   event_id: state.event_id, 
+    //   team_member_id: null,
+    //   certificate: false,
+    //   project: false,
+    //   guest_follow_up: false,
+    //   date_info_id: Number(state.date_info_id),
+    //   status: 0,
+    //   details: state.details
+    // }
+    debugger
     dispatch(addTask(newTask))
     history.push(`/events/${event.id}`)
   }
@@ -121,20 +132,21 @@ export default function AddDateDetails() {
         <Typography component="h1" variant="h5" spacing={2}>
             Add Task
         </Typography>
-       
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                name="details"
-                label="Task Details"
-                type="details"
-                id="details"
-                onChange={handleChange} 
-              />
-
-                   {/* Drop down  */}
-        <FormControl className={classes.formControl}>
+          {/* Drop down  */}
+          <FormControl className={classes.formControl}>
+          <InputLabel htmlFor="grouped-select">Dates</InputLabel>
+              <Select defaultValue="" id="grouped-select">
+                {dates.map((date)=>            
+                  <MenuItem 
+                  value={date.id}
+                  id="date_info_id" 
+                  onClick={handleChange}>{date.date}
+                  </MenuItem>)}
+              </Select>
+              </FormControl>
+        
+          {/* Drop down  */}
+          <FormControl className={classes.formControl}>
           <InputLabel htmlFor="grouped-select">Department</InputLabel>
             <Select defaultValue="" id="grouped-select">
                 {departments.map(
@@ -146,6 +158,17 @@ export default function AddDateDetails() {
                   </MenuItem>)}
             </Select>
         </FormControl>
+       
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                name="details"
+                label="Task Details"
+                type="details"
+                id="details"
+                onChange={handleChange} 
+              />
                   
         </form>
         <Button
