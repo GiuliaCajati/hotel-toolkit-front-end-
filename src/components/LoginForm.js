@@ -33,6 +33,11 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(1, 0, 2),
   },
+  font: {
+    fontFamily: "serif"
+  }
+  
+  //fontFamily: "serif"
 }));
 
 export default function LoginForm() {
@@ -72,10 +77,10 @@ export default function LoginForm() {
 
   return (
 <Paper className={classes.paper}>  
-        <Typography component="h1" variant="h5" id="login">
-          Login
+        <Typography component="h1" variant="h5" id="login" className={classes.font}>
+          <b>Login</b>
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} noValidate >
           <TextField
             variant="outlined"
             margin="normal"
@@ -103,6 +108,7 @@ export default function LoginForm() {
           <Button
               type="submit"
               fullWidth
+              className={classes.font}
               variant="contained"
               className={classes.submit}
               className="btn btn-primary"

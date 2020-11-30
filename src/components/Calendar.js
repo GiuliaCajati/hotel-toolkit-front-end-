@@ -58,9 +58,9 @@ const Calendar = (props) => {
 
   const formatTasks = () => {
     if(tasks.length == 0){
-        return null
+         return null
       } else {
-      let tasksArray = tasks.map(task => {
+      let tasksArray = tasks.map(task => {debugger
           return{
             title: task.details, 
             start: task.date_info.date,
@@ -72,8 +72,9 @@ const Calendar = (props) => {
           }
         
       })
+      
     return tasksArray.filter(task => task !== null)
-    }   
+    }    
   }
 
   const backgroundColor = (task) => {
@@ -89,16 +90,23 @@ const Calendar = (props) => {
     }
   }
 
-    const formatEvents = () => {
+    const formatEvents = () => { 
+      
       //map out all events for each date 
-      let eventArray = events.map(theEvent => {
+      let filteredEvents = []
+      events.filter(thisEvent  => {
+        return thisEvent.date_info.length == 0?null:filteredEvents.push(thisEvent)})
+        
+      let eventArray = filteredEvents.map(theEvent => { 
+        
         return{ title: theEvent.name, 
           start: theEvent.date_info[0].date,
           id: theEvent.id,
           allDay: true,
           groupId:"events" ,
           end: theEvent.date_info[theEvent.date_info.length - 1].date
-      }})  
+      }
+      })  
       return [...eventArray, ...formatTasks().flat()] 
     }
     
@@ -128,6 +136,7 @@ const Calendar = (props) => {
                 <FullCalendar 
                 eventClick={handleEventClick} 
                 dateClick={handleDateClick}
+                headerToolbar={{}}
                 //plugins={[ dayGridPlugin, listPlugin, timeGridPlugin ]}
                 //events={filterEvents}
                 events={formatEvents()}

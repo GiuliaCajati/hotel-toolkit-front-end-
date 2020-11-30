@@ -62,7 +62,7 @@ export default function ThisWeek() {
       <Table className={classes.table} aria-label="simple table">  
         <TableHead>
           <TableRow>
-            <TableCell>This Week</TableCell>
+            <TableCell><b>This Week</b></TableCell>
             <TableCell align="right">Monday</TableCell>
             <TableCell align="right">Tuesday</TableCell>
             <TableCell align="right">Wednesday</TableCell>

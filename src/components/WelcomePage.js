@@ -7,6 +7,7 @@ import ListItem from '@material-ui/core/ListItem';
 import {  useHistory } from "react-router-dom";
 import { displayEvent } from '../actions';
 import { useSelector, useDispatch } from 'react-redux';
+import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -21,7 +22,11 @@ const useStyles = makeStyles((theme) => ({
     },
     margins:{
         marginLeft: theme.spacing(5)
+    },
+    font:{
+        fontFamily: "serif",
     }
+    
   }));
 
 export default function WelcomePage() {
@@ -82,23 +87,39 @@ export default function WelcomePage() {
                 ? 
                     null 
                 :
-                    <ListItem className={classes.margins}><b>{task.department.name}:</b> {task.details}</ListItem> 
+                    <ListItem className={classes.margins}>
+                        <Box color={textColor(task.department.name)}>
+                            <b>Today's { task.department.name } Follow-ups: </b>
+                        </Box>
+                    { task.details }</ListItem> 
         })
-    
     }
+
+    const textColor = (department) => {
+        switch(department){
+          case "Front Office": 
+            return "primary.main"
+          case "House Keeping":
+            return "secondary.main"
+          case 'Engineering'://don't have any yet, but will need to change this 
+            return "error.main"
+          default:
+            return "info.main"
+        }
+      }
 
 
     return(
-        <div style={{marginTop: "-40px"} }>
+        <div style={{marginTop: "-40px"} } className={classes.font} >
             <div className={classes.root}>
             <Paper elevation={3} >
-                <h2 id="paperTitle">Daily Details</h2>
-                <div>{todaysInfo}</div>
+                <h2 id="paperTitle">Today's Stats</h2>
+                <div className={classes.margins}>{todaysInfo}</div>
             </Paper>
             <Paper elevation={3} >
                 <h2 id="paperTitle">Today's Events</h2>
+                <List >{eventTasks()}</List>
                 <List className={classes.margins}>{todaysEvents()}</List>
-                <List className={classes.margins}>{eventTasks()}</List>
                 {/* department  */}
             </Paper>
             </div>
@@ -107,8 +128,8 @@ export default function WelcomePage() {
                 <ThisWeek />
             </Paper>
             <Paper elevation={3} >
-                <h3 id="paperTitle">Updates For The Day</h3>
-                <h3 id="paperTitle">VIP's For The Day</h3>
+                <h3 id="paperTitle">Today's Updates</h3>
+                <h3 id="paperTitle">Today's VIP's</h3>
                 <div id="paperTitle">{todaysVips()}</div>
             </Paper>
             </div>

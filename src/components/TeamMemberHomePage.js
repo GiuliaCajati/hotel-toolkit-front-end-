@@ -18,6 +18,9 @@ const useStyles = makeStyles((theme) => ({
         height: theme.spacing(35),
         overflow: 'auto',
       },
+    },
+    font:{
+        fontFamily: "serif",
     }
   }));
 
@@ -31,7 +34,7 @@ export default function TeamMemberHomePage() {
 
     let userDetails = currentUser.map(user =>{ 
         return<div>
-            <h2>{user.name}</h2>
+            <h2>Hello {user.name}!</h2>
             <h5>{user.department.name}</h5>
             <ListItem> Points: {user.points}</ListItem>
             <ListItem> Start Date: {d1.toString(user.start_date).slice(4, 15)}</ListItem>
@@ -92,14 +95,12 @@ export default function TeamMemberHomePage() {
     }
 
     // const checked = (e) =>{ 
-    //     debugger
     //     dispatch(updateTask(e.target.name))
-    //     //change task.status (checked)
     // }
     
 
     return(
-        <div style={{marginTop: "-40px"} }>
+        <div style={{marginTop: "-40px"} } className={classes.font}>
             <div className={classes.root}>
                 <Paper 
                 elevation={3} >
@@ -107,7 +108,7 @@ export default function TeamMemberHomePage() {
                 </Paper>
                 <Paper 
                 elevation={3} >
-                    <h2 id="paperTitle">Projects:</h2>
+                    <h2 id="paperTitle">Project's:</h2>
                     <ul>{projects()}</ul>
                   
                 </Paper>
@@ -116,14 +117,14 @@ export default function TeamMemberHomePage() {
             <div className={classes.root}>
                 <Paper 
                 elevation={3}>
-                    <h2 id="paperTitle">Event Follow-Up:</h2>
+                    <h2 id="paperTitle">Future Event Follow-Ups:</h2>
                     <ul>{eventTasks()}</ul>
                     {/* <h2 id="paperTitle">Guest Follow-Up:</h2>
                     <div id="paperTitle">< button>Add Task</button></div>  */}
                 </Paper>
                 <Paper 
                 elevation={3} >
-                    <h2 id="paperTitle">Certificate:</h2>
+                    <h2 id="paperTitle">Certificate's:</h2>
                     <ul>{certificates()}</ul>
                     
                 </Paper>

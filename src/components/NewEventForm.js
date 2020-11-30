@@ -42,8 +42,10 @@ const useStyles = makeStyles((theme) => ({
       minWidth: 300,
     },
     title: {
-      marginBottom: theme.spacing(5)
+      marginBottom: theme.spacing(5),
+      fontFamily: "serif",
     }
+    
 }));
 
   //Input fealds (setting state)

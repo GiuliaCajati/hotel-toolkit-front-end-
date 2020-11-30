@@ -26,6 +26,10 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: theme.spacing(30),
     marginTop: theme.spacing(-10)
   },
+  font:{
+    fontFamily: "serif",
+    fontSize: "30px"
+}
 }));
 
 
@@ -49,9 +53,9 @@ export default function CheckboxList(props) {
  
   return (
     
-    <div>
+    <div >
         <List className={classes.root} >
-        <h3 id="paperTitle">Event List</h3>
+        <h3 id="paperTitle"className={classes.font}>Event List</h3>
         <Button
             type="submit"
             variant="contained"
@@ -62,17 +66,17 @@ export default function CheckboxList(props) {
           >
             Add Event
         </Button>
-        <div id="paperTitle"><EventFilter/></div>
+        <div id="paperTitle" ><EventFilter/></div>
         {events.map((event) => {
            let departure_index = event.date_info.length - 1
            {return event.date_info.length == 0
                 ? 
-                   (<ListItem key={event.id}  dense button onClick={() => handleClick(event)}>
+                   (<ListItem  className={classes.font} key={event.id}  dense button onClick={() => handleClick(event)}>
                     <ListItemText id={event.id} primary={event.name}/>
                     </ListItem>)
                 :
-                    (<ListItem key={event.id}  dense button onClick={() => handleClick(event)}>
-                    <ListItemText id={event.id} primary={event.name}/>
+                    (<ListItem className={classes.font} key={event.id}  dense button onClick={() => handleClick(event)}>
+                    <ListItemText className={classes.font} id={event.id} primary={event.name}/>
                     <div id="eventDates">
                     <ListItemText id={event.id} primary={event.date_info[0].date}/>
                     <ListItemText id={event.id} primary={event.date_info[departure_index].date}/>

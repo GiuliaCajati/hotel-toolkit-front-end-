@@ -57,7 +57,7 @@ export const addTask = (newTask) => {
 
 
 export const updateTask = (taskId) => {
-    //not fully working 
+    
     return (dispatch) => {
         fetch(URL +  `tasks/${taskId}`, {
             method: "PATCH",

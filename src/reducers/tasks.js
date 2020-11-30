@@ -2,7 +2,6 @@ import {  ADD_TASK, DELETE_TASK , FETCHED_TASKS, UPDATE_TASK} from '../actions/i
 
 const tasksReducer = (state = [], action) => {
     switch(action.type){
-        
         case FETCHED_TASKS:
             return [...state, ...action.payload]
         case ADD_TASK:
@@ -11,7 +10,7 @@ const tasksReducer = (state = [], action) => {
             return state.filter(task => task.id !== action.payload) 
         case UPDATE_TASK:
             //not fully working 
-            return [ state.filter(item => item.id !== action.payload[0].id), ...action.payload].flat() 
+            return [state.filter(item => item.id !== action.payload[0].id), ...action.payload].flat() 
         default: 
             return state;
     }

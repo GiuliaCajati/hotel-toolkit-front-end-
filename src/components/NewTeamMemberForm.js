@@ -33,6 +33,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '10%',
     width: '70%', // Fix IE 11 issue.
     marginTop: theme.spacing(5),
+    
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
@@ -51,7 +52,14 @@ const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
     minWidth: 300,
+  },
+  title: {
+    fontFamily: "serif",
+    marginLeft: 50,
+    marginTop: 25
   }
+  //fontFamily: "serif",
+  
 }));
 
 
@@ -104,7 +112,7 @@ export default function New() {
       <Paper className={classes.paper}>
       
         
-        <Typography component="h1" variant="h5">
+        <Typography component="h1" variant="h5" className={classes.title}>
           Add Team Member
         </Typography>
         <form className={classes.form} noValidate>

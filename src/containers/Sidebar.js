@@ -90,8 +90,6 @@ export const customTheme = createMuiTheme({
   }
 });
 
-
-
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -112,6 +110,14 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
+    marginLeft: "1pc",
+    marginTop: "1pc",
+    fontFamily: "serif",
+    fontSize:"25px"
+  },
+  subTitle: {
+    marginTop: "-4pc",
+    fontSize:"15px"
   },
   hide: {
     display: 'none',
@@ -186,7 +192,7 @@ export default function TestSideBar() {
         >
           <Toolbar>
             <Typography variant="h6" noWrap className={classes.title}>
-              The Front Desk
+              <b>FRONT DESK</b><div> <i className={classes.subTitle} >Creating Seamless Communication, Hotel Wide</i></div>
             </Typography>
             <IconButton
               color="inherit"
@@ -282,10 +288,10 @@ export default function TestSideBar() {
                   <ListItemText primary="Add Event"/>
               </ListItem>
               
-              <ListItem button component={Link} to="/bulleton_board">
+              {/* <ListItem button component={Link} to="/bulleton_board">
                   <ListItemIcon><InboxIcon /> </ListItemIcon>
-                  <ListItemText primary="Bulleton Board"/>
-              </ListItem>
+                  <ListItemText primary="Bulliton Board"/>
+              </ListItem> */}
               
           </List>
 
