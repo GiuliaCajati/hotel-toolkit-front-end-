@@ -49,7 +49,6 @@ export default function TeamMemberHomePage() {
                             // onChange={(e) => checked(e)}
                             // checked={oneTask.status}
                             checked={null}
-                            
                             />
                         {oneTask.details}
                     </ListItem>

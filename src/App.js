@@ -30,7 +30,8 @@ import AdditionalResources from "./components/AdditionalResources";
 import AddDateDetails from "./components/AddDateDetails";
 import AddTaskDetails from "./components/AddTaskDetails";
 import Calendar from "./components/Calendar.js";
-import CalendarSelection from "./components/CalendarSelection.js";
+import NotFound from './components/NotFound'
+
 
 import { bindActionCreators } from 'redux';
 
@@ -64,6 +65,9 @@ class App extends Component {
 
             {/* Team Member Login Form */}
             <Route exact path='/login' 
+                  render={() => {return (<LoginForm />)}}/>
+                  {/* Team Member Login Form */}
+            <Route exact path='/' 
                   render={() => {return (<LoginForm />)}}/>
 
             {/* All Members Welcome Page */}    
@@ -117,7 +121,8 @@ class App extends Component {
             <Route exact path='/add_team_member' 
                     render={() => {return this.props.currentUser.length == 0?(<LoginForm />):(<NewTeamMemberForm />)}}/>  
 
-            {/* Add not found page   */}
+          
+            <Route component={NotFound}/>
                                      
           </Switch>
       </div>

@@ -76,7 +76,7 @@ export default function TeamMemberShowPage() {
 
   const eventTasks = () => {
     debugger
-    return event[0].tasks.length == 0
+    return tasks.filter(task => task.event).filter(task => task.event.id == event[0].id).length == 0
       ? 
        null
       :

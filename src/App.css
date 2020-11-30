@@ -7,7 +7,34 @@ padding-left: 8%;
   padding-top: 6%;
   }
 
+body.four-o-four-page {
+  content: "";
+  background:url(https://source.unsplash.com/user/jairph);
+  background-size: cover;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  z-index: -1;  
+}
 
+.four-o-four-info{
+  margin-top: 20%;
+  position: center;
+  margin-left: 35%;
+  color: white;
+}
+.four-o-four-number{
+  margin-top: 10%;
+  margin-left: 13%;
+  color: white;
+}
+
+.four-o-four-button{
+  margin-left: 7%;
+  color: white;
+}
 
 #root{
     content: "";
