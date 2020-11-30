@@ -98,8 +98,6 @@ export default function New() {
         dispatch(setNewUser(user))
         history.push("/all_team_members")
         }
-
-
   
   return (
   

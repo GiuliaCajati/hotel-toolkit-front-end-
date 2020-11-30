@@ -29,8 +29,6 @@ export default function WelcomePage() {
     const dates = useSelector(state => state.dates)
     const tasks = useSelector(state => state.tasks)
     const d1 = new Date();
-
-    const history = useHistory()
     const dispatch = useDispatch()
     let today = dates[3]
 
@@ -76,11 +74,9 @@ export default function WelcomePage() {
     }
 
     const eventTasks = () => {
-      
-        //find all tasks that are linked to an event 
-        //find all tasks for 
         let todaysTasks = tasks.filter(task => task.date_info.id == today.id)
-        return todaysTasks.map(task => {
+        return todaysTasks.length == 0? null:
+        todaysTasks.map(task => {
            
             return !task.event_id
                 ? 

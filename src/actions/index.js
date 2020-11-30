@@ -57,7 +57,7 @@ export const addTask = (newTask) => {
 
 
 export const updateTask = (taskId) => {
-    
+    //not fully working 
     return (dispatch) => {
         fetch(URL +  `tasks/${taskId}`, {
             method: "PATCH",
@@ -66,15 +66,15 @@ export const updateTask = (taskId) => {
                     'Accept': 'application/json'
             },
             body: JSON.stringify({
-               // status: !status
+               status: true
             })
         })
         .then(res => res.json())   
-        .then(updatesTask => {
+        .then(updatedTask => { 
             dispatch({
                 //updatesTask.status = true
                     type: "UPDATE_TASK", 
-                    payload: [updatesTask]
+                    payload: [updatedTask]
             })
             history.push('/home')
         })

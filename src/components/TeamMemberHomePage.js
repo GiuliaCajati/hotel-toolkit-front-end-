@@ -39,7 +39,8 @@ export default function TeamMemberHomePage() {
     })
 
     const certificates = () => {
-        return tasks.filter(task => task.team_member_id == currentUser[0].id).map(oneTask =>  
+        return tasks.length == 0? null
+        :tasks.filter(task => task.team_member_id == currentUser[0].id).map(oneTask =>  
             {return oneTask.certificate
                 ?
                     <ListItem>
@@ -59,7 +60,8 @@ export default function TeamMemberHomePage() {
     }
     
     const projects = () => {
-        return tasks.filter(task => task.team_member_id == currentUser[0].id).map(oneTask =>  
+        return tasks.length == 0? null
+        :tasks.filter(task => task.team_member_id == currentUser[0].id).map(oneTask =>  
             {return oneTask.project
                 ?
                     <ListItem>
@@ -68,6 +70,7 @@ export default function TeamMemberHomePage() {
                             type="checkbox"
                             // onChange={(e) => checked(e)}
                             // checked={oneTask.status}
+                            
                             checked={null}
                             />
                         {oneTask.details}
@@ -88,10 +91,11 @@ export default function TeamMemberHomePage() {
         )
     }
 
-    const checked = (e) =>{ 
-        //dispatch(updateTask(e.target.name))
-        //change task.status (checked)
-    }
+    // const checked = (e) =>{ 
+    //     debugger
+    //     dispatch(updateTask(e.target.name))
+    //     //change task.status (checked)
+    // }
     
 
     return(

@@ -67,7 +67,7 @@ export default function LoginForm() {
     }
     dispatch(setLoginState(user))
     //must click on login twice... will make modifications 
-    return currentUser.length == 0 || currentUser[0].message == "This user is not authenticated"?null:history.push("/welcome")
+    return currentUser.length == 0?null:currentUser[0].message == "This user is not authenticated"?alert("This user is not authenticated"):history.push("/welcome")
     }
 
   return (
