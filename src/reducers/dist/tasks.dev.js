@@ -20,20 +20,26 @@ var tasksReducer = function tasksReducer() {
   var action = arguments.length > 1 ? arguments[1] : undefined;
 
   switch (action.type) {
+    case _index.FETCHED_TASKS:
+      return [].concat(_toConsumableArray(state), _toConsumableArray(action.payload));
+
     case _index.ADD_TASK:
       return [].concat(_toConsumableArray(state), _toConsumableArray(action.payload));
 
     case _index.DELETE_TASK:
-      debugger;
-      return [state.filter(function (item) {
-        return item !== action.payload;
-      })];
-    // 
+      return state.filter(function (task) {
+        return task.id !== action.payload;
+      });
 
-    case _index.EDIT_TASK:
+    case _index.UPDATE_TASK:
       return [state.filter(function (item) {
-        return item !== action.payload;
-      })].concat(_toConsumableArray(action.payload));
+        return item.id !== action.payload[0].id;
+      })].concat(_toConsumableArray(action.payload)).flat();
+
+    case _index.ADD_TASK_NOTES:
+      return [state.filter(function (item) {
+        return item.id !== action.payload[0].id;
+      })].concat(_toConsumableArray(action.payload)).flat();
 
     default:
       return state;

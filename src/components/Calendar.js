@@ -8,6 +8,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import interactionPlugin from "@fullcalendar/interaction"; // needed for dayClick
 import CalendarSelection from "./CalendarSelection.js";
 import Box from '@material-ui/core/Box';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import listPlugin from '@fullcalendar/list';
 // import { makeStyles } from '@material-ui/core/styles';
 
 // const useStyles = makeStyles((theme) => ({
@@ -16,46 +18,6 @@ import Box from '@material-ui/core/Box';
 //     position: "absolute"
 //   }
 // }))
-
-
-const InlineStyle = () => (
-    <style>
-      {`
-      .grid {
-        position: relative;
-      }
-      .grid:before {
-        background-color: #F0F0F0;
-        box-shadow: 0px 0px 0px 1px #DDDDDD inset;
-        content: '';
-        height: calc(100% - 2rem);
-        left: 1rem;
-        top: 1rem;
-        position: absolute;
-        width: calc(100% - 2rem);
-       }
-      .ui.divided.grid:before, .celled.grid:before {
-        display: none;
-      }
-      .ui.aligned .column:after {
-        display: none !important;
-      }
-      .grid .column:not(.row):not(.grid):after {
-        background-color: rgba(86, 61, 124, .15);
-        box-shadow: 0px 0px 0px 1px rgba(86, 61, 124, 0.2) inset;
-        content: '';
-        display: block;
-        min-height: 50px;
-      }
-      @media only screen and (max-width: 768px) {
-        .stackable.grid:before {
-          width: 100%;
-          left: 0em;
-        }
-      }
-    `}
-    </style>
-  )
 
 const Calendar = (props) => {
   const events = useSelector(state => state.events)
@@ -153,23 +115,35 @@ const Calendar = (props) => {
     const handleDateClick = (arg) => {
     //debugger
     }
-
- 
+  
+   
+  
+    
     return(
       <div>   
-        <InlineStyle />
+
         <React.Fragment>
           <CssBaseline />
-          
-              <Container maxWidth="sm" style={{ backgroundColor: '#ffffff', height: '80vh' }}>
+              <Container maxWidth="sm" style={{ backgroundColor: '#ffffff', height: '80vh', width: '200vh'}}>
+      <h2>.</h2>
                 <FullCalendar 
+                
                 eventClick={handleEventClick} 
                 dateClick={handleDateClick}
-                headerToolbar={{}}
-                //plugins={[ dayGridPlugin, listPlugin, timeGridPlugin ]}
-                //events={filterEvents}
+                plugins={[ dayGridPlugin, timeGridPlugin, interactionPlugin, listPlugin ]}
+              
+                headerToolbar={{ 
+                  left: "dayGridMonth,timeGridWeek,timeGridDay,list",
+                  center: "title",
+                  right: "today,prev,next", }}
+                
+                
                 events={formatEvents()}
-                plugins={[ dayGridPlugin, interactionPlugin ]} 
+                // aspectRatio={4}
+                // height={400} 
+                // width={900}
+                // default={false}
+                
                 /> 
                 <b><Box color="info.main">Events</Box></b>
                 <b><Box color="text.secondary">Certificates</Box></b>

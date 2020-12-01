@@ -1,31 +1,31 @@
 import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import FormControl from '@material-ui/core/FormControl';
 import MenuItem from '@material-ui/core/MenuItem';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import { useSelector, useDispatch } from 'react-redux';//display 
 import { addTask } from '../actions';
 import {  useHistory } from "react-router-dom";
+import clsx from 'clsx';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
 
 
 const useStyles = makeStyles((theme) => ({
     paper: {
       marginTop: theme.spacing(1),
-    // display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
       width: '50%',
       marginLeft: '20%',
       overflow: 'auto',
-      height: 350
-      // overflow: 'auto',
+      height: 500
     },
     form: {
       marginLeft: '10%',
@@ -36,18 +36,52 @@ const useStyles = makeStyles((theme) => ({
     submit: {
       margin: theme.spacing(3, 5, 3),
     },
-    //calandar
-    textField: {
-      marginLeft: theme.spacing(1),
-      marginRight: theme.spacing(35),
-      width: 150,
-    },
     //drop down
     formControl: {
-      margin: theme.spacing(2),
+      margin: theme.spacing(3),
       minWidth: 200,
       maxWidth: 200,
-    }
+    }, root: {
+      '&:hover': {
+        backgroundColor: 'transparent',
+      },
+    },
+    icon: {
+      borderRadius: '50%',
+      width: 16,
+      height: 16,
+      marginLeft: 30,
+      marginTop: -5,
+      marginBottom: 5,
+      boxShadow: 'inset 0 0 0 1px rgba(16,22,26,.2), inset 0 -1px 0 rgba(16,22,26,.1)',
+      backgroundColor: '#f5f8fa',
+      backgroundImage: 'linear-gradient(180deg,hsla(0,0%,100%,.8),hsla(0,0%,100%,0))',
+      '$root.Mui-focusVisible &': {
+        outline: '2px auto rgba(19,124,189,.6)',
+        outlineOffset: 2,
+      },
+      'input:hover ~ &': {
+        backgroundColor: '#ebf1f5',
+      },
+      'input:disabled ~ &': {
+        boxShadow: 'none',
+        background: 'rgba(206,217,224,.5)',
+      },
+    },
+    checkedIcon: {
+      backgroundColor: '#137cbd',
+      backgroundImage: 'linear-gradient(180deg,hsla(0,0%,100%,.1),hsla(0,0%,100%,0))',
+      '&:before': {
+        display: 'block',
+        width: 16,
+        height: 16,
+        backgroundImage: 'radial-gradient(#fff,#fff 28%,transparent 32%)',
+        content: '""',
+      },
+      'input:hover ~ &': {
+        backgroundColor: '#106ba3',
+      },
+    },
 }));
 
   //Input fealds (setting state)
@@ -59,21 +93,29 @@ const useStyles = makeStyles((theme) => ({
 }
 
 export default function AddDateDetails() {
-   
   const classes = useStyles();
   const departments = useSelector(state => state.departments)
   const dates = useSelector(state => state.dates)
+  const currentUser = useSelector(state => state.currentUser)
+  const teamMembers = useSelector(state => state.teamMembers)
   const dispatch = useDispatch()
   const history = useHistory()
-  //debugger
 
-  //Setting State for create new user 
+  //PROJECT, GUEST FOLLOW-UP, CERTIFICATE
   const [state , setState] = useState({
+    // department_id: null,
+    // event_id: null,
+    team_member_id: "",
+    certificate: false,
+    project: false,
+    guest_follow_up: false,
     date_info_id: "", //might add date 
-    // event_id: event[0].id,
-    department_id: null,
-    details: ""
+    status: false,
+    //department_id: null,
+    details: "",
+    notes: ""
   })
+
 
 
   const handleChange = (event) => {
@@ -86,24 +128,45 @@ export default function AddDateDetails() {
         [id] : value,
     }))
   }
+  const handleRadio = (event) => {
+    let { value, checked } = event.target 
+    setState(prevState => ({
+        ...prevState,
+        [value] : checked,
+    }))
+  }
 
-  const submitTask = (e) => {
+  const submitTask = (e) => { 
     e.preventDefault();
-
     let newTask = {
-      department_id: state.department_id,
-    //   event_id: state.event_id, 
-      certificate: false,
-      project: false,
-      date_info_id: state.date_info_id,
-      details: state.details
+      team_member_id: state.team_member_id,
+      certificate: state.certificate,
+      project: state.project,
+      guest_follow_up: state.guest_follow_up,
+      date_info_id: state.date_info_id, //might add date 
+      status: state.status,
+      //department_id: null,
+      details: state.details,
+      notes: ""
     }
- 
-
     dispatch(addTask(newTask))
     history.push(`/home`)
   }
 
+    // Inspired by blueprintjs
+    function StyledRadio(props) {
+      const classes = useStyles();
+      return (
+        <Radio
+          className={classes.root}
+          disableRipple
+          color="default"
+          checkedIcon={<span className={clsx(classes.icon, classes.checkedIcon)} />}
+          icon={<span className={classes.icon} />}
+          {...props}
+        />
+      );
+    }
 
   return (
   
@@ -113,6 +176,34 @@ export default function AddDateDetails() {
         <Typography component="h1" variant="h5" spacing={2}>
             Add Task
         </Typography>
+
+        {/* Radio */}
+        <div>
+        <FormControl component="fieldset">
+        <RadioGroup defaultValue="project" name="customized-radios">
+            <FormControlLabel id="project" value="project" control={<StyledRadio />} label="Project" onChange={handleRadio}/>
+            <FormControlLabel id="guest_follow_up" value="guest_follow_up" control={<StyledRadio />} label="Guest Follow-Up"onChange={handleRadio} />
+            <FormControlLabel id="certificate" value="certificate" control={<StyledRadio />} label="Certificate" onChange={handleRadio}/>
+        </RadioGroup>
+        </FormControl>
+        </div>
+        
+
+      
+        <FormControl className={classes.formControl}>
+          <InputLabel htmlFor="grouped-select">Team Member</InputLabel>
+            <Select defaultValue="" id="grouped-select">
+                {teamMembers.map(
+                (member)=>            
+                  <MenuItem 
+                  value={member.id}
+                  id="team_member_id" 
+                  onClick={handleChange}>{member.name}
+                  </MenuItem>)}
+            </Select>
+        </FormControl>
+       
+
           {/* Drop down  */}
           <FormControl className={classes.formControl}>
           <InputLabel htmlFor="grouped-select">Dates</InputLabel>
@@ -126,20 +217,7 @@ export default function AddDateDetails() {
               </Select>
               </FormControl>
         
-          {/* Drop down  */}
-          <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="grouped-select">Department</InputLabel>
-            <Select defaultValue="" id="grouped-select">
-                {departments.map(
-                (department)=>            
-                  <MenuItem 
-                  value={department.id}
-                  id="department_id" 
-                  onClick={handleChange}>{department.name}
-                  </MenuItem>)}
-            </Select>
-        </FormControl>
-       
+          
               <TextField
                 variant="outlined"
                 required

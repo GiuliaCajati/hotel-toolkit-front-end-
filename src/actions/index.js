@@ -26,14 +26,16 @@ export const  ADD_TASK = "ADD_TASK"
 export const  DISPLAY_TASK = "DISPLAY_TASK"
 export const  CLEAR_DISPLAY_TASK = "CLEAR_DISPLAY_TASK"
 export const  DELETE_TASK = "DELETE_TASK"
-
+export const  ADD_TASK_NOTES = "ADD_TASK_NOTES"
 
 //need to make 
 export const  EDIT_TASK = "EDIT_TASK"
 
 const URL = "http://localhost:3000/"
 
-export const addTask = (newTask) => {
+
+
+export const addTask = (newTask) => {debugger
     
     return (dispatch) => {
         fetch(URL + "tasks", {
@@ -56,9 +58,36 @@ export const addTask = (newTask) => {
 }
 
 
-export const updateTask = (taskId) => {
+export const addTaskNotes = (taskId, Addednotes) => {debugger
     
-    return (dispatch) => {
+    return (dispatch) => { 
+        fetch(URL +  `/add_notes/${taskId}`, {
+            method: "PATCH",
+            headers: {
+                'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+               notes: Addednotes
+            })
+        })
+        .then(res => res.json())   
+        
+        .then(updatedTask => { 
+            dispatch({
+                //updatesTask.status = true
+                    type: "ADD_TASK_NOTES", 
+                    payload: [updatedTask]
+            })
+            history.push('/home')
+        })
+    }
+}
+
+
+export const updateTask = (taskId, checked) => {
+    
+    return (dispatch) => { 
         fetch(URL +  `tasks/${taskId}`, {
             method: "PATCH",
             headers: {
@@ -66,10 +95,11 @@ export const updateTask = (taskId) => {
                     'Accept': 'application/json'
             },
             body: JSON.stringify({
-               status: true
+               status: checked
             })
         })
         .then(res => res.json())   
+        
         .then(updatedTask => { 
             dispatch({
                 //updatesTask.status = true
@@ -87,6 +117,8 @@ export const displayTask = (selectedTask) => {
         payload: selectedTask
     }
 }
+
+
 
 export const clearDisplayTask = () => {
     return{

@@ -16,6 +16,10 @@ import UpdatesList from './containers/UpdatesList.js'
 import SideBar from './containers/SideBar.js'
 import EventsList from './containers/EventsList.js'
 import TeamMembersList from './containers/TeamMembersList.js'
+//import DepartmentTaskIndex from './containers/DepartmentTaskIndex.js'
+
+
+
 
 //components
 import NewTeamMemberForm from './components/NewTeamMemberForm.js'
@@ -31,6 +35,8 @@ import AddDateDetails from "./components/AddDateDetails";
 import AddTaskDetails from "./components/AddTaskDetails";
 import Calendar from "./components/Calendar.js";
 import NotFound from './components/NotFound'
+import NewTaskForm from './components/NewTaskForm.js'
+import AddTaskNotes from './components/AddTaskNotes.js'
 
 
 import { bindActionCreators } from 'redux';
@@ -52,7 +58,20 @@ class App extends Component {
 
           <SideBar/>
           <Switch>
+          
+          {/* <Route exact path='/index' 
+                  render={() => {return (<DepartmentTaskIndex />)}}/> */}
+        
+          <Route exact path='/add_task_note/:id' render={(props)=> {
+                  let pathId= props.match.params.id
+                  return(<AddTaskNotes pathId = {pathId} />)}}/>
+                  
 
+
+
+          
+          <Route exact path='/new_task' 
+                  render={() => {return (<NewTaskForm />)}}/>
           
           <Route exact path='/add_task' 
                   render={() => {return (<AddTaskDetails />)}}/>

@@ -243,6 +243,11 @@ export default function TestSideBar() {
                   <ListItemText primary="My Home Page"/>
               </ListItem>
 
+              <ListItem button component={Link} to="/new_task">
+                  <ListItemIcon><InboxIcon /></ListItemIcon>
+                  <ListItemText primary="Add Task"/>
+              </ListItem>
+
               <ListItem button component={Link} to="/events">
                   <ListItemIcon><InboxIcon /></ListItemIcon>
                   <ListItemText primary="All Events"/>

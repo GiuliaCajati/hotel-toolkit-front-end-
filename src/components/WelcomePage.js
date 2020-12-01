@@ -35,7 +35,7 @@ export default function WelcomePage() {
     const tasks = useSelector(state => state.tasks)
     const d1 = new Date();
     const dispatch = useDispatch()
-    let today = dates[1]//dec 3rd 
+    let today = dates[2]//dec 3rd 
 
     let todaysInfo = <List>
             <ListItem>{d1.toString(today.date).slice(4, 15)}</ListItem>
