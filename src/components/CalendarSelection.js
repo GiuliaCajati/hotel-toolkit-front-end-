@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: 'wrap',
     '& > *': {
         marginLeft: theme.spacing(-45),
-        marginTop: theme.spacing(-50),
+        marginTop: theme.spacing(-60),
         width: theme.spacing(30),
         height: theme.spacing(40),
         positions: "absolute",
@@ -34,14 +34,16 @@ const display = () => {
    if (task.length !== 0 &&  task[0] !== undefined){
      debugger
     return  <List id="paperTitle">
+              <ListItem><b>{task[0].department == null?(<div>{task[0].team_member.department.name }: Manager { task[0].team_member.name }</div>):task[0].department.name}</b></ListItem>
               <ListItem>{task[0].details}</ListItem>
+              
             </List>
   } else if (event.length !== 0 && event[0] !== undefined){
     return <List id="paperTitle">
               <ListItem><b>Event Name:</b> {event[0].name}</ListItem>
               <ListItem><b>Attendees:</b>{event[0].number_of_attendees} </ListItem>   
               {event[0].tasks.map(task => { debugger
-              return <List><ListItem><b>{task.department.name}:</b></ListItem>
+              return <List><ListItem><b>{task.department.name == null?null:task.department.name}</b></ListItem>
               <ListItem>{task.details}</ListItem></List>})}
             </List>
   } else {

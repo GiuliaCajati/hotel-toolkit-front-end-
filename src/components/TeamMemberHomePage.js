@@ -84,6 +84,29 @@ export default function TeamMemberHomePage() {
         )
     }
 
+
+    const guestFollowUp = () => { debugger
+        return tasks.length == 0? null
+        :tasks.filter(task => task.team_member_id == currentUser[0].id).map(oneTask =>  
+            {return oneTask.guest_follow_up
+                ?
+                    <ListItem>
+                        <input
+                            name= {oneTask.id}
+                            type="checkbox"
+                            // onChange={(e) => checked(e)}
+                            // checked={oneTask.status}
+                            
+                            checked={null}
+                            />
+                        {oneTask.details}
+                    </ListItem>
+                :
+                    null
+            }
+        )
+    }
+
     const eventTasks = () => {
         return tasks.filter(task => task.department_id == currentUser[0].department.id).map(oneTask =>  
             {return<List>
@@ -94,9 +117,9 @@ export default function TeamMemberHomePage() {
         )
     }
 
-    // const checked = (e) =>{ 
-    //     dispatch(updateTask(e.target.name))
-    // }
+    const checked = (e) =>{ 
+        dispatch(updateTask(e.target.name))
+    }
     
 
     return(
@@ -105,6 +128,8 @@ export default function TeamMemberHomePage() {
                 <Paper 
                 elevation={3} >
                     <ul>{userDetails}</ul>
+                    <h2 id="paperTitle">Guest Follow-up:</h2>
+                    <div>{guestFollowUp()}</div>
                 </Paper>
                 <Paper 
                 elevation={3} >

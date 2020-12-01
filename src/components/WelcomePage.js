@@ -35,7 +35,7 @@ export default function WelcomePage() {
     const tasks = useSelector(state => state.tasks)
     const d1 = new Date();
     const dispatch = useDispatch()
-    let today = dates[3]
+    let today = dates[1]//dec 3rd 
 
     let todaysInfo = <List>
             <ListItem>{d1.toString(today.date).slice(4, 15)}</ListItem>
@@ -101,6 +101,8 @@ export default function WelcomePage() {
             return "primary.main"
           case "House Keeping":
             return "secondary.main"
+          case 'Human Resources'://don't have any yet, but will need to change this 
+            return "text.secondary"
           case 'Engineering'://don't have any yet, but will need to change this 
             return "error.main"
           default:
@@ -128,7 +130,7 @@ export default function WelcomePage() {
                 <ThisWeek />
             </Paper>
             <Paper elevation={3} >
-                <h3 id="paperTitle">Today's Updates</h3>
+                {/* <h3 id="paperTitle">Today's Updates</h3> */}
                 <h3 id="paperTitle">Today's VIP's</h3>
                 <div id="paperTitle">{todaysVips()}</div>
             </Paper>

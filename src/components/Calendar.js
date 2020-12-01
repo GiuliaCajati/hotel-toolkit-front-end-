@@ -6,8 +6,17 @@ import Container from '@material-ui/core/Container';
 import { displayEvent, displayTask, clearDisplayTask, clearDisplayEvent } from '../actions';
 import { useSelector, useDispatch } from 'react-redux';
 import interactionPlugin from "@fullcalendar/interaction"; // needed for dayClick
-import { makeStyles } from '@material-ui/core/styles';
 import CalendarSelection from "./CalendarSelection.js";
+import Box from '@material-ui/core/Box';
+// import { makeStyles } from '@material-ui/core/styles';
+
+// const useStyles = makeStyles((theme) => ({
+//   departments:{
+//     paddingRight: 1000000,
+//     position: "absolute"
+//   }
+// }))
+
 
 const InlineStyle = () => (
     <style>
@@ -53,42 +62,61 @@ const Calendar = (props) => {
   const tasks = useSelector(state => state.tasks)
   const dispatch = useDispatch()
   const [state , setState] = useState({displayDetails: false})
+  // const classes = useStyles();
 
 
 
   const formatTasks = () => {
-    if(tasks.length == 0){
-         return null
-      } else {
-      let tasksArray = tasks.map(task => {debugger
-          return{
+    let filteredEvents = []
+    tasks.filter(thisTask => {
+    return thisTask.date_info_id == null?null:filteredEvents.push(thisTask)})
+      let tasksArray = filteredEvents.map(task => {
+          return{ 
             title: task.details, 
             start: task.date_info.date,
             id: task.id,
             allDay: true,
             groupId:"tasks",
             end: task.date_info.date,
+            borderColor: (task.department_id == null? null:borderColor(task)),
             backgroundColor: backgroundColor(task)
           }
-        
+      
       })
       
     return tasksArray.filter(task => task !== null)
     }    
-  }
+
 
   const backgroundColor = (task) => {
-    switch(task.certificate){
-      case true: //certificate
-        return 'blue'
-      case false: //project
-        return 'green'
-      case 'guest_follow_up'://don't have any yet, but will need to change this 
-        return 'red'
-      default:
-        return 'green'
+      switch(task.certificate){
+        case false: //project
+          return "#3CB371"
+        case true: //certificate
+          return '#708090'
+        case 'guest_follow_up'://don't have any yet, but will need to change this 
+          return 'red'
+        default:
+          return 'green'
+      }
     }
-  }
+
+    const borderColor = (task) => {
+      switch(task.department.name){
+        case "Front Office":
+          return "blue"
+        case "Housekeeping":
+          return '#C0C0C0'
+        case 'Finance':
+          return 'red'
+        case 'Engineering':
+          return 'red'
+        case 'Sales':
+          return 'red'
+        default:
+          return 'red'
+      }
+    }
 
     const formatEvents = () => { 
       
@@ -104,6 +132,7 @@ const Calendar = (props) => {
           id: theEvent.id,
           allDay: true,
           groupId:"events" ,
+          backgroundColor: "#1e90ff", 
           end: theEvent.date_info[theEvent.date_info.length - 1].date
       }
       })  
@@ -132,7 +161,7 @@ const Calendar = (props) => {
         <React.Fragment>
           <CssBaseline />
           
-              <Container maxWidth="sm" style={{ backgroundColor: '#ffffff', height: '70vh' }}>
+              <Container maxWidth="sm" style={{ backgroundColor: '#ffffff', height: '80vh' }}>
                 <FullCalendar 
                 eventClick={handleEventClick} 
                 dateClick={handleDateClick}
@@ -141,10 +170,22 @@ const Calendar = (props) => {
                 //events={filterEvents}
                 events={formatEvents()}
                 plugins={[ dayGridPlugin, interactionPlugin ]} 
-                />
+                /> 
+                <b><Box color="info.main">Events</Box></b>
+                <b><Box color="text.secondary">Certificates</Box></b>
+                
+                <ul> 
+                <b><Box color="success.main">Event Tasks and Projects</Box></b>
+                  <li><Box color="secondary.main">Human Resources (border)</Box></li>
+                  <li><Box color="primary.main">Front Office (border)</Box></li>
+                  <li><Box color="text.disabled">Housekeeping (border)</Box></li>
+                </ul>
+               
+                
                {state.displayDetails?<CalendarSelection/>:null}
           </Container>
         </React.Fragment>
+  
       </div>
     )
 }
