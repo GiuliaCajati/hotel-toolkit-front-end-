@@ -80,7 +80,7 @@ export default function New() {
     })
 
     //Input fealds (setting state)
-    const handleChange = (event) => {
+    const handleChange = (event) => {debugger
         let {id , value} = event.target   
         if(value === 0 ){
         value = event.target.getAttribute("data-value")
@@ -142,18 +142,21 @@ export default function New() {
                 onChange={handleChange} 
               />
             </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="access"
-                label="access"
-                name="access"
-                autoComplete="access"
-                onChange={handleChange} 
-              />
-            </Grid>
+             {/* Drop down  */}
+             <FormControl className={classes.formControl}>
+          <InputLabel htmlFor="grouped-select">Access Level</InputLabel>
+              <Select defaultValue="" id="grouped-select">
+                {["Manager", "Team Member"].map(
+
+                (level)=> 
+                
+                  <MenuItem 
+                  value={level}
+                  id="access" 
+                  onClick={handleChange}>{level}
+                  </MenuItem>)}
+              </Select>
+          </FormControl>
             <Grid item xs={12} sm={6}>
             <TextField
                 id="birthday"

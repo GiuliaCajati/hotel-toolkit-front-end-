@@ -16,10 +16,8 @@ import UpdatesList from './containers/UpdatesList.js'
 import SideBar from './containers/SideBar.js'
 import EventsList from './containers/EventsList.js'
 import TeamMembersList from './containers/TeamMembersList.js'
+
 //import DepartmentTaskIndex from './containers/DepartmentTaskIndex.js'
-
-
-
 
 //components
 import NewTeamMemberForm from './components/NewTeamMemberForm.js'
@@ -30,15 +28,13 @@ import TeamMemberHomePage from './components/TeamMemberHomePage.js'
 import EventShowPage from './components/EventShowPage.js'
 import TeamMemberShowPage from './components/TeamMemberShowPage.js'
 import BulletonBoard from "./components/BulletonBoard";
-import AdditionalResources from "./components/AdditionalResources";
 import AddDateDetails from "./components/AddDateDetails";
 import AddTaskDetails from "./components/AddTaskDetails";
 import Calendar from "./components/Calendar.js";
 import NotFound from './components/NotFound'
 import NewTaskForm from './components/NewTaskForm.js'
 import AddTaskNotes from './components/AddTaskNotes.js'
-
-
+import TaskShowPage from './components/TaskShowPage.js'
 import { bindActionCreators } from 'redux';
 
 class App extends Component {
@@ -58,18 +54,18 @@ class App extends Component {
 
           <SideBar/>
           <Switch>
-          
+
+          <Route path='/tasks/:id' render={(props)=> {
+                let pathId= props.match.params.id
+              return(<TaskShowPage pathId = {pathId} />)}}/>
+               
           {/* <Route exact path='/index' 
                   render={() => {return (<DepartmentTaskIndex />)}}/> */}
         
           <Route exact path='/add_task_note/:id' render={(props)=> {
                   let pathId= props.match.params.id
                   return(<AddTaskNotes pathId = {pathId} />)}}/>
-                  
-
-
-
-          
+                      
           <Route exact path='/new_task' 
                   render={() => {return (<NewTaskForm />)}}/>
           
@@ -109,8 +105,8 @@ class App extends Component {
 
             {/* NOT MADE*/}
             {/* AdditionalResources */} 
-            <Route path='/additional_resources' render={()=> {
-                  return(<AdditionalResources />)}}/>
+            {/* <Route path='/additional_resources' render={()=> {
+                  return(<AdditionalResources />)}}/> */}
             {/* BulletonBoard */} 
             <Route path='/bulleton_board' render={()=> {
                   return(<BulletonBoard />)}}/>

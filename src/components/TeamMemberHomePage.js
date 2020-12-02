@@ -12,9 +12,6 @@ import {  useHistory } from "react-router-dom";
 
 
 
-
-
-
 const useStyles = makeStyles((theme) => ({
     root: {
       display: 'flex',
@@ -28,10 +25,12 @@ const useStyles = makeStyles((theme) => ({
     },
     font:{
         fontFamily: "serif",
-    }
+    },
+    // addnote:{
+    //     paddingLeft: theme.spacing(-200)
+    // }
   }));
   
-
 export default function TeamMemberHomePage() {
     const classes = useStyles();
     const currentUser = useSelector(state => state.currentUser)
@@ -40,10 +39,15 @@ export default function TeamMemberHomePage() {
     const dispatch = useDispatch()
     const history = useHistory()
    
-   //display selected event 
-  const handleClick = (oneTask) => {
+   //add notes to task
+  const handleClick = (oneTask) => {debugger
     dispatch(displayTask(oneTask))
     history.push(`/add_task_note/${oneTask.id}`)
+  }
+
+  const taskClick = (oneTask) => {
+    dispatch(displayTask(oneTask))
+    history.push(`/tasks/${oneTask.id}`)
   }
 
     let userDetails = currentUser.map(user =>{ 
@@ -60,7 +64,7 @@ export default function TeamMemberHomePage() {
         :tasks.filter(task => task.team_member_id == currentUser[0].id).map(oneTask =>  
             {return oneTask.certificate
                 ?
-                    <ListItem>
+                    <ListItem dense button onClick={() => taskClick(oneTask)}>
                         <input
                             name= {oneTask.id}
                             type="checkbox"
@@ -81,7 +85,7 @@ export default function TeamMemberHomePage() {
         :tasks.filter(task => task.team_member_id == currentUser[0].id).map(oneTask =>  
             {return oneTask.project
                 ?
-                    <ListItem>
+                    <ListItem dense button onClick={() => taskClick(oneTask)}>
                         <input
                             name= {oneTask.id}
                             type="checkbox"
@@ -98,23 +102,17 @@ export default function TeamMemberHomePage() {
         )
     }
 
-
-
-
     const guestFollowUp = () => { 
         return tasks.length == 0? null
         :tasks.filter(task => task.team_member_id == currentUser[0].id).map(oneTask =>  
             {return oneTask.guest_follow_up
                 ?
-                    <ListItem>
-                        <input
-                            name= {oneTask.id}
-                            type="checkbox"
-                            onChange={(e) => checked(e)}
-                            checked={oneTask.status}
-                            
-                            checked={null}
-                            />
+                    <ListItem dense button onClick={() => taskClick(oneTask)}>
+                       <Tooltip title="Add Notes" >
+                        <IconButton aria-label="add notes" onClick={()=>handleClick(oneTask)}>
+                            <AddCircleIcon />
+                        </IconButton>
+                    </Tooltip> 
                         {oneTask.details}
                     </ListItem>
                 :
@@ -127,25 +125,26 @@ export default function TeamMemberHomePage() {
         return tasks.filter(task => task.department_id == currentUser[0].department.id).map(oneTask =>  
             {return<List>
                    <ListItem><b>{oneTask.event.name}:</b></ListItem> 
-                   <ListItem>
-                    <Tooltip title="Add Notes">
+                  
+                    <Tooltip title="Add Notes"  >
                         <IconButton aria-label="add notes" onClick={()=>handleClick(oneTask)}>
                             <AddCircleIcon />
                         </IconButton>
                     </Tooltip> 
+                    <ListItem dense button onClick={() => taskClick(oneTask)}>
+                    
                            {oneTask.status?"Complete":"In Progress: "}{oneTask.details}
-                    </ListItem> 
+                    </ListItem>
+                    
                     </List>
             }
         )
     }
-
+    //check boxes
     const checked = (e) =>{ 
-        debugger
         dispatch(updateTask(e.target.name, e.target.checked))
     }
     
-
     return(
         <div style={{marginTop: "-40px"} } className={classes.font}>
             <div className={classes.root}>
@@ -159,26 +158,20 @@ export default function TeamMemberHomePage() {
                 elevation={3} >
                     <h2 id="paperTitle">Project's:</h2>
                     <ul>{projects()}</ul>
-                  
                 </Paper>
             </div>
-
             <div className={classes.root}>
                 <Paper 
                 elevation={3}>
                     <h2 id="paperTitle">Future Event Follow-Ups:</h2>
                     <ul>{eventTasks()}</ul>
-                    {/* <h2 id="paperTitle">Guest Follow-Up:</h2>
-                    <div id="paperTitle">< button>Add Task</button></div>  */}
                 </Paper>
                 <Paper 
                 elevation={3} >
                     <h2 id="paperTitle">Certificate's:</h2>
-                    <ul>{certificates()}</ul>
-                    
+                    <ul>{certificates()}</ul>       
                 </Paper>
-                </div>
-               
+                </div>     
         </div>
     )
 

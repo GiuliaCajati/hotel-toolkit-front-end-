@@ -230,6 +230,7 @@ export default function TestSideBar() {
               {theme.direction === 'rtl' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
             </IconButton>
           </div>
+          
           <Divider />
           <List>
               
@@ -259,7 +260,7 @@ export default function TestSideBar() {
               </ListItem>
 
 
-              {/*logout not yet working*/}
+              
               {currentUser.length !== 0?(
                 <ListItem button onClick={handleClicked} 
                 component={Link} to="/login"> 
@@ -299,7 +300,7 @@ export default function TestSideBar() {
               </ListItem> */}
               
           </List>
-
+          
         </Drawer>
     </div>
   </MuiThemeProvider>

@@ -31,13 +31,13 @@ export default function TeamMemberShowPage() {
         {return oneTask.certificate
             ?
                 <ListItem>
-                    <input
+                    {/* <input
                         name= {oneTask.id}
                         type="checkbox"
                         // onChange={(e) => checked(e)}
                         // checked={oneTask.status}
                         // checked={null}
-                        />
+                        /> */}
                     {oneTask.details}
                 </ListItem>
             :
@@ -51,14 +51,14 @@ export default function TeamMemberShowPage() {
         {return oneTask.guest_follow_up
             ?
                 <ListItem>
-                    <input
+                    {/* <input
                         name= {oneTask.id}
                         type="checkbox"
                         // onChange={(e) => checked(e)}
                         // checked={oneTask.status}
                         
                         // checked={null}
-                        />
+                        /> */}
                     {oneTask.details}
                 </ListItem>
             :
@@ -73,14 +73,14 @@ const projects = () => {
         {return oneTask.project
             ?
                 <ListItem>
-                    <input
+                    {/* <input
                         name= {oneTask.id}
                         type="checkbox"
                         // onChange={(e) => checked(e)}
                         // checked={oneTask.status}
                         
                         // checked={null}
-                        />
+                        /> */}
                     {oneTask.details}
                 </ListItem>
             :
