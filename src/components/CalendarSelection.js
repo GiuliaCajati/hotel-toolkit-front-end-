@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: theme.spacing(-45),
         marginTop: theme.spacing(-60),
         width: theme.spacing(30),
-        height: theme.spacing(40),
+        height: theme.spacing(30),
         positions: "absolute",
         overflow: 'auto'
     },

@@ -86,14 +86,14 @@ export default function AddDateDetails() {
   }
   //event.target.checked
 
-  const submitTask = (e) => { debugger
+  const submitTask = (e) => { 
     e.preventDefault();
     let newTask = {
       notes: state.notes,
       status: state.status,
     }
     dispatch(addTaskNotes(task[0].id,newTask))
-    history.push(`/home`)
+    history.push(`/tasks/${task.id}`)
   }  
 
   return (

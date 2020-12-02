@@ -7,28 +7,17 @@ import { displayEvent, displayTask, clearDisplayTask, clearDisplayEvent } from '
 import { useSelector, useDispatch } from 'react-redux';
 import interactionPlugin from "@fullcalendar/interaction"; // needed for dayClick
 import CalendarSelection from "./CalendarSelection.js";
-import Box from '@material-ui/core/Box';
+import CalendarKey from "./CalendarKey.js";
 import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
-// import { makeStyles } from '@material-ui/core/styles';
-
-// const useStyles = makeStyles((theme) => ({
-//   departments:{
-//     paddingRight: 1000000,
-//     position: "absolute"
-//   }
-// }))
 
 const Calendar = (props) => {
   const events = useSelector(state => state.events)
   const tasks = useSelector(state => state.tasks)
   const dispatch = useDispatch()
   const [state , setState] = useState({displayDetails: false})
-  // const classes = useStyles();
-
-
-
-  const formatTasks = () => {
+  
+const formatTasks = () => {
     let filteredEvents = []
     tasks.filter(thisTask => {
     return thisTask.date_info_id == null?null:filteredEvents.push(thisTask)})
@@ -49,8 +38,7 @@ const Calendar = (props) => {
     return tasksArray.filter(task => task !== null)
     }    
 
-
-  const backgroundColor = (task) => {
+const backgroundColor = (task) => {
       switch(task.certificate){
         case false: //project
           return "#3CB371"
@@ -63,63 +51,60 @@ const Calendar = (props) => {
       }
     }
 
-    const borderColor = (task) => {
-      switch(task.department.name){
-        case "Front Office":
-          return "blue"
-        case "Housekeeping":
-          return '#C0C0C0'
-        case 'Finance':
-          return 'red'
-        case 'Engineering':
-          return 'red'
-        case 'Sales':
-          return 'red'
-        default:
-          return 'red'
-      }
-    }
+const borderColor = (task) => {
+  switch(task.department.name){
+    case "Front Office":
+      return "blue"
+    case "Housekeeping":
+      return '#C0C0C0'
+    case 'Finance':
+      return 'red'
+    case 'Engineering':
+      return 'red'
+    case 'Sales':
+      return 'red'
+    default:
+      return 'red'
+  }
+}
 
-    const formatEvents = () => { 
-      
-      //map out all events for each date 
-      let filteredEvents = []
-      events.filter(thisEvent  => {
-        return thisEvent.date_info.length == 0?null:filteredEvents.push(thisEvent)})
-        
-      let eventArray = filteredEvents.map(theEvent => { 
-        
-        return{ title: theEvent.name, 
-          start: theEvent.date_info[0].date,
-          id: theEvent.id,
-          allDay: true,
-          groupId:"events" ,
-          backgroundColor: "#1e90ff", 
-          end: theEvent.date_info[theEvent.date_info.length - 1].date
-      }
-      })  
-      return [...eventArray, ...formatTasks().flat()] 
-    }
-    
-    const handleEventClick = (arg) => { 
-      setState({displayDetails: true})
-      if (arg.event.groupId == "events"){
-        dispatch(displayEvent(events.filter(event => event.id == arg.event._def.publicId)[0]))
-        dispatch(clearDisplayTask())
-      }else{
-        dispatch(displayTask(tasks.filter(task => task.id == arg.event._def.publicId)[0]))
-        dispatch(clearDisplayEvent())
-      }   
-    }
-
-    const handleDateClick = (arg) => {
-    //debugger
-    }
+const formatEvents = () => { 
   
+  //map out all events for each date 
+  let filteredEvents = []
+  events.filter(thisEvent  => {
+    return thisEvent.date_info.length == 0?null:filteredEvents.push(thisEvent)})
+    
+  let eventArray = filteredEvents.map(theEvent => { 
+    
+    return{ title: theEvent.name, 
+      start: theEvent.date_info[0].date,
+      id: theEvent.id,
+      allDay: true,
+      groupId:"events" ,
+      backgroundColor: "#1e90ff", 
+      end: theEvent.date_info[theEvent.date_info.length - 1].date
+  }
+  })  
+  return [...eventArray, ...formatTasks().flat()] 
+}
+    
+const handleEventClick = (arg) => { 
+  setState({displayDetails: true})
+  if (arg.event.groupId == "events"){
+    dispatch(displayEvent(events.filter(event => event.id == arg.event._def.publicId)[0]))
+    dispatch(clearDisplayTask())
+  }else{
+    dispatch(displayTask(tasks.filter(task => task.id == arg.event._def.publicId)[0]))
+    dispatch(clearDisplayEvent())
+  }   
+}
+
+const handleDateClick = (arg) => {
+//debugger
+}
    
-  
-    
-    return(
+return(
       <div>   
 
         <React.Fragment>
@@ -137,26 +122,16 @@ const Calendar = (props) => {
                   center: "title",
                   right: "today,prev,next", }}
                 
-                
                 events={formatEvents()}
                 // aspectRatio={4}
                 // height={400} 
                 // width={900}
                 // default={false}
-                
                 /> 
-                <b><Box color="info.main">Events</Box></b>
-                <b><Box color="text.secondary">Certificates</Box></b>
-                
-                <ul> 
-                <b><Box color="success.main">Event Tasks and Projects</Box></b>
-                  <li><Box color="secondary.main">Human Resources (border)</Box></li>
-                  <li><Box color="primary.main">Front Office (border)</Box></li>
-                  <li><Box color="text.disabled">Housekeeping (border)</Box></li>
-                </ul>
+              
+               <div><CalendarKey/></div>
+                <div>{state.displayDetails?<CalendarSelection/>:null}</div>
                
-                
-               {state.displayDetails?<CalendarSelection/>:null}
           </Container>
         </React.Fragment>
   

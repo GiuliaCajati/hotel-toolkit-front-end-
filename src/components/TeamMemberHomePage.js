@@ -108,11 +108,11 @@ export default function TeamMemberHomePage() {
             {return oneTask.guest_follow_up
                 ?
                     <ListItem dense button onClick={() => taskClick(oneTask)}>
-                       <Tooltip title="Add Notes" >
+                       {/* <Tooltip title="Add Notes" >
                         <IconButton aria-label="add notes" onClick={()=>handleClick(oneTask)}>
                             <AddCircleIcon />
                         </IconButton>
-                    </Tooltip> 
+                    </Tooltip>  */}
                         {oneTask.details}
                     </ListItem>
                 :
@@ -126,11 +126,11 @@ export default function TeamMemberHomePage() {
             {return<List>
                    <ListItem><b>{oneTask.event.name}:</b></ListItem> 
                   
-                    <Tooltip title="Add Notes"  >
+                    {/* <Tooltip title="Add Notes"  >
                         <IconButton aria-label="add notes" onClick={()=>handleClick(oneTask)}>
                             <AddCircleIcon />
                         </IconButton>
-                    </Tooltip> 
+                    </Tooltip>  */}
                     <ListItem dense button onClick={() => taskClick(oneTask)}>
                     
                            {oneTask.status?"Complete":"In Progress: "}{oneTask.details}
