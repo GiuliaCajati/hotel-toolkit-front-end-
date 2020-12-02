@@ -276,9 +276,9 @@ export default function TestSideBar() {
 
           </List>
           <Divider />
-
+          {currentUser.length !== 0 ?( currentUser[0].access == "Manager"?
           <List>
-
+          
               <ListItem button component={Link} to="/all_team_members">
                   <ListItemIcon><InboxIcon /></ListItemIcon>
                   <ListItemText primary="All Team Members"/>
@@ -299,7 +299,7 @@ export default function TestSideBar() {
                   <ListItemText primary="Bulliton Board"/>
               </ListItem> */}
               
-          </List>
+          </List>:(null)):(null)}
           
         </Drawer>
     </div>
