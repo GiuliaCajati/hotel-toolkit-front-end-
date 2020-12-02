@@ -27,10 +27,7 @@ export default function CalendarSelection(props) {
   const task = useSelector(state => state.task)
   const event = useSelector(state => state.event)
 
-
-
 const display = () => {
-  //debugger
    if (task.length !== 0 &&  task[0] !== undefined){
      debugger
     return  <List id="paperTitle">
@@ -51,14 +48,11 @@ const display = () => {
   }
 }
  
-
   return (
     <div className={classes.root}>
         <Paper elevation={3}>
             <h3 id="paperTitle">Selection Details</h3>
             {display()}
-              {/* {displayEvent()}
-              {displayTask()} */}
         </Paper>
     </div>
   );

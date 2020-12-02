@@ -35,9 +35,29 @@ export default function TeamMemberHomePage() {
     const classes = useStyles();
     const currentUser = useSelector(state => state.currentUser)
     const tasks = useSelector(state => state.tasks)
-    const d1 = new Date();
+    
+    
     const dispatch = useDispatch()
     const history = useHistory()
+
+    const formatDay = () => {
+        let today  = new Date();
+        let dd = today.getDate();
+        let mm = today.getMonth()+1; 
+        let yyyy = today.getFullYear();
+        if(dd<10) 
+        {
+            dd='0'+dd;
+        } 
+        if(mm<10) 
+        {
+            mm='0'+mm;
+        } 
+        today = mm+'/'+dd+'/'+yyyy;
+        return today
+    } 
+
+
    
    //add notes to task
   const handleClick = (oneTask) => {debugger
@@ -54,8 +74,9 @@ export default function TeamMemberHomePage() {
         return<div>
             <h2>Hello {user.name}!</h2>
             <h5>{user.department.name}</h5>
-            <ListItem> Points: {user.points}</ListItem>
-            <ListItem> Start Date: {d1.toString(user.start_date).slice(4, 15)}</ListItem>
+            {/* <ListItem> Points: {user.points}</ListItem> */}
+            {formatDay()}
+            {/* <ListItem> Start Date: {d1.toString(user.start_date).slice(4, 15)}</ListItem> */}
         </div>
     })
 
@@ -64,15 +85,17 @@ export default function TeamMemberHomePage() {
         :tasks.filter(task => task.team_member_id == currentUser[0].id).map(oneTask =>  
             {return oneTask.certificate
                 ?
-                    <ListItem dense button onClick={() => taskClick(oneTask)}>
-                        <input
+                <ListItem>
+                    <input
                             name= {oneTask.id}
                             type="checkbox"
                             onChange={(e) => checked(e)}
                             checked={oneTask.status}
                             // checked={null}
                             />
+                    <ListItem dense button onClick={() => taskClick(oneTask)}>
                         {oneTask.details}
+                    </ListItem>
                     </ListItem>
                 :
                     null
@@ -85,16 +108,19 @@ export default function TeamMemberHomePage() {
         :tasks.filter(task => task.team_member_id == currentUser[0].id).map(oneTask =>  
             {return oneTask.project
                 ?
+                <ListItem>
+                <input
+                name= {oneTask.id}
+                type="checkbox"
+                onChange={(e) => checked(e)}
+                checked={oneTask.status}
+                
+                // checked={null}
+                />
                     <ListItem dense button onClick={() => taskClick(oneTask)}>
-                        <input
-                            name= {oneTask.id}
-                            type="checkbox"
-                            onChange={(e) => checked(e)}
-                            checked={oneTask.status}
-                            
-                            // checked={null}
-                            />
+                     
                         {oneTask.details}
+                    </ListItem>
                     </ListItem>
                 :
                     null
@@ -115,6 +141,7 @@ export default function TeamMemberHomePage() {
                     </Tooltip>  */}
                         {oneTask.details}
                     </ListItem>
+                    
                 :
                     null
             }
@@ -133,7 +160,7 @@ export default function TeamMemberHomePage() {
                     </Tooltip>  */}
                     <ListItem dense button onClick={() => taskClick(oneTask)}>
                     
-                           {oneTask.status?"Complete":"In Progress: "}{oneTask.details}
+                           {oneTask.status?"Completed: ":"In Progress: "}{oneTask.details}
                     </ListItem>
                     
                     </List>

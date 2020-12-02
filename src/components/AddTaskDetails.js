@@ -50,7 +50,6 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-  //Input fealds (setting state)
   const handleChange = (event) => {
     let {id , value} = event.target   
     if(value === 0 ){

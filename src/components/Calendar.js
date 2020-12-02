@@ -112,17 +112,17 @@ return(
               <Container maxWidth="sm" style={{ backgroundColor: '#ffffff', height: '80vh', width: '200vh'}}>
       <h2>.</h2>
                 <FullCalendar 
-                
+                events={formatEvents()}
                 eventClick={handleEventClick} 
-                dateClick={handleDateClick}
+                
                 plugins={[ dayGridPlugin, timeGridPlugin, interactionPlugin, listPlugin ]}
-              
+            
                 headerToolbar={{ 
                   left: "dayGridMonth,timeGridWeek,timeGridDay,list",
                   center: "title",
                   right: "today,prev,next", }}
                 
-                events={formatEvents()}
+                // dateClick={handleDateClick}
                 // aspectRatio={4}
                 // height={400} 
                 // width={900}

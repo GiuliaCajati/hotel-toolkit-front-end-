@@ -13,11 +13,12 @@ const useStyles = makeStyles((theme) => ({
     root: {
       display: 'flex',
       '& > *': {
-        marginLeft: theme.spacing(5),
+        marginLeft: theme.spacing(3),
         marginTop: theme.spacing(2),
-        width: theme.spacing(80),
-        height: theme.spacing(35),
+        width: theme.spacing(86),
+        height: theme.spacing(40),
         overflow: 'auto',
+        
       },
     },
     margins:{
@@ -25,6 +26,15 @@ const useStyles = makeStyles((theme) => ({
     },
     font:{
         fontFamily: "serif",
+    },
+    image:{
+        width: 1
+    },
+    joke:{
+        width:300,
+        marginTop: theme.spacing(-30),
+        marginLeft: theme.spacing(45),
+        backgroundColor: "#c5d1f1"
     }
     
   }));
@@ -35,10 +45,27 @@ export default function WelcomePage() {
     const tasks = useSelector(state => state.tasks)
     const d1 = new Date();
     const dispatch = useDispatch()
-    let today = dates[2]//dec 3rd 
+    let today = dates[4]//dec 3rd 
+
+    const formatDay = () => {
+        let today  = new Date();
+        let dd = today.getDate();
+        let mm = today.getMonth()+1; 
+        let yyyy = today.getFullYear();
+        if(dd<10) 
+        {
+            dd='0'+dd;
+        } 
+        if(mm<10) 
+        {
+            mm='0'+mm;
+        } 
+        today = mm+'/'+dd+'/'+yyyy;
+        return today
+    } 
 
     let todaysInfo = <List>
-            <ListItem>{d1.toString(today.date).slice(4, 15)}</ListItem>
+            <ListItem><b>{formatDay()}</b></ListItem>
             <ListItem>Arrivals: {today.arrivals}</ListItem>
             <ListItem>Departures: {today.departures}</ListItem>
             <ListItem>Performance: {today.performance_YTD} YTD Overall Experience</ListItem>
@@ -73,7 +100,7 @@ export default function WelcomePage() {
                     event.vips.map(vip =>{return<div> 
             <h5>Name: {vip.name}</h5>
             <h5>Details: {vip.show_on_daily}</h5>
-            <img id="vip" src={vip.img_url} />
+            <img id="vip" src={vip.img_url} className="image"/>
         </div>})
         })
     }
@@ -117,6 +144,10 @@ export default function WelcomePage() {
             <Paper elevation={3} >
                 <h2 id="paperTitle">Today's Stats</h2>
                 <div className={classes.margins}>{todaysInfo}</div>
+                <Paper className={classes.joke}>
+                    <div className={classes.margins}>
+                    <h3>Joke of the day:</h3> <b>Why don’t scientists trust atoms?</b><div>Because they make up everything.</div></div>
+                </Paper>
             </Paper>
             <Paper elevation={3} >
                 <h2 id="paperTitle">Today's Events</h2>

@@ -17,38 +17,33 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: theme.spacing(-45),
         marginTop: theme.spacing(-15),
         width: theme.spacing(30),
-        height: theme.spacing(20),
+        height: theme.spacing(23),
         positions: "absolute",
-        overflow: 'auto'
+        overflow: 'auto',
     },
   },
+
 }));
 
-export default function CalendarSelection(props) {
+export default function CalendarKey(props) {
   const classes = useStyles();
 
-const display = () => {
-  //debugger
+const key = () => {
   return<div>
   <b><Box color="info.main"><FiberManualRecordIcon/>Events</Box></b>
   <b><Box color="text.secondary"><FiberManualRecordIcon/>Certificates</Box></b>
-  
-  <List> 
   <b><Box color="success.main"><FiberManualRecordIcon/>Projects and Event Tasks</Box></b>
-    <ListItem><Box color="secondary.main"><FiberManualRecordIcon/>Human Resources (border)</Box></ListItem>
-    <ListItem><Box color="primary.main"><FiberManualRecordIcon/>Front Office (border)</Box></ListItem>
-    <ListItem><Box color="text.disabled"><FiberManualRecordIcon/>Housekeeping (border)</Box></ListItem>
-  </List>
+        <Box color="secondary.main"><FiberManualRecordIcon/>Human Resources </Box>
+        <Box color="primary.main"><FiberManualRecordIcon/>Front Office</Box>
+        <Box color="text.disabled"><FiberManualRecordIcon/>Housekeeping</Box>
   </div>
    
 }
- 
   return (
     <div className={classes.root}>
-        <Paper elevation={3}>
-            <h3 id="paperTitle">Key</h3>
-            {display()}
+        <Paper elevation={3}> 
+            {key()}
         </Paper>
-    </div>
+      </div>
   );
 }

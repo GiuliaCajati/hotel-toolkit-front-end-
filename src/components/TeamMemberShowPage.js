@@ -19,46 +19,30 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-//show all tasks for depar.
+
 export default function TeamMemberShowPage() {
   const classes = useStyles();
   const teamMember = useSelector(state => state.teamMember)
-  const departments = useSelector(state => state.departments)
   const tasks = useSelector(state => state.tasks)
 
-  const certificates = () => {
-    return tasks.filter(task => task.team_member_id == teamMember[0].id).map(oneTask =>  
-        {return oneTask.certificate
-            ?
-                <ListItem>
-                    {/* <input
-                        name= {oneTask.id}
-                        type="checkbox"
-                        // onChange={(e) => checked(e)}
-                        // checked={oneTask.status}
-                        // checked={null}
-                        /> */}
-                    {oneTask.details}
-                </ListItem>
-            :
-                null
-        }
-    )
-  }
+const certificates = () => {
+return tasks.filter(task => task.team_member_id == teamMember[0].id).map(oneTask =>  
+    {return oneTask.certificate
+        ?
+            <ListItem>
+                {oneTask.details}
+            </ListItem>
+        :
+            null
+    }
+)
+}
 
-  const guestFollowUp = () => { 
+const guestFollowUp = () => { 
     return tasks.filter(task => task.team_member_id == teamMember[0].id).map(oneTask =>  
         {return oneTask.guest_follow_up
             ?
                 <ListItem>
-                    {/* <input
-                        name= {oneTask.id}
-                        type="checkbox"
-                        // onChange={(e) => checked(e)}
-                        // checked={oneTask.status}
-                        
-                        // checked={null}
-                        /> */}
                     {oneTask.details}
                 </ListItem>
             :
@@ -73,14 +57,6 @@ const projects = () => {
         {return oneTask.project
             ?
                 <ListItem>
-                    {/* <input
-                        name= {oneTask.id}
-                        type="checkbox"
-                        // onChange={(e) => checked(e)}
-                        // checked={oneTask.status}
-                        
-                        // checked={null}
-                        /> */}
                     {oneTask.details}
                 </ListItem>
             :
@@ -89,11 +65,7 @@ const projects = () => {
     )
 }
 
-
-
-  
-
-  return (
+return (
     <div className={classes.root}>
         <Paper elevation={3}>
             <h3 id="paperTitle">{teamMember[0].name}</h3>
@@ -103,7 +75,6 @@ const projects = () => {
                     <ListItem><b>Start Date:</b> {teamMember[0].start_date}</ListItem>
                     <ListItem><b>Points:</b>{teamMember[0].points}</ListItem>
                     <List>
-
                       <div>Projects: {projects()}</div>
                       <div>Guest Follow-up: {guestFollowUp()}</div>
                       <div>Certificates: {certificates()}</div>

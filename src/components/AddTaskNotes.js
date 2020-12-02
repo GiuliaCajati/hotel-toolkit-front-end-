@@ -84,8 +84,7 @@ export default function AddDateDetails() {
         [id] : value,
     }))
   }
-  //event.target.checked
-
+ 
   const submitTask = (e) => { 
     e.preventDefault();
     let newTask = {

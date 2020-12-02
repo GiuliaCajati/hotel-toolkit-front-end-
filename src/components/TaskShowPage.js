@@ -24,10 +24,11 @@ const useStyles = makeStyles((theme) => ({
 
 export default function TaskShowPage() {
   const classes = useStyles();
-  const teamMember = useSelector(state => state.teamMember)
   const task = useSelector(state => state.task)
+  const tasks = useSelector(state => state.tasks)
   const dispatch = useDispatch()
-    const history = useHistory()
+const history = useHistory()
+let selectedtaskObject =tasks.filter(thisTask => thisTask.id == task[0].id)
 
 const taskTitle =() => {
     if(task.project == true){
@@ -37,16 +38,15 @@ const taskTitle =() => {
     }else{
         return<h2>Guest Follow-Up</h2>
     }
-
 }
 
-const handleClick = (oneTask) => {debugger
+const handleClick = (oneTask) => {
     dispatch(displayTask(oneTask))
     history.push(`/add_task_note/${oneTask.id}`)
   }
 
-const theTaskDetails = () => {debugger
-    return task.map(oneTask =>  
+const theTaskDetails = () => {
+    return selectedtaskObject.map(oneTask =>  
         {return<List>
              <ListItem>
                 <b>{oneTask.department == null
@@ -63,7 +63,8 @@ const theTaskDetails = () => {debugger
                 {oneTask.details}
             </ListItem>
             <ListItem>
-                {oneTask.notes == null?null:oneTask.notes}
+        
+               <b>Notes: </b> {oneTask.notes == null?null:oneTask.notes}
             </ListItem>
             <Button
                     style={{minWidth: '200px'}}
@@ -75,23 +76,18 @@ const theTaskDetails = () => {debugger
                     Add Notes
                 </Button>
            
-            </List>
-                    
-                    
-                
-           
-              
+            </List>     
         }
     )
 }
+//note from tasks 
 
 
   return (
     <div className={classes.root}>
         <Paper elevation={3}>
-            <h3 id="paperTitle">Task Details</h3>
-                <List id="paperTitle">{theTaskDetails()}</List>
-                
+            <h3 id="paperTitle">{taskTitle()}</h3>
+                <List id="paperTitle">{theTaskDetails()}</List> 
         </Paper>
     </div>
   );
