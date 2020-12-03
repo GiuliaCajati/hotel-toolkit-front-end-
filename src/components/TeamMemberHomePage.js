@@ -9,6 +9,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import {  useHistory } from "react-router-dom";
+import Box from '@material-ui/core/Box';
 
 
 
@@ -75,7 +76,7 @@ export default function TeamMemberHomePage() {
             <h2>Hello {user.name}!</h2>
             <h5>{user.department.name}</h5>
             {/* <ListItem> Points: {user.points}</ListItem> */}
-            {formatDay()}
+            {/* {formatDay()} */}
             {/* <ListItem> Start Date: {d1.toString(user.start_date).slice(4, 15)}</ListItem> */}
         </div>
     })
@@ -139,7 +140,7 @@ export default function TeamMemberHomePage() {
                             <AddCircleIcon />
                         </IconButton>
                     </Tooltip>  */}
-                        {oneTask.details}
+                        {oneTask.status?<Box color="success.main">Completed:{oneTask.details}</Box>:<Box color="error.main">In Progress:{oneTask.details}</Box>}
                     </ListItem>
                     
                 :
@@ -160,7 +161,7 @@ export default function TeamMemberHomePage() {
                     </Tooltip>  */}
                     <ListItem dense button onClick={() => taskClick(oneTask)}>
                     
-                           {oneTask.status?"Completed: ":"In Progress: "}{oneTask.details}
+                    {oneTask.status?<Box color="success.main">Completed:{oneTask.details}</Box>:<Box color="error.main">In Progress:{oneTask.details}</Box>}
                     </ListItem>
                     
                     </List>

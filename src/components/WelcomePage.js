@@ -22,19 +22,29 @@ const useStyles = makeStyles((theme) => ({
       },
     },
     margins:{
-        marginLeft: theme.spacing(5)
+        marginLeft: theme.spacing(5),
+        marginTop: theme.spacing(1)
     },
     font:{
         fontFamily: "serif",
     },
     image:{
-        width: 1
+        height: 1
     },
     joke:{
         width:300,
         marginTop: theme.spacing(-30),
         marginLeft: theme.spacing(45),
         backgroundColor: "#c5d1f1"
+    },
+    update:{
+        width:300,
+        marginTop: theme.spacing(0),
+        marginLeft: theme.spacing(45),
+        backgroundColor: "#c5d1f1"
+    },
+    text: {
+        paddingTop: theme.spacing(1)
     }
     
   }));
@@ -98,9 +108,9 @@ export default function WelcomePage() {
                     null
                 :   
                     event.vips.map(vip =>{return<div> 
-            <h5>Name: {vip.name}</h5>
+            <h3>Name: {vip.name}</h3>
             <h5>Details: {vip.show_on_daily}</h5>
-            <img id="vip" src={vip.img_url} className="image"/>
+            <img id="vip" src={vip.img_url} />
         </div>})
         })
     }
@@ -146,13 +156,17 @@ export default function WelcomePage() {
                 <div className={classes.margins}>{todaysInfo}</div>
                 <Paper className={classes.joke}>
                     <div className={classes.margins}>
-                    <h3>Joke of the day:</h3> <b>Why don’t scientists trust atoms?</b><div>Because they make up everything.</div></div>
+                    <h3 className={classes.text}>Joke of the day:</h3> <b>Why don’t scientists trust atoms?</b><div>Because they make up everything.</div></div>
+                </Paper>
+                <Paper className={classes.update}>
+                    <div className={classes.margins}>
+                    <h3 className={classes.text}>Hotel Important Updates:</h3> <b>Lobby Resteraunt will be closing a 6pm today.</b></div>
                 </Paper>
             </Paper>
             <Paper elevation={3} >
                 <h2 id="paperTitle">Today's Events</h2>
-                <List >{eventTasks()}</List>
                 <List className={classes.margins}>{todaysEvents()}</List>
+                <List >{eventTasks()}</List>
                 {/* department  */}
             </Paper>
             </div>
