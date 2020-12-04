@@ -105,11 +105,10 @@ class App extends Component {
 
             {/* NOT MADE*/}
             {/* AdditionalResources */} 
-            {/* <Route path='/additional_resources' render={()=> {
-                  return(<AdditionalResources />)}}/> */}
+            {/* <Route path='/additional_resources' render={()=> {return(<AdditionalResources />)}}/> */}
             {/* BulletonBoard */} 
-            <Route path='/bulleton_board' render={()=> {
-                  return(<BulletonBoard />)}}/>
+            {/* <Route path='/bulleton_board' render={()=> {
+                  return(<BulletonBoard />)}}/> */}
             {/* All Updates*/} 
             <Route exact path='/updates' 
                   render={() => {return this.props.currentUser.length == 0?(<LoginForm />):(<UpdatesList />)}}/> 

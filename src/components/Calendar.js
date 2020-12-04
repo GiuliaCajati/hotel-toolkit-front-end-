@@ -109,7 +109,7 @@ return(
 
         <React.Fragment>
           <CssBaseline />
-              <Container maxWidth="sm" style={{ backgroundColor: '#ffffff', height: '80vh', width: '200vh'}}>
+              <Container maxWidth="sm" style={{ backgroundColor: '#ffffff', height: '70vh', width: '350vh'}}>
       <h2>.</h2>
                 <FullCalendar 
                 events={formatEvents()}
@@ -140,6 +140,4 @@ return(
 }
 
 export default Calendar
-
-
 
