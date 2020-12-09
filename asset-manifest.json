@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/hotel-toolkit-front-end-/static/css/main.ae093ebe.chunk.css",
+    "main.js": "/hotel-toolkit-front-end-/static/js/main.557dc086.chunk.js",
+    "main.js.map": "/hotel-toolkit-front-end-/static/js/main.557dc086.chunk.js.map",
+    "runtime-main.js": "/hotel-toolkit-front-end-/static/js/runtime-main.c9b2229e.js",
+    "runtime-main.js.map": "/hotel-toolkit-front-end-/static/js/runtime-main.c9b2229e.js.map",
+    "static/css/2.212a933e.chunk.css": "/hotel-toolkit-front-end-/static/css/2.212a933e.chunk.css",
+    "static/js/2.34826cd9.chunk.js": "/hotel-toolkit-front-end-/static/js/2.34826cd9.chunk.js",
+    "static/js/2.34826cd9.chunk.js.map": "/hotel-toolkit-front-end-/static/js/2.34826cd9.chunk.js.map",
+    "index.html": "/hotel-toolkit-front-end-/index.html",
+    "static/css/2.212a933e.chunk.css.map": "/hotel-toolkit-front-end-/static/css/2.212a933e.chunk.css.map",
+    "static/css/main.ae093ebe.chunk.css.map": "/hotel-toolkit-front-end-/static/css/main.ae093ebe.chunk.css.map",
+    "static/js/2.34826cd9.chunk.js.LICENSE.txt": "/hotel-toolkit-front-end-/static/js/2.34826cd9.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.c9b2229e.js",
+    "static/css/2.212a933e.chunk.css",
+    "static/js/2.34826cd9.chunk.js",
+    "static/css/main.ae093ebe.chunk.css",
+    "static/js/main.557dc086.chunk.js"
+  ]
+}
