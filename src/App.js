@@ -82,7 +82,7 @@ class App extends Component {
             <Route exact path='/login' 
                   render={() => {return (<LoginForm />)}}/>
                   {/* Team Member Login Form */}
-            <Route exact path='/' 
+            <Route path='/' 
                   render={() => {return (<LoginForm />)}}/>
 
             {/* All Members Welcome Page */}    
