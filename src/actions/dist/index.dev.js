@@ -53,9 +53,10 @@ exports.DELETE_TASK = DELETE_TASK;
 var ADD_TASK_NOTES = "ADD_TASK_NOTES"; //need to make 
 
 exports.ADD_TASK_NOTES = ADD_TASK_NOTES;
-var EDIT_TASK = "EDIT_TASK";
+var EDIT_TASK = "EDIT_TASK"; //const URL = "http://localhost:3000/"
+
 exports.EDIT_TASK = EDIT_TASK;
-var URL = "http://localhost:3000/";
+var URL = "https://hotel-toolkit.herokuapp.com/";
 
 var addTask = function addTask(newTask) {
   debugger;

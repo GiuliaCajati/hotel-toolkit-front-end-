@@ -31,8 +31,8 @@ export const  ADD_TASK_NOTES = "ADD_TASK_NOTES"
 //need to make 
 export const  EDIT_TASK = "EDIT_TASK"
 
-const URL = "http://localhost:3000/"
-
+//const URL = "http://localhost:3000/"
+const URL = "https://hotel-toolkit.herokuapp.com/"
 
 
 export const addTask = (newTask) => {debugger
