@@ -13,6 +13,10 @@ import { BrowserRouter } from 'react-router-dom';//withRouter
 import { Router } from 'react-router'
 import createBrowserHistory from 'history/createBrowserHistory'
 
+
+
+
+
 export const history = createBrowserHistory()
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore( rootReducer, composeEnhancers(
