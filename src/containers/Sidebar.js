@@ -22,6 +22,7 @@ import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import { useSelector, useDispatch } from 'react-redux';
 import { setLogOutState } from '../actions';
 import {  useHistory } from "react-router-dom";
+
 const drawerWidth = 240;
 
 export const customTheme = createMuiTheme({

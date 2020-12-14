@@ -90,6 +90,7 @@ class App extends Component {
             {/* All Members Welcome Page */}    
             <Route exact path='/welcome' 
               render={() => {return this.props.currentUser.length == 0?(<LoginForm />):(<WelcomePage />)}}/>
+           
 
             {/* Team Members Home Page */}  
             {/* Will look different for diffeerent access */}  
