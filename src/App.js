@@ -79,6 +79,8 @@ class App extends Component {
                   render={() => {return (<Calendar />)}}/>
 
             {/* Team Member Login Form */}
+            <Route exact path='/hotel-toolkit-front-end-/' 
+                  render={() => {return (<LoginForm />)}}/>
             <Route exact path='/login' 
                   render={() => {return (<LoginForm />)}}/>
                   {/* Team Member Login Form */}
@@ -103,12 +105,7 @@ class App extends Component {
                   let pathId= props.match.params.id
                   return(<EventShowPage pathId = {pathId} />)}}/>
 
-            {/* NOT MADE*/}
-            {/* AdditionalResources */} 
-            {/* <Route path='/additional_resources' render={()=> {return(<AdditionalResources />)}}/> */}
-            {/* BulletonBoard */} 
-            {/* <Route path='/bulleton_board' render={()=> {
-                  return(<BulletonBoard />)}}/> */}
+          
             {/* All Updates*/} 
             <Route exact path='/updates' 
                   render={() => {return this.props.currentUser.length == 0?(<LoginForm />):(<UpdatesList />)}}/> 
@@ -116,7 +113,7 @@ class App extends Component {
             {/* ACCESS RESTRICTIONS */}
             {/* All Team Members ONLY HR/EXEC HAS ACCESS */}
             <Route exact path='/all_team_members' 
-                render={() => {return this.props.currentUser.length == 0?(<LoginForm />):(<TeamMembersList />)}}/>
+                render={() => {return (<TeamMembersList />)}}/>
 
               {/* Team Member Show Page*/}
              <Route path='/team_members/:id' render={(props)=> {
