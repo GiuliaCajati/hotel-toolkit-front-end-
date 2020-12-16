@@ -250,7 +250,7 @@ export const fetchingTasks = () => {
                     type: "FETCHED_TASKS", 
                     payload: tasks
             }) 
-            history.push('/events')
+           // history.push('/events')
         })
           //  history.push('/events') 
     }

@@ -1,4 +1,6 @@
 import './App.css';
+
+
 //import {useSelector, useDispatch} from 'react-redux'
 import React, { Component } from "react";
 import { connect } from 'react-redux'
@@ -84,7 +86,7 @@ class App extends Component {
             <Route exact path='/login' 
                   render={() => {return (<LoginForm />)}}/>
                   {/* Team Member Login Form */}
-            <Route path='/' 
+            <Route exact path='/' 
                   render={() => {return (<LoginForm />)}}/>
 
             {/* All Members Welcome Page */}    
