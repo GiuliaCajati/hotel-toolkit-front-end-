@@ -179,7 +179,7 @@ export default function TestSideBar() {
     history.push("/login")
 }
 
-  return (
+return (
 <MuiThemeProvider theme={customTheme}>
     <div className={classes.root}>
         <CssBaseline />
