@@ -1,5 +1,6 @@
-https://www.youtube.com/watch?v=Gy8Cx-dpiUM&feature=youtu.be
+# Demo Video
 
+[![Watch the video](https://i.imgur.com/YAGCBaD.png)](https://www.youtube.com/watch?v=Gy8Cx-dpiUM)
 
 # Hotel Toolkit
 
