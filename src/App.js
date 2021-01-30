@@ -69,16 +69,14 @@ class App extends Component {
                   return(<AddTaskNotes pathId = {pathId} />)}}/>
                       
           <Route exact path='/new_task' 
-                  render={() => {return (<NewTaskForm />)}}/>
+                  render={() => {return this.props.currentUser.length == 0?(<LoginForm />):(<NewTaskForm />)}}/>
           
           <Route exact path='/add_task' 
                   render={() => {return (<AddTaskDetails />)}}/>
           
           <Route exact path='/add_date' 
                   render={() => {return (<AddDateDetails />)}}/>
-            {/* Calendar */}
-            <Route exact path='/calendar' 
-                  render={() => {return (<Calendar />)}}/>
+          
 
             {/* Team Member Login Form */}
             <Route exact path='/hotel-toolkit-front-end-/' 
@@ -92,7 +90,9 @@ class App extends Component {
             {/* All Members Welcome Page */}    
             <Route exact path='/welcome' 
               render={() => {return this.props.currentUser.length == 0?(<LoginForm />):(<WelcomePage />)}}/>
-           
+           {/* Calendar */}
+           <Route exact path='/calendar' 
+                  render={() => {return this.props.currentUser.length == 0?(<LoginForm />):(<Calendar />)}}/>
 
             {/* Team Members Home Page */}  
             {/* Will look different for diffeerent access */}  
