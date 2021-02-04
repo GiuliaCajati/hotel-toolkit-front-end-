@@ -84,6 +84,7 @@ export default function LoginForm() {
         </Typography>
         <form className={classes.form} noValidate >
           <TextField
+          className={classes.text}
             variant="outlined"
             margin="normal"
             required
