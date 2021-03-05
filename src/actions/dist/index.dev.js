@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.setNewUser = exports.setLogOutState = exports.setLoginState = exports.fetchingTeamMembers = exports.displayTeamMember = exports.fetchingDepartments = exports.displayEvent = exports.fetchingTasks = exports.addEvent = exports.filterEvents = exports.fetchingEvents = exports.fetchingDates = exports.addDateEvent = exports.searchEvents = exports.deleteTask = exports.clearDisplayEvent = exports.clearDisplayTask = exports.displayTask = exports.updateTask = exports.addTaskNotes = exports.addTask = exports.EDIT_TASK = exports.ADD_TASK_NOTES = exports.DELETE_TASK = exports.CLEAR_DISPLAY_TASK = exports.DISPLAY_TASK = exports.ADD_TASK = exports.UPDATE_TASK = exports.ADD_DATE_EVENT = exports.ADD_EVENT = exports.SEARCH_EVENTS = exports.CLEAR_DISPLAY_EVENT = exports.DISPLAY_EVENT = exports.DISPLAY_TEAM_MEMBER = exports.SET_NEW_USER = exports.SET_LOGOUT_STATE = exports.SET_LOGIN_STATE = exports.FETCHED_TASKS = exports.FETCHED_TEAM_MEMBERS = exports.FETCHED_DEPARTMENTS = exports.FILTER_EVENTS = exports.FETCHED_EVENTS = exports.FETCHED_DATES = void 0;
+exports.setNewUser = exports.setLogOutState = exports.setLoginState = exports.fetchingTeamMembers = exports.displayTeamMember = exports.fetchingDepartments = exports.displayEvent = exports.fetchingTasks = exports.addEvent = exports.filterEvents = exports.fetchingEvents = exports.fetchingDates = exports.addDateEvent = exports.deleteTask = exports.clearDisplayEvent = exports.clearDisplayTask = exports.displayTask = exports.updateTask = exports.addTaskNotes = exports.addTask = exports.EDIT_TASK = exports.ADD_TASK_NOTES = exports.DELETE_TASK = exports.CLEAR_DISPLAY_TASK = exports.DISPLAY_TASK = exports.ADD_TASK = exports.UPDATE_TASK = exports.ADD_DATE_EVENT = exports.ADD_EVENT = exports.CLEAR_DISPLAY_EVENT = exports.DISPLAY_EVENT = exports.DISPLAY_TEAM_MEMBER = exports.SET_NEW_USER = exports.SET_LOGOUT_STATE = exports.SET_LOGIN_STATE = exports.FETCHED_TASKS = exports.FETCHED_TEAM_MEMBERS = exports.FETCHED_DEPARTMENTS = exports.FILTER_EVENTS = exports.FETCHED_EVENTS = exports.FETCHED_DATES = void 0;
 
 var _index = require("../index.js");
 
@@ -33,8 +33,6 @@ var DISPLAY_EVENT = "DISPLAY_EVENT";
 exports.DISPLAY_EVENT = DISPLAY_EVENT;
 var CLEAR_DISPLAY_EVENT = "CLEAR_DISPLAY_EVENT";
 exports.CLEAR_DISPLAY_EVENT = CLEAR_DISPLAY_EVENT;
-var SEARCH_EVENTS = "SEARCH_EVENTS";
-exports.SEARCH_EVENTS = SEARCH_EVENTS;
 var ADD_EVENT = "ADD_EVENT";
 exports.ADD_EVENT = ADD_EVENT;
 var ADD_DATE_EVENT = "ADD_DATE_EVENT"; //task
@@ -180,19 +178,9 @@ var deleteTask = function deleteTask(selectedTaskID) {
       _index.history.push('/home');
     });
   };
-}; //not yet working 
-
-
-exports.deleteTask = deleteTask;
-
-var searchEvents = function searchEvents(filteredEvents) {
-  return {
-    type: SEARCH_EVENTS,
-    payload: filteredEvents
-  };
 };
 
-exports.searchEvents = searchEvents;
+exports.deleteTask = deleteTask;
 
 var addDateEvent = function addDateEvent(newDateEvent) {
   debugger;

@@ -1,5 +1,5 @@
 
-import { FETCHED_EVENTS, FILTER_EVENTS, SEARCH_EVENTS, ADD_EVENT } from '../actions/index'
+import { FETCHED_EVENTS, FILTER_EVENTS,ADD_EVENT } from '../actions/index'
 
 const eventsReducer = (state = [], action) => {
     
@@ -10,8 +10,6 @@ const eventsReducer = (state = [], action) => {
             return [...state, ...action.payload]
         case FILTER_EVENTS:
             return [...state, ...action.payload]
-        case SEARCH_EVENTS:
-            return [...action.payload]
         // case ADD_EVENTS_TASKS:
         //     //working on it
         //     //state[0].tasks.push(TASK?)

@@ -15,7 +15,6 @@ export const  DISPLAY_TEAM_MEMBER = "DISPLAY_TEAM_MEMBER"
 
 export const  DISPLAY_EVENT = "DISPLAY_EVENT"
 export const  CLEAR_DISPLAY_EVENT = "CLEAR_DISPLAY_EVENT"
-export const  SEARCH_EVENTS = "SEARCH_EVENTS"
 export const  ADD_EVENT = "ADD_EVENT"
 
 export const  ADD_DATE_EVENT = "ADD_DATE_EVENT"
@@ -149,13 +148,6 @@ export const deleteTask = (selectedTaskID) => {
     }
 }
 
-//not yet working 
-export const searchEvents = (filteredEvents) => {
-    return{
-        type: SEARCH_EVENTS,
-        payload: filteredEvents
-    }
-}
 
 
 export const addDateEvent = (newDateEvent) => {

@@ -157,7 +157,7 @@ const useStyles = makeStyles((theme) => ({
  
 }));
 
-export default function TestSideBar() {
+export default function SideBar() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
