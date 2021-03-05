@@ -29,7 +29,6 @@ import WelcomePage from './components/WelcomePage.js'
 import TeamMemberHomePage from './components/TeamMemberHomePage.js'
 import EventShowPage from './components/EventShowPage.js'
 import TeamMemberShowPage from './components/TeamMemberShowPage.js'
-import BulletonBoard from "./components/BulletonBoard";
 import AddDateDetails from "./components/AddDateDetails";
 import AddTaskDetails from "./components/AddTaskDetails";
 import Calendar from "./components/Calendar.js";

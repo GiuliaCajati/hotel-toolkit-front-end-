@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import { useSelector, useDispatch } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import {  useHistory } from "react-router-dom";
-import AddDateDetails from "./AddDateDetails";
 import { deleteTask } from '../actions';
 import DeleteTwoToneIcon from '@material-ui/icons/DeleteTwoTone';
 

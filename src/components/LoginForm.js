@@ -42,7 +42,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function LoginForm() {
   const classes = useStyles();
-  const isLogged = useSelector(state => state.isLogged)
   const currentUser = useSelector(state => state.currentUser)
   const history = useHistory()
   const dispatch = useDispatch()
@@ -74,7 +73,7 @@ export default function LoginForm() {
    
     history.push("/welcome")
      //must click on login twice... will make modifications 
-    // return currentUser.length == 0?null:currentUser[0].message == "This user is not authenticated"?alert("This user is not authenticated"):history.push("/welcome")
+    return currentUser.length == 0?null:currentUser[0].message == "This user is not authenticated"?alert("This user is not authenticated"):history.push("/welcome")
     }
 
   return (

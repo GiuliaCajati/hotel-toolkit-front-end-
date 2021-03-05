@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import FullCalendar, { eventTupleToStore } from '@fullcalendar/react'
+import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';

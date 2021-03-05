@@ -296,10 +296,7 @@ return (
                   <ListItemText primary="Add Event"/>
               </ListItem>
               
-              {/* <ListItem button component={Link} to="/bulleton_board">
-                  <ListItemIcon><InboxIcon /> </ListItemIcon>
-                  <ListItemText primary="Bulliton Board"/>
-              </ListItem> */}
+             
               
           </List>:(null)):(null)}
           
