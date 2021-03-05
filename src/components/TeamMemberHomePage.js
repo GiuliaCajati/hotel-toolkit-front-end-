@@ -35,25 +35,6 @@ export default function TeamMemberHomePage() {
     const dispatch = useDispatch()
     const history = useHistory()
 
-    const formatDay = () => {
-        let today  = new Date();
-        let dd = today.getDate();
-        let mm = today.getMonth()+1; 
-        let yyyy = today.getFullYear();
-        if(dd<10) 
-        {
-            dd='0'+dd;
-        } 
-        if(mm<10) 
-        {
-            mm='0'+mm;
-        } 
-        today = mm+'/'+dd+'/'+yyyy;
-        return today
-    } 
-
-
-   
    //add notes to task
   const handleClick = (oneTask) => {
     dispatch(displayTask(oneTask))
@@ -70,7 +51,6 @@ export default function TeamMemberHomePage() {
             <h2>Hello {user.name}!</h2>
             <h5>{user.department.name}</h5>
             {/* <ListItem> Points: {user.points}</ListItem> */}
-            {/* {formatDay()} */}
             {/* <ListItem> Start Date: {d1.toString(user.start_date).slice(4, 15)}</ListItem> */}
         </div>
     })
