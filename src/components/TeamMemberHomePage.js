@@ -5,9 +5,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import ListItem from '@material-ui/core/ListItem';
 import List from '@material-ui/core/List';
 import { updateTask, displayTask} from '../actions';
-import IconButton from '@material-ui/core/IconButton';
-import Tooltip from '@material-ui/core/Tooltip';
-import AddCircleIcon from '@material-ui/icons/AddCircle';
 import {  useHistory } from "react-router-dom";
 import Box from '@material-ui/core/Box';
 
@@ -26,10 +23,7 @@ const useStyles = makeStyles((theme) => ({
     },
     font:{
         fontFamily: "serif",
-    },
-    // addnote:{
-    //     paddingLeft: theme.spacing(-200)
-    // }
+    }
   }));
   
 export default function TeamMemberHomePage() {
@@ -61,7 +55,7 @@ export default function TeamMemberHomePage() {
 
    
    //add notes to task
-  const handleClick = (oneTask) => {debugger
+  const handleClick = (oneTask) => {
     dispatch(displayTask(oneTask))
     history.push(`/add_task_note/${oneTask.id}`)
   }
@@ -135,11 +129,6 @@ export default function TeamMemberHomePage() {
             {return oneTask.guest_follow_up
                 ?
                     <ListItem dense button onClick={() => taskClick(oneTask)}>
-                       {/* <Tooltip title="Add Notes" >
-                        <IconButton aria-label="add notes" onClick={()=>handleClick(oneTask)}>
-                            <AddCircleIcon />
-                        </IconButton>
-                    </Tooltip>  */}
                         {oneTask.status?<Box color="success.main">Completed:{oneTask.details}</Box>:<Box color="error.main">In Progress:{oneTask.details}</Box>}
                     </ListItem>
                     
@@ -154,11 +143,7 @@ export default function TeamMemberHomePage() {
             {return<List>
                    <ListItem><b>{oneTask.event.name}:</b></ListItem> 
                   
-                    {/* <Tooltip title="Add Notes"  >
-                        <IconButton aria-label="add notes" onClick={()=>handleClick(oneTask)}>
-                            <AddCircleIcon />
-                        </IconButton>
-                    </Tooltip>  */}
+
                     <ListItem dense button onClick={() => taskClick(oneTask)}>
                     
                     {oneTask.status?<Box color="success.main">Completed:{oneTask.details}</Box>:<Box color="error.main">In Progress:{oneTask.details}</Box>}

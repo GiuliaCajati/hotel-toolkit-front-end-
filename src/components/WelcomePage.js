@@ -4,9 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import ThisWeek from './ThisWeek.js'
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import {  useHistory } from "react-router-dom";
-import { displayEvent } from '../actions';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles((theme) => ({
@@ -53,8 +51,6 @@ export default function WelcomePage() {
     const classes = useStyles();
     const dates = useSelector(state => state.dates)
     const tasks = useSelector(state => state.tasks)
-    const d1 = new Date();
-    const dispatch = useDispatch()
     let today = dates[4]//dec 3rd 
 
     const formatDay = () => {
@@ -96,10 +92,6 @@ export default function WelcomePage() {
         </List>})
         }
 
-    // const handleClick = (event) => {
-    //     dispatch(displayEvent(event))
-    //     history.push(`/events/${event.id}`)
-    //     }
     
     const todaysVips = () => {
         return today.events.map(event =>{
