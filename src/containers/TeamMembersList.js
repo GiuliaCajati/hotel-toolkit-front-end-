@@ -41,7 +41,6 @@ function TeamMemberList(props) {
   debugger
   }
  
-
   return (
     <List className={classes.root} subheader={<li />}>
       {departments.map(department => (

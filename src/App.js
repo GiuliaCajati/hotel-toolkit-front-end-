@@ -14,7 +14,6 @@ import { fetchingDates } from './actions'
 import { fetchingTasks } from './actions'
 
 //containers
-import UpdatesList from './containers/UpdatesList.js'
 import SideBar from './containers/SideBar.js'
 import EventsList from './containers/EventsList.js'
 import TeamMembersList from './containers/TeamMembersList.js'
@@ -110,7 +109,7 @@ class App extends Component {
           
             {/* All Updates*/} 
             <Route exact path='/updates' 
-                  render={() => {return this.props.currentUser.length == 0?(<LoginForm />):(<UpdatesList />)}}/> 
+                  render={() => {return this.props.currentUser.length == 0?(<LoginForm />):(<LoginForm />)}}/> 
           
             {/* ACCESS RESTRICTIONS */}
             {/* All Team Members ONLY HR/EXEC HAS ACCESS */}

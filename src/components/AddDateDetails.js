@@ -28,7 +28,6 @@ const useStyles = makeStyles((theme) => ({
       marginLeft: '20%',
       overflow: 'auto',
       height: 350
-      // overflow: 'auto',
     },
     form: {
       marginLeft: '10%',

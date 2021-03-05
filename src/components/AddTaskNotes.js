@@ -14,14 +14,12 @@ import Checkbox from '@material-ui/core/Checkbox';
 const useStyles = makeStyles((theme) => ({
     paper: {
       marginTop: theme.spacing(1),
-    // display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
       width: '50%',
       marginLeft: '20%',
       overflow: 'auto',
       height: 500
-      // overflow: 'auto',
     },
     form: {
       marginLeft: '10%',
@@ -57,9 +55,6 @@ export default function AddDateDetails() {
 
   //PROJECT, GUEST FOLLOW-UP, CERTIFICATE
   const [state , setState] = useState({
-    // department_id: null,
-    // event_id: null,
-    //team_member_id: currentUser[0].id,
     certificate: false,
     project: false,
     guest_follow_up: false,

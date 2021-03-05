@@ -99,10 +99,6 @@ const handleEventClick = (arg) => {
     dispatch(clearDisplayEvent())
   }   
 }
-
-const handleDateClick = (arg) => {
-//debugger
-}
    
 return(
       <div>   
@@ -121,12 +117,7 @@ return(
                   left: "dayGridMonth,timeGridWeek,timeGridDay,list",
                   center: "title",
                   right: "today,prev,next", }}
-                
-                // dateClick={handleDateClick}
-                // aspectRatio={4}
-                // height={400} 
-                // width={900}
-                // default={false}
+              
                 /> 
               
                <div><CalendarKey/></div>
