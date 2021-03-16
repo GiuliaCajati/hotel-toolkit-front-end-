@@ -48,7 +48,7 @@ const Calendar = () => {
 
 const formatTasks = () => {
     let filteredEvents = []
-    tasks.filter(thisTask => {
+    tasks.filter(thisTask => { 
     return thisTask.date_info_id == null?null:filteredEvents.push(thisTask)})
       let tasksArray = filteredEvents.map(task => {
           return{ 
@@ -63,8 +63,6 @@ const formatTasks = () => {
           }
           
       })
-      debugger
-      console.log(tasksArray)
     return tasksArray.filter(task => task !== null)
     }    
 
