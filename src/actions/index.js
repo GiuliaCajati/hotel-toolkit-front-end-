@@ -2,7 +2,6 @@ import { history } from '../index.js';
 //fetch 
 export const  FETCHED_DATES = "FETCHED_DATES"
 export const  FETCHED_EVENTS = "FETCHED_EVENTS"
-export const  FILTER_EVENTS = "FILTER_EVENTS"
 export const  FETCHED_DEPARTMENTS = "FETCHED_DEPARTMENTS"
 export const FETCHED_TEAM_MEMBERS = "FETCHED_TEAM_MEMBERS"
 export const FETCHED_TASKS = "FETCHED_TASKS"
@@ -16,6 +15,7 @@ export const  DISPLAY_TEAM_MEMBER = "DISPLAY_TEAM_MEMBER"
 export const  DISPLAY_EVENT = "DISPLAY_EVENT"
 export const  CLEAR_DISPLAY_EVENT = "CLEAR_DISPLAY_EVENT"
 export const  ADD_EVENT = "ADD_EVENT"
+export const  FILTER_EVENTS = "FILTER_EVENTS"
 
 export const  ADD_DATE_EVENT = "ADD_DATE_EVENT"
 
