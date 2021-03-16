@@ -11,12 +11,10 @@ export const  SET_LOGIN_STATE = "SET_LOGIN_STATE"
 export const SET_LOGOUT_STATE = "SET_LOGOUT_STATE"
 export const  SET_NEW_USER = "SET_NEW_USER"
 export const  DISPLAY_TEAM_MEMBER = "DISPLAY_TEAM_MEMBER"
-
 export const  DISPLAY_EVENT = "DISPLAY_EVENT"
 export const  CLEAR_DISPLAY_EVENT = "CLEAR_DISPLAY_EVENT"
 export const  ADD_EVENT = "ADD_EVENT"
 export const  FILTER_EVENTS = "FILTER_EVENTS"
-
 export const  ADD_DATE_EVENT = "ADD_DATE_EVENT"
 
 //task

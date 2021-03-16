@@ -11,7 +11,7 @@ import CalendarKey from "./CalendarKey.js";
 import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
 
-const Calendar = (props) => {
+const Calendar = () => {
   const events = useSelector(state => state.events)
   const tasks = useSelector(state => state.tasks)
   const dispatch = useDispatch()
@@ -38,18 +38,6 @@ const formatTasks = () => {
     return tasksArray.filter(task => task !== null)
     }    
 
-const backgroundColor = (task) => {
-      switch(task.certificate){
-        case false: //project
-          return "#3CB371"
-        case true: //certificate
-          return '#708090'
-        case 'guest_follow_up'://don't have any yet, but will need to change this 
-          return 'red'
-        default:
-          return 'green'
-      }
-    }
 
 const borderColor = (task) => {
   switch(task.department.name){
@@ -67,9 +55,20 @@ const borderColor = (task) => {
       return 'red'
   }
 }
+const backgroundColor = (task) => {
+  switch(task.certificate){
+    case false: //project
+      return "#3CB371"
+    case true: //certificate
+      return '#708090'
+    case 'guest_follow_up':
+      return 'red'
+    default:
+      return 'green'
+  }
+}
 
 const formatEvents = () => { 
-  
   //map out all events for each date 
   let filteredEvents = []
   events.filter(thisEvent  => {
@@ -109,20 +108,15 @@ return(
       <h2>.</h2>
                 <FullCalendar 
                 events={formatEvents()}
-                eventClick={handleEventClick} 
-                
+                eventClick={handleEventClick}      
                 plugins={[ dayGridPlugin, timeGridPlugin, interactionPlugin, listPlugin ]}
-            
                 headerToolbar={{ 
                   left: "dayGridMonth,timeGridWeek,timeGridDay,list",
                   center: "title",
                   right: "today,prev,next", }}
-              
                 /> 
-              
                <div><CalendarKey/></div>
                 <div>{detailes?<CalendarSelection/>:null}</div>
-               
           </Container>
         </React.Fragment>
   
