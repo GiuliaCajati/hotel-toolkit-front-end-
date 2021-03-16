@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import MenuItem from '@material-ui/core/MenuItem';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -18,14 +16,12 @@ import {  useHistory } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
     paper: {
       marginTop: theme.spacing(1),
-    // display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
       width: '50%',
       marginLeft: '20%',
       overflow: 'auto',
       height: 350
-      // overflow: 'auto',
     },
     form: {
       marginLeft: '10%',
@@ -98,31 +94,11 @@ export default function AddDateDetails() {
       date_info_id: state.date_info_id,
       details: state.details
     }
-    // Not working 
-    //let newTask = {
-    //   department_id: Number(state.department_id),
-    //   event_id: state.event_id, 
-    //   team_member_id: null,
-    //   certificate: false,
-    //   project: false,
-    //   guest_follow_up: false,
-    //   date_info_id: Number(state.date_info_id),
-    //   status: 0,
-    //   details: state.details
-    // }
-    debugger
+
     dispatch(addTask(newTask))
     history.push(`/events/${event.id}`)
   }
 
-//   const addVip = (e) => {
-//     e.preventDefault();
-//     // name: "Beyonce",
-//     // event_id: birthday.id,
-//     // show_on_daily: "Beyonce will be arriving at 7pm.",
-//     // level: "High",
-//     // img_url: "https://i.imgur.com/D0qvUSk.jpg"
-//   }
   return (
   
     <Paper className={classes.paper}>

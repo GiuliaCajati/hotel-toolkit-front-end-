@@ -12,7 +12,6 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import { useSelector, useDispatch } from 'react-redux';//display 
 import { addDateEvent } from '../actions';
-import { addTask } from '../actions';
 import {  useHistory } from "react-router-dom";
 
 
@@ -21,7 +20,6 @@ import {  useHistory } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
     paper: {
       marginTop: theme.spacing(1),
-    // display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
       width: '50%',
@@ -62,23 +60,20 @@ const useStyles = makeStyles((theme) => ({
 
 export default function AddDateDetails() {
    
-  const classes = useStyles();
-  const departments = useSelector(state => state.departments)
+  const classes = useStyles()
   const event = useSelector(state => state.event)
   const dates = useSelector(state => state.dates)
   const dispatch = useDispatch()
   const history = useHistory()
-  //debugger
+
 
   //Setting State for create new user 
-  const [state , setState] = useState({
-    // //DateEvent
+  const [state , setNewUser] = useState({
     date_info_id: "",
     event_id: event[0].id,
     arrivals: "",
     house: "",
     departures: "",
-    // //Task
     department_id: null,
     details: ""
   })
@@ -90,7 +85,7 @@ export default function AddDateDetails() {
     if(value === 0 ){
         value = event.target.getAttribute("data-value")
         }  
-    setState(prevState => ({
+      setNewUser(prevState => ({
         ...prevState,
         [id] : value,
     }))
@@ -108,16 +103,6 @@ export default function AddDateDetails() {
     }
     dispatch(addDateEvent(newDateEvent))
     history.push(`/events/${event.id}`)
-  }
-
-
-  const addVip = (e) => {
-    e.preventDefault();
-    // name: "Beyonce",
-    // event_id: birthday.id,
-    // show_on_daily: "Beyonce will be arriving at 7pm.",
-    // level: "High",
-    // img_url: "https://i.imgur.com/D0qvUSk.jpg"
   }
 
   return (

@@ -54,19 +54,17 @@ export default function AddDateDetails() {
   const history = useHistory()
 
   //PROJECT, GUEST FOLLOW-UP, CERTIFICATE
-  const [state , setState] = useState({
+  const [state , setTasks] = useState({
     certificate: false,
     project: false,
     guest_follow_up: false,
-    //date_info_id: "", //might add date 
     status: false,//change this 
-    //department_id: null,
     notes: ""
   })
 
   const handleCheckChange = (event) => {
     let {value , checked } = event.target 
-    setState(prevState => ({
+    setTasks(prevState => ({
         ...prevState,
         [value] : checked,
     }))
@@ -74,7 +72,7 @@ export default function AddDateDetails() {
 
   const handleChange = (event) => {
     let {id , value} = event.target 
-    setState(prevState => ({
+    setTasks(prevState => ({
         ...prevState,
         [id] : value,
     }))

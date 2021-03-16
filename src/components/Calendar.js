@@ -15,7 +15,7 @@ const Calendar = (props) => {
   const events = useSelector(state => state.events)
   const tasks = useSelector(state => state.tasks)
   const dispatch = useDispatch()
-  const [state , setState] = useState({displayDetails: false})
+  const [detailes , setDetailes] = useState(false)
   
 const formatTasks = () => {
     let filteredEvents = []
@@ -90,7 +90,7 @@ const formatEvents = () => {
 }
     
 const handleEventClick = (arg) => { 
-  setState({displayDetails: true})
+  setDetailes(true)
   if (arg.event.groupId == "events"){
     dispatch(displayEvent(events.filter(event => event.id == arg.event._def.publicId)[0]))
     dispatch(clearDisplayTask())
@@ -121,7 +121,7 @@ return(
                 /> 
               
                <div><CalendarKey/></div>
-                <div>{state.displayDetails?<CalendarSelection/>:null}</div>
+                <div>{detailes?<CalendarSelection/>:null}</div>
                
           </Container>
         </React.Fragment>

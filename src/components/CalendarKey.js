@@ -1,12 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-import { useSelector, useDispatch } from 'react-redux';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
 import Box from '@material-ui/core/Box';
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
-import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 
 
 const useStyles = makeStyles((theme) => ({
