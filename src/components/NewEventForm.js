@@ -58,7 +58,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function NewEventForm() {
   const classes = useStyles();
-  const departments = useSelector(state => state.departments)
   const dispatch = useDispatch()
   const history = useHistory()
 

@@ -94,24 +94,19 @@ const useStyles = makeStyles((theme) => ({
 
 export default function AddDateDetails() {
   const classes = useStyles();
-  const departments = useSelector(state => state.departments)
   const dates = useSelector(state => state.dates)
-  const currentUser = useSelector(state => state.currentUser)
   const teamMembers = useSelector(state => state.teamMembers)
   const dispatch = useDispatch()
   const history = useHistory()
 
   //PROJECT, GUEST FOLLOW-UP, CERTIFICATE
   const [state , setState] = useState({
-    // department_id: null,
-    // event_id: null,
     team_member_id: "",
     certificate: false,
     project: false,
     guest_follow_up: false,
     date_info_id: "", //might add date 
     status: false,
-    //department_id: null,
     details: "",
     notes: ""
   })

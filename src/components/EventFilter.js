@@ -54,7 +54,6 @@ const useStyles = makeStyles({
   },
 });
 
-// Inspired by blueprintjs
 function StyledRadio(props) {
   const classes = useStyles();
 
@@ -72,7 +71,7 @@ function StyledRadio(props) {
 
 
 
-export default function CustomizedRadios() {
+export default function EventFilter() {
     const events = useSelector(state => state.events)
     const dispatch = useDispatch()
     let filteredEvents
@@ -92,13 +91,6 @@ export default function CustomizedRadios() {
   
     return (
         <div>
-                {/* <TextField
-                    id="outlined-size-small"
-                    variant="outlined"
-                    size="small"
-                    onChange={(event) => sortEvents(event.nativeEvent.data)}
-                    />
-         */}
         <FormControl component="fieldset">
         <RadioGroup defaultValue="alpha" name="customized-radios" onChange={(event) => sortEvents(event.target.value)}>
             <FormControlLabel value="alpha" control={<StyledRadio />} label="Alpha" />

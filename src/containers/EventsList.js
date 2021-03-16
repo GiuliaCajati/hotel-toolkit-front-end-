@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export default function CheckboxList(props) {
+export default function EventList(props) {
   const classes = useStyles();
   const events = useSelector(state => state.events)
   const history = useHistory()

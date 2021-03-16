@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
-import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
 import { useSelector, useDispatch } from 'react-redux'; //display state 
 import { setLoginState } from '../actions';
 import {  useHistory } from "react-router-dom";
@@ -15,14 +12,12 @@ import Paper from '@material-ui/core/Paper';
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(10),
-  // display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     width: '25%',
     marginLeft: '35%',
     overflow: 'auto',
     height: 300
-    // overflow: 'auto',
   },
   form: {
     width: '90%', // Fix IE 11 issue.
@@ -37,7 +32,6 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "serif"
   }
   
-  //fontFamily: "serif"
 }));
 
 export default function LoginForm() {

@@ -30,8 +30,6 @@ export default function TeamMemberHomePage() {
     const classes = useStyles();
     const currentUser = useSelector(state => state.currentUser)
     const tasks = useSelector(state => state.tasks)
-    
-    
     const dispatch = useDispatch()
     const history = useHistory()
 

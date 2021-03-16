@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -18,14 +17,12 @@ import {  useHistory } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(1),
-  // display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     width: '50%',
     marginLeft: '20%',
     overflow: 'auto',
     height: 500
-    // overflow: 'auto',
   },
   form: {
     marginLeft: '15%',
