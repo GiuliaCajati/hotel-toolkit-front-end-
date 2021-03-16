@@ -16,7 +16,36 @@ const Calendar = () => {
   const tasks = useSelector(state => state.tasks)
   const dispatch = useDispatch()
   const [detailes , setDetailes] = useState(false)
-  
+
+  const borderColor = (task) => {
+    switch(task.department.name){
+      case "Front Office":
+        return "blue"
+      case "Housekeeping":
+        return '#C0C0C0'
+      case 'Finance':
+        return 'red'
+      case 'Engineering':
+        return 'red'
+      case 'Sales':
+        return 'red'
+      default:
+        return 'red'
+    }
+  }
+  const backgroundColor = (task) => {
+    switch(task.certificate){
+      case false: //project
+        return "#3CB371"
+      case true: //certificate
+        return '#708090'
+      case 'guest_follow_up':
+        return 'red'
+      default:
+        return 'green'
+    }
+  }
+
 const formatTasks = () => {
     let filteredEvents = []
     tasks.filter(thisTask => {
@@ -32,41 +61,12 @@ const formatTasks = () => {
             borderColor: (task.department_id == null? null:borderColor(task)),
             backgroundColor: backgroundColor(task)
           }
-      
+          
       })
-      
+      debugger
+      console.log(tasksArray)
     return tasksArray.filter(task => task !== null)
     }    
-
-
-const borderColor = (task) => {
-  switch(task.department.name){
-    case "Front Office":
-      return "blue"
-    case "Housekeeping":
-      return '#C0C0C0'
-    case 'Finance':
-      return 'red'
-    case 'Engineering':
-      return 'red'
-    case 'Sales':
-      return 'red'
-    default:
-      return 'red'
-  }
-}
-const backgroundColor = (task) => {
-  switch(task.certificate){
-    case false: //project
-      return "#3CB371"
-    case true: //certificate
-      return '#708090'
-    case 'guest_follow_up':
-      return 'red'
-    default:
-      return 'green'
-  }
-}
 
 const formatEvents = () => { 
   //map out all events for each date 
