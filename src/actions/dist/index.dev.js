@@ -8,7 +8,7 @@ exports.setNewUser = exports.setLogOutState = exports.setLoginState = exports.fe
 var _index = require("../index.js");
 
 //fetching 
-var FETCHED_DATES = "FETCHED_DATES"; //AddDateDetails, AddTaskDetails
+var FETCHED_DATES = "FETCHED_DATES"; //AddDateDetails, AddTaskDetails, NewTaskForm
 
 exports.FETCHED_DATES = FETCHED_DATES;
 var FETCHED_EVENTS = "FETCHED_EVENTS"; //Calendar, EventFilter
@@ -17,7 +17,8 @@ exports.FETCHED_EVENTS = FETCHED_EVENTS;
 var FETCHED_DEPARTMENTS = "FETCHED_DEPARTMENTS"; //AddTaskDetails 
 
 exports.FETCHED_DEPARTMENTS = FETCHED_DEPARTMENTS;
-var FETCHED_TEAM_MEMBERS = "FETCHED_TEAM_MEMBERS";
+var FETCHED_TEAM_MEMBERS = "FETCHED_TEAM_MEMBERS"; //NewTaskForm
+
 exports.FETCHED_TEAM_MEMBERS = FETCHED_TEAM_MEMBERS;
 var FETCHED_TASKS = "FETCHED_TASKS"; //Calendar, EventShowPage
 //login/logout
@@ -37,7 +38,8 @@ exports.DISPLAY_EVENT = DISPLAY_EVENT;
 var CLEAR_DISPLAY_EVENT = "CLEAR_DISPLAY_EVENT"; //Calendar
 
 exports.CLEAR_DISPLAY_EVENT = CLEAR_DISPLAY_EVENT;
-var ADD_EVENT = "ADD_EVENT";
+var ADD_EVENT = "ADD_EVENT"; //NewEventForm
+
 exports.ADD_EVENT = ADD_EVENT;
 var FILTER_EVENTS = "FILTER_EVENTS";
 exports.FILTER_EVENTS = FILTER_EVENTS;
@@ -47,7 +49,7 @@ var ADD_DATE_EVENT = "ADD_DATE_EVENT"; //AddDateDetails
 exports.ADD_DATE_EVENT = ADD_DATE_EVENT;
 var UPDATE_TASK = "UPDATE_TASK";
 exports.UPDATE_TASK = UPDATE_TASK;
-var ADD_TASK = "ADD_TASK"; //AddDateDetails
+var ADD_TASK = "ADD_TASK"; //AddDateDetails, NewTaskForm
 
 exports.ADD_TASK = ADD_TASK;
 var DELETE_TASK = "DELETE_TASK";
