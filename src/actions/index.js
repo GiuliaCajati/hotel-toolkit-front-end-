@@ -20,10 +20,11 @@ export const  ADD_DATE_EVENT = "ADD_DATE_EVENT"
 //task
 export const  UPDATE_TASK = "UPDATE_TASK"
 export const  ADD_TASK = "ADD_TASK"
-export const  DISPLAY_TASK = "DISPLAY_TASK"
-export const  CLEAR_DISPLAY_TASK = "CLEAR_DISPLAY_TASK"
 export const  DELETE_TASK = "DELETE_TASK"
 export const  ADD_TASK_NOTES = "ADD_TASK_NOTES"
+//Calendar
+export const  DISPLAY_TASK = "DISPLAY_TASK"
+export const  CLEAR_DISPLAY_TASK = "CLEAR_DISPLAY_TASK"
 
 //need to make 
 export const  EDIT_TASK = "EDIT_TASK"

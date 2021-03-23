@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.setNewUser = exports.setLogOutState = exports.setLoginState = exports.fetchingTeamMembers = exports.displayTeamMember = exports.fetchingDepartments = exports.displayEvent = exports.fetchingTasks = exports.addEvent = exports.filterEvents = exports.fetchingEvents = exports.fetchingDates = exports.addDateEvent = exports.deleteTask = exports.clearDisplayEvent = exports.clearDisplayTask = exports.displayTask = exports.updateTask = exports.addTaskNotes = exports.addTask = exports.EDIT_TASK = exports.ADD_TASK_NOTES = exports.DELETE_TASK = exports.CLEAR_DISPLAY_TASK = exports.DISPLAY_TASK = exports.ADD_TASK = exports.UPDATE_TASK = exports.ADD_DATE_EVENT = exports.FILTER_EVENTS = exports.ADD_EVENT = exports.CLEAR_DISPLAY_EVENT = exports.DISPLAY_EVENT = exports.DISPLAY_TEAM_MEMBER = exports.SET_NEW_USER = exports.SET_LOGOUT_STATE = exports.SET_LOGIN_STATE = exports.FETCHED_TASKS = exports.FETCHED_TEAM_MEMBERS = exports.FETCHED_DEPARTMENTS = exports.FETCHED_EVENTS = exports.FETCHED_DATES = void 0;
+exports.setNewUser = exports.setLogOutState = exports.setLoginState = exports.fetchingTeamMembers = exports.displayTeamMember = exports.fetchingDepartments = exports.displayEvent = exports.fetchingTasks = exports.addEvent = exports.filterEvents = exports.fetchingEvents = exports.fetchingDates = exports.addDateEvent = exports.deleteTask = exports.clearDisplayEvent = exports.clearDisplayTask = exports.displayTask = exports.updateTask = exports.addTaskNotes = exports.addTask = exports.EDIT_TASK = exports.CLEAR_DISPLAY_TASK = exports.DISPLAY_TASK = exports.ADD_TASK_NOTES = exports.DELETE_TASK = exports.ADD_TASK = exports.UPDATE_TASK = exports.ADD_DATE_EVENT = exports.FILTER_EVENTS = exports.ADD_EVENT = exports.CLEAR_DISPLAY_EVENT = exports.DISPLAY_EVENT = exports.DISPLAY_TEAM_MEMBER = exports.SET_NEW_USER = exports.SET_LOGOUT_STATE = exports.SET_LOGIN_STATE = exports.FETCHED_TASKS = exports.FETCHED_TEAM_MEMBERS = exports.FETCHED_DEPARTMENTS = exports.FETCHED_EVENTS = exports.FETCHED_DATES = void 0;
 
 var _index = require("../index.js");
 
@@ -42,15 +42,16 @@ var UPDATE_TASK = "UPDATE_TASK";
 exports.UPDATE_TASK = UPDATE_TASK;
 var ADD_TASK = "ADD_TASK";
 exports.ADD_TASK = ADD_TASK;
-var DISPLAY_TASK = "DISPLAY_TASK";
-exports.DISPLAY_TASK = DISPLAY_TASK;
-var CLEAR_DISPLAY_TASK = "CLEAR_DISPLAY_TASK";
-exports.CLEAR_DISPLAY_TASK = CLEAR_DISPLAY_TASK;
 var DELETE_TASK = "DELETE_TASK";
 exports.DELETE_TASK = DELETE_TASK;
-var ADD_TASK_NOTES = "ADD_TASK_NOTES"; //need to make 
+var ADD_TASK_NOTES = "ADD_TASK_NOTES"; //Calendar
 
 exports.ADD_TASK_NOTES = ADD_TASK_NOTES;
+var DISPLAY_TASK = "DISPLAY_TASK";
+exports.DISPLAY_TASK = DISPLAY_TASK;
+var CLEAR_DISPLAY_TASK = "CLEAR_DISPLAY_TASK"; //need to make 
+
+exports.CLEAR_DISPLAY_TASK = CLEAR_DISPLAY_TASK;
 var EDIT_TASK = "EDIT_TASK"; //const URL = "http://localhost:3000/"
 
 exports.EDIT_TASK = EDIT_TASK;

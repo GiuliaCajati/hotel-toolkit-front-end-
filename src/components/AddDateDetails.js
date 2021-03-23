@@ -1,21 +1,20 @@
 import React, { useState } from 'react';
+import {  useHistory } from "react-router-dom";
+import { addDateEvent } from '../actions';
+import { useSelector, useDispatch } from 'react-redux';
+//addDateEvent, dates, events 
+
+import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import MenuItem from '@material-ui/core/MenuItem';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
-import { useSelector, useDispatch } from 'react-redux';//display 
-import { addDateEvent } from '../actions';
-import {  useHistory } from "react-router-dom";
-
-
-
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -66,8 +65,6 @@ export default function AddDateDetails() {
   const dispatch = useDispatch()
   const history = useHistory()
 
-
-  //Setting State for create new user 
   const [state , setNewUser] = useState({
     date_info_id: "",
     event_id: event[0].id,
@@ -77,8 +74,6 @@ export default function AddDateDetails() {
     department_id: null,
     details: ""
   })
-
-
 
   const handleChange = (event) => {
     let {id , value} = event.target 
@@ -90,7 +85,6 @@ export default function AddDateDetails() {
         [id] : value,
     }))
   }
-
 
   const submitDateEvent = (e) => {
     e.preventDefault();
