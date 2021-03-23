@@ -7,18 +7,20 @@ exports.setNewUser = exports.setLogOutState = exports.setLoginState = exports.fe
 
 var _index = require("../index.js");
 
-//fetch 
+//fetching 
 var FETCHED_DATES = "FETCHED_DATES"; //AddDateDetails, AddTaskDetails
 
 exports.FETCHED_DATES = FETCHED_DATES;
-var FETCHED_EVENTS = "FETCHED_EVENTS";
+var FETCHED_EVENTS = "FETCHED_EVENTS"; //Calendar, EventFilter
+
 exports.FETCHED_EVENTS = FETCHED_EVENTS;
 var FETCHED_DEPARTMENTS = "FETCHED_DEPARTMENTS"; //AddTaskDetails 
 
 exports.FETCHED_DEPARTMENTS = FETCHED_DEPARTMENTS;
 var FETCHED_TEAM_MEMBERS = "FETCHED_TEAM_MEMBERS";
 exports.FETCHED_TEAM_MEMBERS = FETCHED_TEAM_MEMBERS;
-var FETCHED_TASKS = "FETCHED_TASKS"; //login/logout
+var FETCHED_TASKS = "FETCHED_TASKS"; //Calendar, EventShowPage
+//login/logout
 
 exports.FETCHED_TASKS = FETCHED_TASKS;
 var SET_LOGIN_STATE = "SET_LOGIN_STATE";
@@ -29,10 +31,11 @@ var DISPLAY_TEAM_MEMBER = "DISPLAY_TEAM_MEMBER";
 exports.DISPLAY_TEAM_MEMBER = DISPLAY_TEAM_MEMBER;
 var SET_NEW_USER = "SET_NEW_USER";
 exports.SET_NEW_USER = SET_NEW_USER;
-var DISPLAY_EVENT = "DISPLAY_EVENT"; //AddDateDetails
+var DISPLAY_EVENT = "DISPLAY_EVENT"; //AddDateDetails, Calendar
 
 exports.DISPLAY_EVENT = DISPLAY_EVENT;
-var CLEAR_DISPLAY_EVENT = "CLEAR_DISPLAY_EVENT";
+var CLEAR_DISPLAY_EVENT = "CLEAR_DISPLAY_EVENT"; //Calendar
+
 exports.CLEAR_DISPLAY_EVENT = CLEAR_DISPLAY_EVENT;
 var ADD_EVENT = "ADD_EVENT";
 exports.ADD_EVENT = ADD_EVENT;
@@ -52,10 +55,11 @@ exports.DELETE_TASK = DELETE_TASK;
 var ADD_TASK_NOTES = "ADD_TASK_NOTES"; //AddTaskNotes
 
 exports.ADD_TASK_NOTES = ADD_TASK_NOTES;
-var DISPLAY_TASK = "DISPLAY_TASK"; //Calendar
+var DISPLAY_TASK = "DISPLAY_TASK"; //Calendar, EventShowPage
 
 exports.DISPLAY_TASK = DISPLAY_TASK;
-var CLEAR_DISPLAY_TASK = "CLEAR_DISPLAY_TASK"; //need to make 
+var CLEAR_DISPLAY_TASK = "CLEAR_DISPLAY_TASK"; //Calendar
+//need to make 
 
 exports.CLEAR_DISPLAY_TASK = CLEAR_DISPLAY_TASK;
 var EDIT_TASK = "EDIT_TASK"; //const URL = "http://localhost:3000/"

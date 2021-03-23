@@ -1,13 +1,12 @@
 import React from 'react';
+import {  useHistory } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux';
+import { deleteTask } from '../actions';
+//deleteTask, event, tasks
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-import { useSelector, useDispatch } from 'react-redux';
 import Button from '@material-ui/core/Button';
-import {  useHistory } from "react-router-dom";
-import { deleteTask } from '../actions';
 import DeleteTwoToneIcon from '@material-ui/icons/DeleteTwoTone';
-
-
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -41,9 +40,10 @@ const useStyles = makeStyles((theme) => ({
 export default function TeamMemberShowPage() {
   const classes = useStyles();
   const event = useSelector(state => state.event)
+  const tasks = useSelector(state => state.tasks)
   const history = useHistory()
   const dispatch = useDispatch()
-  const tasks = useSelector(state => state.tasks)
+  
   
   const eventDates = (event) => { 
     return event.date_events.map(dateEvent =>  {

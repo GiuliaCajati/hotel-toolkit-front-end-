@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { displayEvent, displayTask, clearDisplayTask, clearDisplayEvent } from '../actions';
-//displayEvent, displayTask, clearDisplayTask, clearDisplayEvent
+//displayEvent, displayTask, clearDisplayTask, clearDisplayEvent, tasks, events
 
 import CalendarSelection from "./CalendarSelection.js";
 import CalendarKey from "./CalendarKey.js";
