@@ -1,10 +1,12 @@
 import React from 'react'
-import Paper from '@material-ui/core/Paper';
+import { useSelector } from 'react-redux';
+//dates, tasks
+
 import { makeStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
 import ThisWeek from './ThisWeek.js'
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import { useSelector } from 'react-redux';
 import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles((theme) => ({

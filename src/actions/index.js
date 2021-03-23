@@ -1,15 +1,15 @@
 import { history } from '../index.js';
 //fetching 
-export const  FETCHED_DATES = "FETCHED_DATES"//AddDateDetails, AddTaskDetails, NewTaskForm
+export const  FETCHED_DATES = "FETCHED_DATES"//AddDateDetails, AddTaskDetails, NewTaskForm, WelcomePage
 export const  FETCHED_EVENTS = "FETCHED_EVENTS"//Calendar, EventFilter
 export const  FETCHED_DEPARTMENTS = "FETCHED_DEPARTMENTS"//AddTaskDetails 
 export const FETCHED_TEAM_MEMBERS = "FETCHED_TEAM_MEMBERS"//NewTaskForm
-export const FETCHED_TASKS = "FETCHED_TASKS"//Calendar, EventShowPage
+export const FETCHED_TASKS = "FETCHED_TASKS"//Calendar, EventShowPage, WelcomePage, ThisWeek, TeamMemberShowPage, TeamMemberHomePage
 
 //login/logout
 export const  SET_LOGIN_STATE = "SET_LOGIN_STATE"
 export const SET_LOGOUT_STATE = "SET_LOGOUT_STATE"
-export const  DISPLAY_TEAM_MEMBER = "DISPLAY_TEAM_MEMBER"
+export const  DISPLAY_TEAM_MEMBER = "DISPLAY_TEAM_MEMBER"//TeamMemberShowPage, TeamMemberHomePage, 
 
 export const  SET_NEW_USER = "SET_NEW_USER"
 
@@ -21,7 +21,7 @@ export const  FILTER_EVENTS = "FILTER_EVENTS"
 export const  ADD_DATE_EVENT = "ADD_DATE_EVENT"//AddDateDetails
 
 //task
-export const  UPDATE_TASK = "UPDATE_TASK"
+export const  UPDATE_TASK = "UPDATE_TASK"//TeamMemberHomePage
 export const  ADD_TASK = "ADD_TASK"//AddDateDetails, NewTaskForm
 export const  DELETE_TASK = "DELETE_TASK"
 export const  ADD_TASK_NOTES = "ADD_TASK_NOTES"//AddTaskNotes

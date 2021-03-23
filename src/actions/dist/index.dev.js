@@ -8,7 +8,7 @@ exports.setNewUser = exports.setLogOutState = exports.setLoginState = exports.fe
 var _index = require("../index.js");
 
 //fetching 
-var FETCHED_DATES = "FETCHED_DATES"; //AddDateDetails, AddTaskDetails, NewTaskForm
+var FETCHED_DATES = "FETCHED_DATES"; //AddDateDetails, AddTaskDetails, NewTaskForm, WelcomePage
 
 exports.FETCHED_DATES = FETCHED_DATES;
 var FETCHED_EVENTS = "FETCHED_EVENTS"; //Calendar, EventFilter
@@ -20,7 +20,7 @@ exports.FETCHED_DEPARTMENTS = FETCHED_DEPARTMENTS;
 var FETCHED_TEAM_MEMBERS = "FETCHED_TEAM_MEMBERS"; //NewTaskForm
 
 exports.FETCHED_TEAM_MEMBERS = FETCHED_TEAM_MEMBERS;
-var FETCHED_TASKS = "FETCHED_TASKS"; //Calendar, EventShowPage
+var FETCHED_TASKS = "FETCHED_TASKS"; //Calendar, EventShowPage, WelcomePage, ThisWeek, TeamMemberShowPage, TeamMemberHomePage
 //login/logout
 
 exports.FETCHED_TASKS = FETCHED_TASKS;
@@ -28,7 +28,8 @@ var SET_LOGIN_STATE = "SET_LOGIN_STATE";
 exports.SET_LOGIN_STATE = SET_LOGIN_STATE;
 var SET_LOGOUT_STATE = "SET_LOGOUT_STATE";
 exports.SET_LOGOUT_STATE = SET_LOGOUT_STATE;
-var DISPLAY_TEAM_MEMBER = "DISPLAY_TEAM_MEMBER";
+var DISPLAY_TEAM_MEMBER = "DISPLAY_TEAM_MEMBER"; //TeamMemberShowPage, TeamMemberHomePage, 
+
 exports.DISPLAY_TEAM_MEMBER = DISPLAY_TEAM_MEMBER;
 var SET_NEW_USER = "SET_NEW_USER";
 exports.SET_NEW_USER = SET_NEW_USER;
@@ -47,7 +48,8 @@ var ADD_DATE_EVENT = "ADD_DATE_EVENT"; //AddDateDetails
 //task
 
 exports.ADD_DATE_EVENT = ADD_DATE_EVENT;
-var UPDATE_TASK = "UPDATE_TASK";
+var UPDATE_TASK = "UPDATE_TASK"; //TeamMemberHomePage
+
 exports.UPDATE_TASK = UPDATE_TASK;
 var ADD_TASK = "ADD_TASK"; //AddDateDetails, NewTaskForm
 

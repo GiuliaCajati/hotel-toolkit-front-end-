@@ -1,11 +1,13 @@
 import React from 'react'
+import {  useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
-import Paper from '@material-ui/core/Paper';
+import { updateTask} from '../actions';
+//updateTask, currentUser, tasks
+
 import { makeStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
 import ListItem from '@material-ui/core/ListItem';
 import List from '@material-ui/core/List';
-import { updateTask, displayTask} from '../actions';
-import {  useHistory } from "react-router-dom";
 import Box from '@material-ui/core/Box';
 
 

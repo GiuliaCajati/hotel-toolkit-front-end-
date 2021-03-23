@@ -1,12 +1,13 @@
 import React from 'react';
+import {  useHistory } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux';
+import { displayTask} from '../actions';
+//displayTask, task, tasks
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-import { useSelector, useDispatch } from 'react-redux';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Button from '@material-ui/core/Button';
-import {  useHistory } from "react-router-dom";
-import { displayTask} from '../actions';
 
 const useStyles = makeStyles((theme) => ({
   root: {
