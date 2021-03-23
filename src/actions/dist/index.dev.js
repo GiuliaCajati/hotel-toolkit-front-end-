@@ -3,16 +3,18 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.setNewUser = exports.setLogOutState = exports.setLoginState = exports.fetchingTeamMembers = exports.displayTeamMember = exports.fetchingDepartments = exports.displayEvent = exports.fetchingTasks = exports.addEvent = exports.filterEvents = exports.fetchingEvents = exports.fetchingDates = exports.addDateEvent = exports.deleteTask = exports.clearDisplayEvent = exports.clearDisplayTask = exports.displayTask = exports.updateTask = exports.addTaskNotes = exports.addTask = exports.EDIT_TASK = exports.CLEAR_DISPLAY_TASK = exports.DISPLAY_TASK = exports.ADD_TASK_NOTES = exports.DELETE_TASK = exports.ADD_TASK = exports.UPDATE_TASK = exports.ADD_DATE_EVENT = exports.FILTER_EVENTS = exports.ADD_EVENT = exports.CLEAR_DISPLAY_EVENT = exports.DISPLAY_EVENT = exports.DISPLAY_TEAM_MEMBER = exports.SET_NEW_USER = exports.SET_LOGOUT_STATE = exports.SET_LOGIN_STATE = exports.FETCHED_TASKS = exports.FETCHED_TEAM_MEMBERS = exports.FETCHED_DEPARTMENTS = exports.FETCHED_EVENTS = exports.FETCHED_DATES = void 0;
+exports.setNewUser = exports.setLogOutState = exports.setLoginState = exports.fetchingTeamMembers = exports.displayTeamMember = exports.fetchingDepartments = exports.displayEvent = exports.fetchingTasks = exports.addEvent = exports.filterEvents = exports.fetchingEvents = exports.fetchingDates = exports.addDateEvent = exports.deleteTask = exports.clearDisplayEvent = exports.clearDisplayTask = exports.displayTask = exports.updateTask = exports.addTaskNotes = exports.addTask = exports.EDIT_TASK = exports.CLEAR_DISPLAY_TASK = exports.DISPLAY_TASK = exports.ADD_TASK_NOTES = exports.DELETE_TASK = exports.ADD_TASK = exports.UPDATE_TASK = exports.ADD_DATE_EVENT = exports.FILTER_EVENTS = exports.ADD_EVENT = exports.CLEAR_DISPLAY_EVENT = exports.DISPLAY_EVENT = exports.SET_NEW_USER = exports.DISPLAY_TEAM_MEMBER = exports.SET_LOGOUT_STATE = exports.SET_LOGIN_STATE = exports.FETCHED_TASKS = exports.FETCHED_TEAM_MEMBERS = exports.FETCHED_DEPARTMENTS = exports.FETCHED_EVENTS = exports.FETCHED_DATES = void 0;
 
 var _index = require("../index.js");
 
 //fetch 
-var FETCHED_DATES = "FETCHED_DATES";
+var FETCHED_DATES = "FETCHED_DATES"; //AddDateDetails, AddTaskDetails
+
 exports.FETCHED_DATES = FETCHED_DATES;
 var FETCHED_EVENTS = "FETCHED_EVENTS";
 exports.FETCHED_EVENTS = FETCHED_EVENTS;
-var FETCHED_DEPARTMENTS = "FETCHED_DEPARTMENTS";
+var FETCHED_DEPARTMENTS = "FETCHED_DEPARTMENTS"; //AddTaskDetails 
+
 exports.FETCHED_DEPARTMENTS = FETCHED_DEPARTMENTS;
 var FETCHED_TEAM_MEMBERS = "FETCHED_TEAM_MEMBERS";
 exports.FETCHED_TEAM_MEMBERS = FETCHED_TEAM_MEMBERS;
@@ -23,11 +25,12 @@ var SET_LOGIN_STATE = "SET_LOGIN_STATE";
 exports.SET_LOGIN_STATE = SET_LOGIN_STATE;
 var SET_LOGOUT_STATE = "SET_LOGOUT_STATE";
 exports.SET_LOGOUT_STATE = SET_LOGOUT_STATE;
-var SET_NEW_USER = "SET_NEW_USER";
-exports.SET_NEW_USER = SET_NEW_USER;
 var DISPLAY_TEAM_MEMBER = "DISPLAY_TEAM_MEMBER";
 exports.DISPLAY_TEAM_MEMBER = DISPLAY_TEAM_MEMBER;
-var DISPLAY_EVENT = "DISPLAY_EVENT";
+var SET_NEW_USER = "SET_NEW_USER";
+exports.SET_NEW_USER = SET_NEW_USER;
+var DISPLAY_EVENT = "DISPLAY_EVENT"; //AddDateDetails
+
 exports.DISPLAY_EVENT = DISPLAY_EVENT;
 var CLEAR_DISPLAY_EVENT = "CLEAR_DISPLAY_EVENT";
 exports.CLEAR_DISPLAY_EVENT = CLEAR_DISPLAY_EVENT;
@@ -35,19 +38,22 @@ var ADD_EVENT = "ADD_EVENT";
 exports.ADD_EVENT = ADD_EVENT;
 var FILTER_EVENTS = "FILTER_EVENTS";
 exports.FILTER_EVENTS = FILTER_EVENTS;
-var ADD_DATE_EVENT = "ADD_DATE_EVENT"; //task
+var ADD_DATE_EVENT = "ADD_DATE_EVENT"; //AddDateDetails
+//task
 
 exports.ADD_DATE_EVENT = ADD_DATE_EVENT;
 var UPDATE_TASK = "UPDATE_TASK";
 exports.UPDATE_TASK = UPDATE_TASK;
-var ADD_TASK = "ADD_TASK";
+var ADD_TASK = "ADD_TASK"; //AddDateDetails
+
 exports.ADD_TASK = ADD_TASK;
 var DELETE_TASK = "DELETE_TASK";
 exports.DELETE_TASK = DELETE_TASK;
-var ADD_TASK_NOTES = "ADD_TASK_NOTES"; //Calendar
+var ADD_TASK_NOTES = "ADD_TASK_NOTES"; //AddTaskNotes
 
 exports.ADD_TASK_NOTES = ADD_TASK_NOTES;
-var DISPLAY_TASK = "DISPLAY_TASK";
+var DISPLAY_TASK = "DISPLAY_TASK"; //Calendar
+
 exports.DISPLAY_TASK = DISPLAY_TASK;
 var CLEAR_DISPLAY_TASK = "CLEAR_DISPLAY_TASK"; //need to make 
 

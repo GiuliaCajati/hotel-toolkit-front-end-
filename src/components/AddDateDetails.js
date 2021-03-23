@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {  useHistory } from "react-router-dom";
 import { addDateEvent } from '../actions';
 import { useSelector, useDispatch } from 'react-redux';
-//addDateEvent, dates, events 
+//addDateEvent, dates, event 
 
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';

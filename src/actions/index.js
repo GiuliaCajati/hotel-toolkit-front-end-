@@ -1,29 +1,29 @@
 import { history } from '../index.js';
 //fetch 
-export const  FETCHED_DATES = "FETCHED_DATES"
+export const  FETCHED_DATES = "FETCHED_DATES"//AddDateDetails, AddTaskDetails
 export const  FETCHED_EVENTS = "FETCHED_EVENTS"
-export const  FETCHED_DEPARTMENTS = "FETCHED_DEPARTMENTS"
+export const  FETCHED_DEPARTMENTS = "FETCHED_DEPARTMENTS"//AddTaskDetails 
 export const FETCHED_TEAM_MEMBERS = "FETCHED_TEAM_MEMBERS"
 export const FETCHED_TASKS = "FETCHED_TASKS"
 
 //login/logout
 export const  SET_LOGIN_STATE = "SET_LOGIN_STATE"
 export const SET_LOGOUT_STATE = "SET_LOGOUT_STATE"
-export const  SET_NEW_USER = "SET_NEW_USER"
 export const  DISPLAY_TEAM_MEMBER = "DISPLAY_TEAM_MEMBER"
-export const  DISPLAY_EVENT = "DISPLAY_EVENT"
+
+export const  SET_NEW_USER = "SET_NEW_USER"
+export const  DISPLAY_EVENT = "DISPLAY_EVENT"//AddDateDetails
 export const  CLEAR_DISPLAY_EVENT = "CLEAR_DISPLAY_EVENT"
 export const  ADD_EVENT = "ADD_EVENT"
 export const  FILTER_EVENTS = "FILTER_EVENTS"
-export const  ADD_DATE_EVENT = "ADD_DATE_EVENT"
+export const  ADD_DATE_EVENT = "ADD_DATE_EVENT"//AddDateDetails
 
 //task
 export const  UPDATE_TASK = "UPDATE_TASK"
-export const  ADD_TASK = "ADD_TASK"
+export const  ADD_TASK = "ADD_TASK"//AddDateDetails
 export const  DELETE_TASK = "DELETE_TASK"
-export const  ADD_TASK_NOTES = "ADD_TASK_NOTES"
-//Calendar
-export const  DISPLAY_TASK = "DISPLAY_TASK"
+export const  ADD_TASK_NOTES = "ADD_TASK_NOTES"//AddTaskNotes
+export const  DISPLAY_TASK = "DISPLAY_TASK"//Calendar
 export const  CLEAR_DISPLAY_TASK = "CLEAR_DISPLAY_TASK"
 
 //need to make 

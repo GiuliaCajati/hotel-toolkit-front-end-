@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
-import FullCalendar from '@fullcalendar/react'
-import dayGridPlugin from '@fullcalendar/daygrid'
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Container from '@material-ui/core/Container';
-import { displayEvent, displayTask, clearDisplayTask, clearDisplayEvent } from '../actions';
 import { useSelector, useDispatch } from 'react-redux';
-import interactionPlugin from "@fullcalendar/interaction"; // needed for dayClick
+import { displayEvent, displayTask, clearDisplayTask, clearDisplayEvent } from '../actions';
+//displayEvent, displayTask, clearDisplayTask, clearDisplayEvent
+
 import CalendarSelection from "./CalendarSelection.js";
 import CalendarKey from "./CalendarKey.js";
+
+import FullCalendar from '@fullcalendar/react'
+import dayGridPlugin from '@fullcalendar/daygrid'
+import interactionPlugin from "@fullcalendar/interaction"; // needed for dayClick
 import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
+
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Container from '@material-ui/core/Container';
 
 const Calendar = () => {
   const events = useSelector(state => state.events)

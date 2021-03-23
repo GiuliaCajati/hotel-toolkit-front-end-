@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
+import {  useHistory } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux';
+import { addTaskNotes } from '../actions';
+//addTaskNotes, task
+
+import { makeStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import { useSelector, useDispatch } from 'react-redux';//display 
-import { addTaskNotes } from '../actions';
-import {  useHistory } from "react-router-dom";
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 
