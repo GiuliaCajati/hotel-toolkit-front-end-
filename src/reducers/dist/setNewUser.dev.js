@@ -15,25 +15,18 @@ function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.
 
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
 
-var eventsReducer = function eventsReducer() {
+var setNewUser = function setNewUser() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
   var action = arguments.length > 1 ? arguments[1] : undefined;
 
   switch (action.type) {
-    case _index.FETCHED_EVENTS:
-      return [].concat(_toConsumableArray(state), _toConsumableArray(action.payload));
-
-    case _index.ADD_EVENT:
-      return [].concat(_toConsumableArray(state), _toConsumableArray(action.payload));
-
-    case _index.FILTER_EVENTS:
+    case _index.ADD_TEAM_MEMBER:
       return [].concat(_toConsumableArray(state), _toConsumableArray(action.payload));
 
     default:
       return state;
   }
-}; //state.filter(task => task.id !== action.payload) 
+};
 
-
-var _default = eventsReducer;
+var _default = setNewUser;
 exports["default"] = _default;

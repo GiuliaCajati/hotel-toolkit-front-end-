@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import {  useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';//display state 
-import { setNewUser } from '../actions';
+import { addTeamMember } from '../actions';
 //setNewUser, departments
 import { makeStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
@@ -12,7 +13,7 @@ import FormControl from '@material-ui/core/FormControl';
 import MenuItem from '@material-ui/core/MenuItem';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
-import Paper from '@material-ui/core/Paper';
+
 
 
 
@@ -101,7 +102,7 @@ export default function New() {
             points: 0,
             department_id: state.department_id
         }
-        dispatch(setNewUser(user))
+        dispatch(addTeamMember(user))
         history.push("/all_team_members")
         }
   

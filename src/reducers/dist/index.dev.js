@@ -7,7 +7,7 @@ exports["default"] = void 0;
 
 var _setLoginState = _interopRequireDefault(require("./setLoginState"));
 
-var _setNewUser = _interopRequireDefault(require("./setNewUser"));
+var _addTeamMember = _interopRequireDefault(require("./addTeamMember"));
 
 var _selectedTeamMember = _interopRequireDefault(require("./selectedTeamMember"));
 
@@ -23,6 +23,8 @@ var _selectedEvent = _interopRequireDefault(require("./selectedEvent"));
 
 var _tasks = _interopRequireDefault(require("./tasks"));
 
+var _selectedTask = _interopRequireDefault(require("./selectedTask"));
+
 var _dateEvent = _interopRequireDefault(require("./dateEvent"));
 
 var _redux = require("redux");
@@ -31,7 +33,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 
 var rootReducers = (0, _redux.combineReducers)({
   currentUser: _setLoginState["default"],
-  setNewUser: _setNewUser["default"],
+  setNewUser: _addTeamMember["default"],
   events: _events["default"],
   departments: _departments["default"],
   teamMembers: _teamMembers["default"],
@@ -39,6 +41,7 @@ var rootReducers = (0, _redux.combineReducers)({
   event: _selectedEvent["default"],
   dates: _dates["default"],
   tasks: _tasks["default"],
+  task: _selectedTask["default"],
   dateEvent: _dateEvent["default"]
 });
 var _default = rootReducers;

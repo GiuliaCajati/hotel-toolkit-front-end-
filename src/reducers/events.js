@@ -10,13 +10,6 @@ const eventsReducer = (state = [], action) => {
             return [...state, ...action.payload]
         case FILTER_EVENTS:
             return [...state, ...action.payload]
-        // case ADD_EVENTS_TASKS:
-        //     //working on it
-        //     //state[0].tasks.push(TASK?)
-        //     return [...action.payload]
-        // case DELETE_EVENTS_TASKS:
-        //     //working on it
-        //     return [...action.payload]
         default: 
             return state;
     }

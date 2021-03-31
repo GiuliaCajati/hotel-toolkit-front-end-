@@ -1,5 +1,10 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import {  useHistory } from "react-router-dom";
+import { Link } from 'react-router-dom' 
 import clsx from 'clsx';
+import { setLogOutState } from '../actions';
+//setLogOutState, currentUser
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
@@ -16,12 +21,9 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
-import { Link } from 'react-router-dom' 
 import { createMuiTheme } from '@material-ui/core/styles/index'
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
-import { useSelector, useDispatch } from 'react-redux';
-import { setLogOutState } from '../actions';
-import {  useHistory } from "react-router-dom";
+
 
 const drawerWidth = 240;
 

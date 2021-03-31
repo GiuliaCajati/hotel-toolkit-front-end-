@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
-import Link from '@material-ui/core/Link';
 import Button from '@material-ui/core/Button';
 
 class NotFound extends Component {
     render() {
-        console.log(
-            
-          )
 
         return (
             <body class="four-o-four-page">

@@ -143,13 +143,16 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => {
+  debugger
   return{
+  
     events: state.events,
     departments: state.departments, 
     currentUser: state.currentUser,
     teamMembers: state.teamMembers,
     dates: state.dates,
     tasks: state.tasks
+    //tasks: state.dates.tasks
   }
 }
 

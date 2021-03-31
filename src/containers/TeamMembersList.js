@@ -1,13 +1,14 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { displayTeamMember } from '../actions';
 import PropTypes from 'prop-types';
+import {  useHistory } from "react-router-dom";
+
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
-import {  useHistory } from "react-router-dom";
-import { useSelector, useDispatch } from 'react-redux';
-import { displayTeamMember } from '../actions';
 
 const styles = theme => ({
   root: {

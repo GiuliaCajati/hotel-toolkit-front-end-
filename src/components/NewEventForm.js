@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-
 import {  useHistory } from "react-router-dom";
 import {  useDispatch } from 'react-redux'; 
 import { addEvent } from '../actions'
 //addEvent
-
 
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';

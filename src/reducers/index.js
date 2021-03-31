@@ -1,5 +1,5 @@
 import setLoginState from './setLoginState'
-import setNewUser from './setNewUser'
+import setNewUser from './addTeamMember'
 
 import teamMember from './selectedTeamMember'
 import teamMembers from './teamMembers'
@@ -14,8 +14,6 @@ import dateEvent from './dateEvent'
 
 import {combineReducers} from 'redux'
  
-
-
 const rootReducers =  combineReducers({
     currentUser : setLoginState,
     setNewUser : setNewUser,

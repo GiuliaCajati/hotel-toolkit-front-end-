@@ -3,14 +3,25 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.setNewUser = exports.setLogOutState = exports.setLoginState = exports.fetchingTeamMembers = exports.displayTeamMember = exports.fetchingDepartments = exports.displayEvent = exports.fetchingTasks = exports.addEvent = exports.filterEvents = exports.fetchingEvents = exports.fetchingDates = exports.addDateEvent = exports.deleteTask = exports.clearDisplayEvent = exports.clearDisplayTask = exports.displayTask = exports.updateTask = exports.addTaskNotes = exports.addTask = exports.EDIT_TASK = exports.CLEAR_DISPLAY_TASK = exports.DISPLAY_TASK = exports.ADD_TASK_NOTES = exports.DELETE_TASK = exports.ADD_TASK = exports.UPDATE_TASK = exports.ADD_DATE_EVENT = exports.FILTER_EVENTS = exports.ADD_EVENT = exports.CLEAR_DISPLAY_EVENT = exports.DISPLAY_EVENT = exports.SET_NEW_USER = exports.DISPLAY_TEAM_MEMBER = exports.SET_LOGOUT_STATE = exports.SET_LOGIN_STATE = exports.FETCHED_TASKS = exports.FETCHED_TEAM_MEMBERS = exports.FETCHED_DEPARTMENTS = exports.FETCHED_EVENTS = exports.FETCHED_DATES = void 0;
+exports.addTeamMember = exports.setLogOutState = exports.setLoginState = exports.fetchingTeamMembers = exports.displayTeamMember = exports.fetchingDepartments = exports.displayEvent = exports.fetchingTasks = exports.addEvent = exports.filterEvents = exports.fetchingEvents = exports.fetchingDates = exports.addDateEvent = exports.clearDisplayEvent = exports.clearDisplayTask = exports.displayTask = exports.deleteTask = exports.updateTask = exports.addTaskNotes = exports.addTask = exports.CLEAR_DISPLAY_TASK = exports.DISPLAY_TASK = exports.ADD_TASK_NOTES = exports.DELETE_TASK = exports.ADD_TASK = exports.UPDATE_TASK = exports.ADD_DATE_EVENT = exports.FILTER_EVENTS = exports.ADD_EVENT = exports.CLEAR_DISPLAY_EVENT = exports.DISPLAY_EVENT = exports.FETCHED_TASKS = exports.FETCHED_TEAM_MEMBERS = exports.FETCHED_DEPARTMENTS = exports.FETCHED_EVENTS = exports.ADD_TEAM_MEMBER = exports.DISPLAY_TEAM_MEMBER = exports.SET_LOGOUT_STATE = exports.SET_LOGIN_STATE = exports.FETCHED_DATES = void 0;
 
 var _index = require("../index.js");
 
-//fetching 
 var FETCHED_DATES = "FETCHED_DATES"; //AddDateDetails, AddTaskDetails, NewTaskForm, WelcomePage
+//goal is to make all fetches from dates 
+//where are modifications made? 
+//login/logout
 
 exports.FETCHED_DATES = FETCHED_DATES;
+var SET_LOGIN_STATE = "SET_LOGIN_STATE";
+exports.SET_LOGIN_STATE = SET_LOGIN_STATE;
+var SET_LOGOUT_STATE = "SET_LOGOUT_STATE";
+exports.SET_LOGOUT_STATE = SET_LOGOUT_STATE;
+var DISPLAY_TEAM_MEMBER = "DISPLAY_TEAM_MEMBER"; //TeamMemberShowPage, TeamMemberHomePage, 
+
+exports.DISPLAY_TEAM_MEMBER = DISPLAY_TEAM_MEMBER;
+var ADD_TEAM_MEMBER = "ADD_TEAM_MEMBER";
+exports.ADD_TEAM_MEMBER = ADD_TEAM_MEMBER;
 var FETCHED_EVENTS = "FETCHED_EVENTS"; //Calendar, EventFilter
 
 exports.FETCHED_EVENTS = FETCHED_EVENTS;
@@ -20,19 +31,9 @@ exports.FETCHED_DEPARTMENTS = FETCHED_DEPARTMENTS;
 var FETCHED_TEAM_MEMBERS = "FETCHED_TEAM_MEMBERS"; //NewTaskForm
 
 exports.FETCHED_TEAM_MEMBERS = FETCHED_TEAM_MEMBERS;
-var FETCHED_TASKS = "FETCHED_TASKS"; //Calendar, EventShowPage, WelcomePage, ThisWeek, TeamMemberShowPage, TeamMemberHomePage
-//login/logout
+var FETCHED_TASKS = "FETCHED_TASKS"; //Calendar, EventShowPage, WelcomePage, ThisWeek, TeamMemberShowPage, TeamMemberHomePage, TasksShowPage 
 
 exports.FETCHED_TASKS = FETCHED_TASKS;
-var SET_LOGIN_STATE = "SET_LOGIN_STATE";
-exports.SET_LOGIN_STATE = SET_LOGIN_STATE;
-var SET_LOGOUT_STATE = "SET_LOGOUT_STATE";
-exports.SET_LOGOUT_STATE = SET_LOGOUT_STATE;
-var DISPLAY_TEAM_MEMBER = "DISPLAY_TEAM_MEMBER"; //TeamMemberShowPage, TeamMemberHomePage, 
-
-exports.DISPLAY_TEAM_MEMBER = DISPLAY_TEAM_MEMBER;
-var SET_NEW_USER = "SET_NEW_USER";
-exports.SET_NEW_USER = SET_NEW_USER;
 var DISPLAY_EVENT = "DISPLAY_EVENT"; //AddDateDetails, Calendar
 
 exports.DISPLAY_EVENT = DISPLAY_EVENT;
@@ -42,10 +43,11 @@ exports.CLEAR_DISPLAY_EVENT = CLEAR_DISPLAY_EVENT;
 var ADD_EVENT = "ADD_EVENT"; //NewEventForm
 
 exports.ADD_EVENT = ADD_EVENT;
-var FILTER_EVENTS = "FILTER_EVENTS";
+var FILTER_EVENTS = "FILTER_EVENTS"; //EventIndexPage
+
 exports.FILTER_EVENTS = FILTER_EVENTS;
 var ADD_DATE_EVENT = "ADD_DATE_EVENT"; //AddDateDetails
-//task
+// Task
 
 exports.ADD_DATE_EVENT = ADD_DATE_EVENT;
 var UPDATE_TASK = "UPDATE_TASK"; //TeamMemberHomePage
@@ -54,22 +56,19 @@ exports.UPDATE_TASK = UPDATE_TASK;
 var ADD_TASK = "ADD_TASK"; //AddDateDetails, NewTaskForm
 
 exports.ADD_TASK = ADD_TASK;
-var DELETE_TASK = "DELETE_TASK";
+var DELETE_TASK = "DELETE_TASK"; //TasksShowPage
+
 exports.DELETE_TASK = DELETE_TASK;
 var ADD_TASK_NOTES = "ADD_TASK_NOTES"; //AddTaskNotes
 
 exports.ADD_TASK_NOTES = ADD_TASK_NOTES;
-var DISPLAY_TASK = "DISPLAY_TASK"; //Calendar, EventShowPage
+var DISPLAY_TASK = "DISPLAY_TASK"; //Calendar, EventShowPage, TasksShowPage
 
 exports.DISPLAY_TASK = DISPLAY_TASK;
 var CLEAR_DISPLAY_TASK = "CLEAR_DISPLAY_TASK"; //Calendar
-//need to make 
 
 exports.CLEAR_DISPLAY_TASK = CLEAR_DISPLAY_TASK;
-var EDIT_TASK = "EDIT_TASK"; //const URL = "http://localhost:3000/"
-
-exports.EDIT_TASK = EDIT_TASK;
-var URL = "https://hotel-toolkit.herokuapp.com/";
+var URL = "http://localhost:3000/"; //const URL = "https://hotel-toolkit.herokuapp.com/"
 
 var addTask = function addTask(newTask) {
   debugger;
@@ -147,9 +146,30 @@ var updateTask = function updateTask(taskId, checked) {
       _index.history.push('/home');
     });
   };
-};
+}; //delete tasks: need to change event state, events state, user state, dates? 
+
 
 exports.updateTask = updateTask;
+
+var deleteTask = function deleteTask(selectedTaskID) {
+  return function (dispatch) {
+    fetch(URL + "tasks/".concat(selectedTaskID), {
+      method: "DELETE"
+    }).then(function (res) {
+      return console.log(res);
+    }).then(function (task) {
+      debugger;
+      dispatch({
+        type: "DELETE_TASK",
+        payload: selectedTaskID
+      });
+
+      _index.history.push('/home');
+    });
+  };
+};
+
+exports.deleteTask = deleteTask;
 
 var displayTask = function displayTask(selectedTask) {
   return {
@@ -172,30 +192,9 @@ var clearDisplayEvent = function clearDisplayEvent() {
   return {
     type: CLEAR_DISPLAY_EVENT
   };
-}; //delete tasks: need to change event state, events state, user state, dates? 
-
-
-exports.clearDisplayEvent = clearDisplayEvent;
-
-var deleteTask = function deleteTask(selectedTaskID) {
-  return function (dispatch) {
-    fetch(URL + "tasks/".concat(selectedTaskID), {
-      method: "DELETE"
-    }).then(function (res) {
-      return console.log(res);
-    }).then(function (task) {
-      debugger;
-      dispatch({
-        type: "DELETE_TASK",
-        payload: selectedTaskID
-      });
-
-      _index.history.push('/home');
-    });
-  };
 };
 
-exports.deleteTask = deleteTask;
+exports.clearDisplayEvent = clearDisplayEvent;
 
 var addDateEvent = function addDateEvent(newDateEvent) {
   debugger;
@@ -218,8 +217,7 @@ var addDateEvent = function addDateEvent(newDateEvent) {
       _index.history.push('/events');
     });
   };
-}; //fetching dates 
-
+};
 
 exports.addDateEvent = addDateEvent;
 
@@ -234,8 +232,7 @@ var fetchingDates = function fetchingDates() {
       });
     });
   };
-}; // fetchin events 
-
+};
 
 exports.fetchingDates = fetchingDates;
 
@@ -250,8 +247,7 @@ var fetchingEvents = function fetchingEvents() {
       });
     });
   };
-}; //radio filter 
-
+};
 
 exports.fetchingEvents = fetchingEvents;
 
@@ -260,8 +256,7 @@ var filterEvents = function filterEvents(filteredEvents) {
     type: FILTER_EVENTS,
     payload: filteredEvents
   };
-}; //add event 
-
+};
 
 exports.filterEvents = filterEvents;
 
@@ -285,8 +280,7 @@ var addEvent = function addEvent(newEvent) {
       _index.history.push("/events/".concat(newEvent.id));
     });
   };
-}; //fetch Tasks
-
+};
 
 exports.addEvent = addEvent;
 
@@ -301,8 +295,7 @@ var fetchingTasks = function fetchingTasks() {
       }); // history.push('/events')
     }); //  history.push('/events') 
   };
-}; //event show page 
-
+};
 
 exports.fetchingTasks = fetchingTasks;
 
@@ -327,8 +320,7 @@ var fetchingDepartments = function fetchingDepartments() {
       });
     });
   };
-}; //team member show page 
-
+};
 
 exports.fetchingDepartments = fetchingDepartments;
 
@@ -337,8 +329,7 @@ var displayTeamMember = function displayTeamMember(selecteTeamMember) {
     type: DISPLAY_TEAM_MEMBER,
     payload: selecteTeamMember
   };
-}; //fetching team members 
-
+};
 
 exports.displayTeamMember = displayTeamMember;
 
@@ -353,8 +344,7 @@ var fetchingTeamMembers = function fetchingTeamMembers() {
       });
     });
   };
-}; //login
-
+};
 
 exports.fetchingTeamMembers = fetchingTeamMembers;
 
@@ -378,8 +368,7 @@ var setLoginState = function setLoginState(loginData) {
       _index.history.push('/home');
     });
   };
-}; //logout 
-
+};
 
 exports.setLoginState = setLoginState;
 
@@ -392,7 +381,7 @@ var setLogOutState = function setLogOutState() {
 
 exports.setLogOutState = setLogOutState;
 
-var setNewUser = function setNewUser(newUserData) {
+var addTeamMember = function addTeamMember(newUserData) {
   return function (dispatch) {
     fetch(URL + "team_members", {
       method: "POST",
@@ -405,7 +394,7 @@ var setNewUser = function setNewUser(newUserData) {
       return res.json();
     }).then(function (newUserData) {
       dispatch({
-        type: "SET_NEW_USER",
+        type: "ADD_TEAM_MEMBER",
         payload: [newUserData]
       }); //user show page
       //history.push('/home')
@@ -413,4 +402,4 @@ var setNewUser = function setNewUser(newUserData) {
   };
 };
 
-exports.setNewUser = setNewUser;
+exports.addTeamMember = addTeamMember;

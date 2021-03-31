@@ -1,39 +1,34 @@
 import { history } from '../index.js';
-//fetching 
 export const  FETCHED_DATES = "FETCHED_DATES"//AddDateDetails, AddTaskDetails, NewTaskForm, WelcomePage
-export const  FETCHED_EVENTS = "FETCHED_EVENTS"//Calendar, EventFilter
-export const  FETCHED_DEPARTMENTS = "FETCHED_DEPARTMENTS"//AddTaskDetails 
-export const FETCHED_TEAM_MEMBERS = "FETCHED_TEAM_MEMBERS"//NewTaskForm
-export const FETCHED_TASKS = "FETCHED_TASKS"//Calendar, EventShowPage, WelcomePage, ThisWeek, TeamMemberShowPage, TeamMemberHomePage
-
+//goal is to make all fetches from dates 
+//where are modifications made? 
 //login/logout
 export const  SET_LOGIN_STATE = "SET_LOGIN_STATE"
 export const SET_LOGOUT_STATE = "SET_LOGOUT_STATE"
 export const  DISPLAY_TEAM_MEMBER = "DISPLAY_TEAM_MEMBER"//TeamMemberShowPage, TeamMemberHomePage, 
+export const  ADD_TEAM_MEMBER = "ADD_TEAM_MEMBER"
 
-export const  SET_NEW_USER = "SET_NEW_USER"
+export const  FETCHED_EVENTS = "FETCHED_EVENTS"//Calendar, EventFilter
+export const  FETCHED_DEPARTMENTS = "FETCHED_DEPARTMENTS"//AddTaskDetails 
+export const FETCHED_TEAM_MEMBERS = "FETCHED_TEAM_MEMBERS"//NewTaskForm
+export const FETCHED_TASKS = "FETCHED_TASKS"//Calendar, EventShowPage, WelcomePage, ThisWeek, TeamMemberShowPage, TeamMemberHomePage, TasksShowPage 
 
 export const  DISPLAY_EVENT = "DISPLAY_EVENT"//AddDateDetails, Calendar
 export const  CLEAR_DISPLAY_EVENT = "CLEAR_DISPLAY_EVENT"//Calendar
-export const  ADD_EVENT = "ADD_EVENT"
-//NewEventForm
-export const  FILTER_EVENTS = "FILTER_EVENTS"
+export const  ADD_EVENT = "ADD_EVENT"//NewEventForm
+export const  FILTER_EVENTS = "FILTER_EVENTS"//EventIndexPage
 export const  ADD_DATE_EVENT = "ADD_DATE_EVENT"//AddDateDetails
 
-//task
+// Task
 export const  UPDATE_TASK = "UPDATE_TASK"//TeamMemberHomePage
 export const  ADD_TASK = "ADD_TASK"//AddDateDetails, NewTaskForm
-export const  DELETE_TASK = "DELETE_TASK"
+export const  DELETE_TASK = "DELETE_TASK"//TasksShowPage
 export const  ADD_TASK_NOTES = "ADD_TASK_NOTES"//AddTaskNotes
-export const  DISPLAY_TASK = "DISPLAY_TASK"//Calendar, EventShowPage
+export const  DISPLAY_TASK = "DISPLAY_TASK"//Calendar, EventShowPage, TasksShowPage
 export const  CLEAR_DISPLAY_TASK = "CLEAR_DISPLAY_TASK"//Calendar
 
-//need to make 
-export const  EDIT_TASK = "EDIT_TASK"
-
-//const URL = "http://localhost:3000/"
-const URL = "https://hotel-toolkit.herokuapp.com/"
-
+const URL = "http://localhost:3000/"
+//const URL = "https://hotel-toolkit.herokuapp.com/"
 
 export const addTask = (newTask) => {debugger
     
@@ -56,7 +51,6 @@ export const addTask = (newTask) => {debugger
         })
     }
 }
-
 
 export const addTaskNotes = (taskId, Addednotes) => {debugger
     
@@ -84,7 +78,6 @@ export const addTaskNotes = (taskId, Addednotes) => {debugger
     }
 }
 
-
 export const updateTask = (taskId, checked) => {
     
     return (dispatch) => { 
@@ -110,26 +103,6 @@ export const updateTask = (taskId, checked) => {
         })
     }
 }
- 
-export const displayTask = (selectedTask) => {
-    return{
-        type: DISPLAY_TASK,
-        payload: selectedTask
-    }
-}
-
-
-
-export const clearDisplayTask = () => {
-    return{
-        type: CLEAR_DISPLAY_TASK,
-    }
-}
-export const clearDisplayEvent = () => {
-    return{
-        type: CLEAR_DISPLAY_EVENT,
-    }
-}
 
 //delete tasks: need to change event state, events state, user state, dates? 
 export const deleteTask = (selectedTaskID) => {
@@ -148,7 +121,25 @@ export const deleteTask = (selectedTaskID) => {
         })
     }
 }
+ 
+export const displayTask = (selectedTask) => {
+    return{
+        type: DISPLAY_TASK,
+        payload: selectedTask
+    }
+}
 
+export const clearDisplayTask = () => {
+    return{
+        type: CLEAR_DISPLAY_TASK,
+    }
+}
+
+export const clearDisplayEvent = () => {
+    return{
+        type: CLEAR_DISPLAY_EVENT,
+    }
+}
 
 
 export const addDateEvent = (newDateEvent) => {
@@ -175,7 +166,6 @@ export const addDateEvent = (newDateEvent) => {
     }
 }
 
-//fetching dates 
 export const fetchingDates = () => {
     return (dispatch) => {
         fetch(URL + "date_infos")
@@ -189,7 +179,6 @@ export const fetchingDates = () => {
     }
 }
 
-// fetchin events 
 export const fetchingEvents = () => {
     return (dispatch) => {
         fetch(URL + "events")
@@ -203,7 +192,6 @@ export const fetchingEvents = () => {
     }
 }
 
-//radio filter 
 export const filterEvents = (filteredEvents) => {
     return{
         type: FILTER_EVENTS,
@@ -211,7 +199,6 @@ export const filterEvents = (filteredEvents) => {
     }
 }
 
-//add event 
 export const addEvent = (newEvent) => {
     return (dispatch) => {
         fetch(URL + "/events", {
@@ -233,7 +220,6 @@ export const addEvent = (newEvent) => {
     }
 }
 
-//fetch Tasks
 export const fetchingTasks = () => {
     return (dispatch) => {
         fetch(URL + "tasks") 
@@ -249,8 +235,6 @@ export const fetchingTasks = () => {
     }
 }
 
-
-//event show page 
 export const displayEvent = (selectedEvent) => {
   return{
       type: DISPLAY_EVENT,
@@ -272,7 +256,6 @@ export const fetchingDepartments = () => {
     }
 }
 
-//team member show page 
 export const displayTeamMember = (selecteTeamMember) => {
     return{
         type: DISPLAY_TEAM_MEMBER,
@@ -280,7 +263,6 @@ export const displayTeamMember = (selecteTeamMember) => {
     }
 }
 
-//fetching team members 
 export const fetchingTeamMembers = () => {
     return (dispatch) => {
         fetch(URL + "team_members")
@@ -294,7 +276,6 @@ export const fetchingTeamMembers = () => {
     }
 }
 
-//login
 export const setLoginState = (loginData) => {
     return (dispatch) => {
         fetch(URL + "login", {
@@ -317,7 +298,6 @@ export const setLoginState = (loginData) => {
     }
 }
 
-//logout 
 export const setLogOutState = () => {
     return{
         type: SET_LOGOUT_STATE,
@@ -325,7 +305,7 @@ export const setLogOutState = () => {
 }
 
 //add team member 
-export const setNewUser = (newUserData) => {
+export const addTeamMember= (newUserData) => {
     return (dispatch) => {
         fetch(URL + "team_members", {
             method: "POST",
@@ -338,7 +318,7 @@ export const setNewUser = (newUserData) => {
         .then(res => res.json())   
         .then(newUserData => {
             dispatch({
-                    type: "SET_NEW_USER", 
+                    type: "ADD_TEAM_MEMBER", 
                     payload: [newUserData] 
             })
 //user show page
