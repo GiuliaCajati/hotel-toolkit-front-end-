@@ -1,3 +1,4 @@
+
 import { history } from '../index.js';
 export const  FETCHED_DATES = "FETCHED_DATES"//AddDateDetails, AddTaskDetails, NewTaskForm, WelcomePage
 //goal is to make all fetches from dates 
@@ -112,7 +113,7 @@ export const deleteTask = (selectedTaskID) => {
         })
         .then(res => console.log(res)) 
         .then(task => {
-            debugger
+            
             dispatch({
                     type: "DELETE_TASK",
                     payload: selectedTaskID
@@ -288,15 +289,21 @@ export const setLoginState = (loginData) => {
         })
         .then(res => res.json())   
         .then(loginData => {
-    
-            dispatch({
+
+            if(loginData.message == "This user is not authenticated") {
+                return alert(loginData.message)
+                //clear currentUser 
+             }else {
+                dispatch({
                     type: "SET_LOGIN_STATE", 
                     payload: [loginData],
-            })
-            history.push('/home')
-        }) 
+                })
+             } 
+            }
+        )
     }
 }
+
 
 export const setLogOutState = () => {
     return{

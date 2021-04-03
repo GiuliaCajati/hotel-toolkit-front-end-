@@ -10,7 +10,7 @@ import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 
-//material ui
+
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(10),
@@ -59,18 +59,20 @@ export default function LoginForm() {
    
   }
 
-  const handleSubmitClick = (event) => {
+  const handleSubmitClick = async (event) => {
     event.preventDefault();
     let user = {
         name: state.name,
         password: state.password
     }
     dispatch(setLoginState(user))
-   
-    history.push("/welcome")
-     //must click on login twice... will make modifications 
-    return currentUser.length == 0?null:currentUser[0].message == "This user is not authenticated"?alert("This user is not authenticated"):history.push("/welcome")
+      //22Star!!
+      debugger
+    history.push('/welcome')
+    
     }
+
+
 
   return (
 <Paper className={classes.paper}>  

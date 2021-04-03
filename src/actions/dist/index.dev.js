@@ -158,7 +158,6 @@ var deleteTask = function deleteTask(selectedTaskID) {
     }).then(function (res) {
       return console.log(res);
     }).then(function (task) {
-      debugger;
       dispatch({
         type: "DELETE_TASK",
         payload: selectedTaskID
@@ -360,12 +359,14 @@ var setLoginState = function setLoginState(loginData) {
     }).then(function (res) {
       return res.json();
     }).then(function (loginData) {
-      dispatch({
-        type: "SET_LOGIN_STATE",
-        payload: [loginData]
-      });
-
-      _index.history.push('/home');
+      if (loginData.message == "This user is not authenticated") {
+        return alert(loginData.message); //clear currentUser 
+      } else {
+        dispatch({
+          type: "SET_LOGIN_STATE",
+          payload: [loginData]
+        });
+      }
     });
   };
 };

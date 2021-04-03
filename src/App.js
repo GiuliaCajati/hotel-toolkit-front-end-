@@ -1,24 +1,16 @@
 import './App.css';
-
-
 //import {useSelector, useDispatch} from 'react-redux'
 import React, { Component } from "react";
 import { connect } from 'react-redux'
 import {  Switch, Route } from 'react-router-dom';//withRouter
+import { bindActionCreators } from 'redux';
 
-//actions
-import { fetchingEvents } from './actions'
-import { fetchingDepartments } from './actions'
-import { fetchingTeamMembers } from './actions'
-import { fetchingDates } from './actions'
-import { fetchingTasks } from './actions'
+import { fetchingEvents, fetchingDepartments, fetchingTeamMembers, fetchingDates, fetchingTasks } from './actions'
 
 //containers
 import SideBar from './containers/SideBar.js'
 import EventsList from './containers/EventsList.js'
 import TeamMembersList from './containers/TeamMembersList.js'
-
-//import DepartmentTaskIndex from './containers/DepartmentTaskIndex.js'
 
 //components
 import NewTeamMemberForm from './components/NewTeamMemberForm.js'
@@ -35,7 +27,7 @@ import NotFound from './components/NotFound'
 import NewTaskForm from './components/NewTaskForm.js'
 import AddTaskNotes from './components/AddTaskNotes.js'
 import TaskShowPage from './components/TaskShowPage.js'
-import { bindActionCreators } from 'redux';
+
 
 class App extends Component {
   componentDidMount() {
@@ -46,7 +38,6 @@ class App extends Component {
     this.props.fetchingTasks()
   }
   render() {
- 
  
 
     return (
@@ -143,8 +134,8 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => {
-  debugger
-  return{
+  
+  return {
   
     events: state.events,
     departments: state.departments, 
