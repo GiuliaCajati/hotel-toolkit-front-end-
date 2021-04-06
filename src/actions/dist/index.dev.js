@@ -66,9 +66,10 @@ var DISPLAY_TASK = "DISPLAY_TASK"; //Calendar, EventShowPage, TasksShowPage
 
 exports.DISPLAY_TASK = DISPLAY_TASK;
 var CLEAR_DISPLAY_TASK = "CLEAR_DISPLAY_TASK"; //Calendar
+//const URL = "http://localhost:3000/"
 
 exports.CLEAR_DISPLAY_TASK = CLEAR_DISPLAY_TASK;
-var URL = "http://localhost:3000/"; //const URL = "https://hotel-toolkit.herokuapp.com/"
+var URL = "https://hotel-toolkit.herokuapp.com/";
 
 var addTask = function addTask(newTask) {
   debugger;
